@@ -1,0 +1,14 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <Style src="./styles.uss" />
+    <ui:VisualElement name="Root" class="kd-panel">
+        <ui:Label name="lblTitle" text="Round 1" class="kd-panel__title" />
+        <ui:Label name="lblSubtitle" text="Current team round" class="kd-panel__subtitle" />
+        <ui:VisualElement class="kd-panel__header">
+            <LocalizedLabel localization-key="Player" text="Player" class="kd-panel__header-name" />
+            <LocalizedLabel localization-key="KillsShort" text="K" class="kd-panel__header-stat" />
+            <LocalizedLabel localization-key="DeathsShort" text="D" class="kd-panel__header-stat" />
+            <LocalizedLabel localization-key="RatioShort" text="K/D" class="kd-panel__header-ratio" />
+        </ui:VisualElement>
+        <ui:VisualElement name="cntRows" class="kd-panel__rows" />
+    </ui:VisualElement>
+</ui:UXML>

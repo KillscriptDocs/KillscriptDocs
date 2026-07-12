@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <Style src="./styles.uss" />
+    <ui:VisualElement name="cntRow" class="kd-row" style="width: 100%; flex-direction: row;">
+        <ui:VisualElement name="veAccent" class="kd-row__accent" />
+        <ui:VisualElement name="veBackground" class="kd-row__background" style="flex-direction: row; width: 100%;">
+            <ui:Label name="lblNickname" text="Player" class="kd-row__name" />
+            <ui:Label name="lblKills" text="0" class="kd-row__stat" />
+            <ui:Label name="lblDeaths" text="0" class="kd-row__stat" />
+            <ui:Label name="lblRatio" text="0.0" class="kd-row__ratio" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

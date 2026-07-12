@@ -1,0 +1,118 @@
+.kd-panel {
+    position: absolute;
+    left: 22px;
+    top: 180px;
+    width: 336px;
+    padding-top: 14px;
+    padding-right: 14px;
+    padding-bottom: 14px;
+    padding-left: 14px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    background-color: rgba(8, 13, 20, 0.9);
+}
+
+.kd-panel__title {
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    -unity-font-style: bold;
+}
+
+.kd-panel__subtitle {
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 12px;
+    margin-top: 2px;
+    margin-bottom: 10px;
+}
+
+.kd-panel__header {
+    height: 22px;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 6px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.kd-panel__header-name {
+    flex-grow: 1;
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 11px;
+    -unity-text-align: middle-left;
+}
+
+.kd-panel__header-stat {
+    width: 34px;
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 11px;
+    -unity-text-align: middle-center;
+}
+
+.kd-panel__header-ratio {
+    width: 52px;
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 11px;
+    -unity-text-align: middle-center;
+}
+
+.kd-panel__rows {
+    width: 100%;
+}
+
+.kd-row {
+    width: 100%;
+    height: 34px;
+    margin-bottom: 6px;
+    flex-direction: row;
+}
+
+.kd-row__accent {
+    width: 4px;
+    height: 100%;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    background-color: rgb(91, 222, 129);
+}
+
+.kd-row__background {
+    width: 100%;
+    flex-grow: 1;
+    height: 100%;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: rgba(255, 255, 255, 0.06);
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.kd-row__name {
+    width: 0;
+    flex-grow: 1;
+    color: rgb(255, 255, 255);
+    font-size: 13px;
+    -unity-text-align: middle-left;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.kd-row__stat {
+    width: 34px;
+    height: 100%;
+    color: rgb(255, 255, 255);
+    font-size: 13px;
+    -unity-text-align: middle-center;
+}
+
+.kd-row__ratio {
+    width: 52px;
+    height: 100%;
+    color: rgb(255, 255, 255);
+    font-size: 13px;
+    -unity-text-align: middle-center;
+    -unity-font-style: bold;
+}

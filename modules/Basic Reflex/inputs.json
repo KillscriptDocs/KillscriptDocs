@@ -1,0 +1,11 @@
+{
+  "Actions": [
+    {
+      "Name": "ToggleSniperMode",
+      "Type": "Button",
+      "Binding": {
+        "Path": "<Keyboard>/v"
+      }
+    }
+  ]
+}

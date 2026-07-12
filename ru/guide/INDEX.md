@@ -1,4 +1,4 @@
-![](images/LibraryHero.jpg)
+![](../../images/LibraryHero.jpg)
 
 # Документация Killscript на русском
 

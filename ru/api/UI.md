@@ -87,7 +87,7 @@ Reset
 | Name | Type | Access | Static | Comment |
 |---|---|---|:---:|---|
 | `backgroundColor` | Color | `get/set` |  |  |
-| `backgroundImage` | [Sprite](./Sprite.md#sprite) | `set` |  |  |
+| `backgroundImage` | [Texture](./Texture.md#texture) | `set` |  |  |
 | `backgroundPositionX` | [BackgroundPositionKeyword](./UI.md#backgroundpositionkeyword) | `get/set` |  |  |
 | `backgroundPositionY` | [BackgroundPositionKeyword](./UI.md#backgroundpositionkeyword) | `get/set` |  |  |
 | `backgroundSize` | [BackgroundSizeType](./UI.md#backgroundsizetype) | `get/set` |  |  |
@@ -127,7 +127,7 @@ Reset
 
 | Name | Type | Access | Static | Comment |
 |---|---|---|:---:|---|
-| `sprite` | [Sprite](./Sprite.md#sprite) | `get/set` |  |  |
+| `texture` | [Texture](./Texture.md#texture) | `get/set` |  |  |
 
 ## PlayerRankDisplay
 
@@ -798,10 +798,10 @@ VisualElement:GetPickingMode(): int
 
 **Returns:** int
 
-#### RegisterClickCallback
+#### OnClick
 
 ```lua
-VisualElement:RegisterClickCallback(callback: LuaFunction)
+VisualElement:OnClick(callback: LuaFunction)
 ```
 
 Регистрирует коллбэк для событий клика на этом элементе.
@@ -810,10 +810,10 @@ VisualElement:RegisterClickCallback(callback: LuaFunction)
 |---|---|:---:|---|
 | `callback` | LuaFunction |  |  |
 
-#### RegisterMouseEnterCallback
+#### OnMouseEnter
 
 ```lua
-VisualElement:RegisterMouseEnterCallback(callback: LuaFunction)
+VisualElement:OnMouseEnter(callback: LuaFunction)
 ```
 
 Регистрирует коллбэк для событий начала наведения на этом элементе.
@@ -822,10 +822,10 @@ VisualElement:RegisterMouseEnterCallback(callback: LuaFunction)
 |---|---|:---:|---|
 | `callback` | LuaFunction |  |  |
 
-#### RegisterMouseLeaveCallback
+#### OnMouseLeave
 
 ```lua
-VisualElement:RegisterMouseLeaveCallback(callback: LuaFunction)
+VisualElement:OnMouseLeave(callback: LuaFunction)
 ```
 
 Регистрирует коллбэк для событий окончания наведения на этом элементе.
@@ -834,10 +834,10 @@ VisualElement:RegisterMouseLeaveCallback(callback: LuaFunction)
 |---|---|:---:|---|
 | `callback` | LuaFunction |  |  |
 
-#### RegisterPointerDownCallback
+#### OnPointerDown
 
 ```lua
-VisualElement:RegisterPointerDownCallback(callback: LuaFunction)
+VisualElement:OnPointerDown(callback: LuaFunction)
 ```
 
 Регистрирует коллбэк для событий нажатия указателя на этом элементе.

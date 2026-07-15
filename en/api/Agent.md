@@ -9,20 +9,19 @@ API for working with agents (specialists).
 - [Agents](#agents)
 - [AgentStats](#agentstats)
 - [Aim](#aim)
-- [DamageData](#damagedata)
-- [DeathEventData](#deatheventdata)
+- [DamageEvent](#damageevent)
+- [DeathEvent](#deathevent)
 - [EHitboxBodyPart](#ehitboxbodypart)
 - [EHitType](#ehittype)
 - [EInputButton](#einputbutton)
 - [Health](#health)
 - [Hitbox](#hitbox)
-- [HitData](#hitdata)
+- [HitEvent](#hitevent)
 - [Interactable](#interactable)
 - [Interactor](#interactor)
 - [Inventory](#inventory)
 - [Movement](#movement)
 - [OcclusionCulling](#occlusionculling)
-- [StunnedData](#stunneddata)
 
 ---
 
@@ -37,7 +36,7 @@ Represents an agent in the game. This class provides access to various propertie
 | Name | Type | Access | Static | Comment |
 |---|---|---|:---:|---|
 | `Aim` | [Aim](./Agent.md#aim) | `get` |  | Access to the agent aiming API. |
-| `Avatar` | [Sprite](./Sprite.md#sprite) | `get` |  | [ClientOnly] Agent avatar (Sprite). Returns the player's avatar or the team icon. |
+| `Avatar` | [Texture](./Texture.md#texture) | `get` |  | [ClientOnly] Agent avatar. Returns the player's avatar or the team icon. |
 | `AvatarIsTeamPlaceholder` | bool | `get` |  | [ClientOnly] Returns true if Avatar is currently the team placeholder icon instead of the player's real avatar. |
 | `Color` | Color | `get` |  | Returns the color assigned to the agent. |
 | `Health` | [Health](./Agent.md#health) | `get` |  | Access to the agent health API. |
@@ -221,20 +220,6 @@ Returns the local player's agent or the spectated agent, or nil if no such agent
 
 **Returns:** [Agent](./Agent.md#agent)
 
-#### OnDamage
-
-```lua
-Agents:OnDamage(callback: LuaFunction): EventSubscription
-```
-
-[ClientOnly] Calls the callback when the local player takes damage. Returns a subscription that can be cancelled.
-
-| Param | Type | Optional | Comment |
-|---|---|:---:|---|
-| `callback` | LuaFunction |  |  |
-
-**Returns:** [EventSubscription](./Scheduler.md#eventsubscription)
-
 #### OnDeath
 
 ```lua
@@ -249,13 +234,13 @@ Agents:OnDeath(callback: LuaFunction): EventSubscription
 
 **Returns:** [EventSubscription](./Scheduler.md#eventsubscription)
 
-#### OnHit
+#### OnLocalPlayerDealtDamage
 
 ```lua
-Agents:OnHit(callback: LuaFunction): EventSubscription
+Agents:OnLocalPlayerDealtDamage(callback: LuaFunction): EventSubscription
 ```
 
-[ClientOnly] Calls the callback when the local player hits an enemy. Returns a subscription that can be cancelled.
+[ClientOnly] Calls the callback when the local player deals damage. Returns a subscription that can be cancelled.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
@@ -263,13 +248,13 @@ Agents:OnHit(callback: LuaFunction): EventSubscription
 
 **Returns:** [EventSubscription](./Scheduler.md#eventsubscription)
 
-#### OnStunned
+#### OnLocalPlayerReceivedDamage
 
 ```lua
-Agents:OnStunned(callback: LuaFunction): EventSubscription
+Agents:OnLocalPlayerReceivedDamage(callback: LuaFunction): EventSubscription
 ```
 
-[ClientOnly] Calls the callback when the local player receives a stun. Returns a subscription that can be cancelled.
+[ClientOnly] Calls the callback when the local player takes damage. The event includes stun information if this damage applied a stun. Returns a subscription that can be cancelled.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
@@ -343,9 +328,9 @@ Aim:SetAimTarget(targetPosition: Vector3, agent: Agent)
 | `targetPosition` | Vector3 |  |  |
 | `agent` | [Agent](./Agent.md#agent) |  |  |
 
-## DamageData
+## DamageEvent
 
-Received damage data.
+Damage event.
 
 ### Fields
 
@@ -356,10 +341,12 @@ Received damage data.
 | `DamageDirectionFromHead` | Vector3 |  | Damage direction: from the head to the attack source. |
 | `DamagePosition` | Vector3 |  | Point where the damage was received, relative to the agent's position. |
 | `DamageTick` | int |  | Tick on which the damage was observed. |
+| `StunnedUntilTick` | int |  | Tick until which the stun remains active. Equals 0 if this damage did not apply a stun. |
+| `WasStunned` | bool |  | true if this damage applied a stun. |
 
-## DeathEventData
+## DeathEvent
 
-Agent death data (see Agents.OnDeath).
+Agent death event (see Agents.OnDeath).
 
 ### Fields
 
@@ -450,9 +437,9 @@ Agent hitbox: position, radius, body part, and hit checks.
 | `Rotation` | Quaternion | `get` |  | Hitbox rotation in world space. |
 | `Size` | Vector3 | `get` |  | Box hitbox size along each axis in local coordinates. |
 
-## HitData
+## HitEvent
 
-Hit data.
+Hit event.
 
 ### Fields
 
@@ -462,6 +449,8 @@ Hit data.
 | `HitEventId` | int |  | Unique hit event ID. |
 | `HitTick` | int |  | Tick on which the hit occurred. |
 | `HitType` | [EHitType](./Agent.md#ehittype) |  | Hit type. |
+| `StunnedUntilTick` | int |  | Tick until which the stun remains active. Equals 0 if the hit did not apply a stun. |
+| `WasStunned` | bool |  | true if the hit applied a stun. |
 
 ## Interactable
 
@@ -631,14 +620,4 @@ Access to the agent occlusion/visibility system.
 | `HasBeenVisible` | bool | `get` |  | [ClientOnly] true if the agent has ever been visible, or is visible now. |
 | `SoundRange` | number | `get` |  | Audible radius of the sound produced by the agent. |
 | `TicksSinceLastVisible` | int | `get` |  | [ClientOnly] Number of ticks since the agent was last visible. |
-
-## StunnedData
-
-Stun status data.
-
-### Fields
-
-| Name | Type | Static | Comment |
-|---|---|:---:|---|
-| `StunnedUntilTick` | int |  | Tick until which the stun remains active. |
 

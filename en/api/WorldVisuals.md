@@ -90,17 +90,17 @@ LineRenderer:SetPatternRepeat(repeatCount: number)
 |---|---|:---:|---|
 | `repeatCount` | number |  |  |
 
-#### SetPatternSprite
+#### SetPatternTexture
 
 ```lua
-LineRenderer:SetPatternSprite(sprite: Sprite)
+LineRenderer:SetPatternTexture(texture: Texture)
 ```
 
-[ClientOnly] Sets the line pattern sprite.
+[ClientOnly] Sets the line pattern texture.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
-| `sprite` | [Sprite](./Sprite.md#sprite) |  |  |
+| `texture` | [Texture](./Texture.md#texture) |  |  |
 
 #### SetPosition
 

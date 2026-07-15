@@ -5,16 +5,15 @@ API уведомлений: получение и отправка уведом�
 ## Contents
 
 - [ENotificationCode](#enotificationcode)
-- [HintNotificationData](#hintnotificationdata)
+- [HintNotificationEvent](#hintnotificationevent)
 - [InGameViolationKind](#ingameviolationkind)
 - [InGameViolationSeverity](#ingameviolationseverity)
-- [KillLogData](#killlogdata)
 - [NotificationController](#notificationcontroller)
-- [NotificationData](#notificationdata)
+- [NotificationEvent](#notificationevent)
 - [PingController](#pingcontroller)
-- [PingMarkerData](#pingmarkerdata)
+- [PingEvent](#pingevent)
 - [PingMarkerType](#pingmarkertype)
-- [ViolationNotificationData](#violationnotificationdata)
+- [ViolationNotificationEvent](#violationnotificationevent)
 
 ---
 
@@ -45,9 +44,9 @@ API уведомлений: получение и отправка уведом�
 | `MatchStarting` | `18` | Все игроки подключились, матч скоро начнётся. |
 | `WarmupConsoleHint` | `19` | Подсказка в разминке кастомной игры: матч запускается командой в консоли. |
 
-## HintNotificationData
+## HintNotificationEvent
 
-Данные подсказки.
+Событие подсказки.
 
 ### Fields
 
@@ -79,44 +78,16 @@ API уведомлений: получение и отправка уведом�
 | `Moderate` | `2` | Среднее нарушение. |
 | `Severe` | `3` | Тяжелое нарушение. |
 
-## KillLogData
-
-Запись киллога.
-
-### Fields
-
-| Name | Type | Static | Comment |
-|---|---|:---:|---|
-| `ID` | int |  | ID записи киллога. |
-| `IsCritical` | bool |  | true, если убийство было критическим. |
-| `Killer` | string |  | Имя убийцы. |
-| `Victim` | string |  | Имя жертвы. |
-| `WeaponId` | int |  | ID оружия, которым было совершено убийство. |
-
 ## NotificationController
 
 [ClientOnly] Глобальный API уведомлений и подсказкок.
 
 ### Methods
 
-#### GetKillLogs
+#### OnHint
 
 ```lua
-NotificationController:GetKillLogs(lastKillLogId: int): Array<KillLogData>
-```
-
-[ClientOnly] Возвращает новые записи киллога, после указанного ID.
-
-| Param | Type | Optional | Comment |
-|---|---|:---:|---|
-| `lastKillLogId` | int |  |  |
-
-**Returns:** Array<[KillLogData](./Notification.md#killlogdata)>
-
-#### OnHintNotification
-
-```lua
-NotificationController:OnHintNotification(callback: LuaFunction): EventSubscription
+NotificationController:OnHint(callback: LuaFunction): EventSubscription
 ```
 
 [ClientOnly] Вызывает коллбек при приходе подсказки. Возвращает подписку, которую можно отменить.
@@ -155,10 +126,10 @@ NotificationController:OnViolationNotification(callback: LuaFunction): EventSubs
 
 **Returns:** [EventSubscription](./Scheduler.md#eventsubscription)
 
-#### SendHintNotification
+#### ShowHint
 
 ```lua
-NotificationController:SendHintNotification(message: string, duration: number = ...)
+NotificationController:ShowHint(message: string, duration: number = ...)
 ```
 
 [ClientOnly] Показывает подсказку локальному игроку.
@@ -181,9 +152,9 @@ NotificationController:ShowNotification(message: string, duration: number)
 | `message` | string |  |  |
 | `duration` | number |  |  |
 
-## NotificationData
+## NotificationEvent
 
-Структурированные данные активного уведомления.
+Событие активного уведомления.
 
 ### Fields
 
@@ -231,9 +202,9 @@ PingController:SetPing(position: Vector3)
 |---|---|:---:|---|
 | `position` | Vector3 |  |  |
 
-## PingMarkerData
+## PingEvent
 
-Данные о пинге в мире.
+Событие пинга в мире.
 
 ### Fields
 
@@ -257,9 +228,9 @@ PingController:SetPing(position: Vector3)
 | `Party` | `1` | Пинг участников группы. |
 | `Ally` | `2` | Пинг союзников. |
 
-## ViolationNotificationData
+## ViolationNotificationEvent
 
-Структурированные данные уведомления о нарушении.
+Событие уведомления о нарушении.
 
 ### Fields
 

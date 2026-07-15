@@ -24,7 +24,7 @@ API камеры. Позволяет создавать дополнительн
 | `IsOrthographic` | bool | `get/set` |  | [ClientOnly] Режим ортографической проекции. |
 | `NearClipPlane` | number | `get/set` |  | [ClientOnly] Ближняя плоскость отсечения. |
 | `OrthographicSize` | number | `get/set` |  | [ClientOnly] Размер ортографической камеры. |
-| `OutputSprite` | [Sprite](./Sprite.md#sprite) | `get/set` |  | [ClientOnly] Спрайт с результатом рендера. Для главной камеры возвращает nil. |
+| `OutputTexture` | [Texture](./Texture.md#texture) | `get/set` |  | [ClientOnly] Текстура с результатом рендера. Для главной камеры возвращает nil. |
 | `Position` | Vector3 | `get/set` |  | [ClientOnly] Позиция камеры в мире. |
 | `Rotation` | Quaternion | `get/set` |  | [ClientOnly] Поворот камеры в мире. |
 

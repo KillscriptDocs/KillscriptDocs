@@ -42,7 +42,7 @@ local function GetRankColor(index, total)
     local g = 0.85 + (0.34 - 0.85) * progress
     local b = 0.45 + (0.34 - 0.45) * progress
 
-    return Color(r, g, b, 1.0), Color(r, g, b, 0.16)
+    return Color.new(r, g, b, 1.0), Color.new(r, g, b, 0.16)
 end
 
 local function EnsureUi()
@@ -104,7 +104,7 @@ local function SnapshotRoundStart()
     end
 
     local agents = Agents:GetAll()
-    for i = 0, agents.Length - 1 do
+    for i = 1, agents.Length do
         local agent = agents[i]
         RoundStartStats[agent] = CopyScore(GetAgentStats(agent))
     end
@@ -117,7 +117,7 @@ local function BuildTeamRows(team)
     end
 
     local agents = Agents:GetAll()
-    for i = 0, agents.Length - 1 do
+    for i = 1, agents.Length do
         local agent = agents[i]
         local stats = GetAgentStats(agent)
 
@@ -256,4 +256,4 @@ local function Tick()
 
     DrawRows(rows)
 end
-Events:On("Tick", Tick)
+Scheduler:OnFrame(Tick)

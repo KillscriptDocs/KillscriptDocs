@@ -27,7 +27,7 @@ Sound resource used to play 2D/3D audio.
 Sounds:GetSound(soundName: string): Sound
 ```
 
-[ClientOnly] Returns a sound from the module files, or nil if no sound with that name is loaded. The loader looks for .wav, .mp3, and .ogg audio files inside the module's audio folder. The name is searched without a path but with the extension, for example `Hit.wav`.
+[ClientOnly] Returns a sound from the module files, or nil if no sound with that name is loaded. The loader looks for .wav, .mp3, and .ogg audio files inside the module's sounds folder. The name is searched without a path but with the extension, for example `Hit.wav`.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
@@ -47,10 +47,10 @@ Sounds:PlaySound(sound: Sound, position: Vector3, volume: number = ..., minDista
 |---|---|:---:|---|
 | `sound` | [Sound](./Audio.md#sound) |  | [ClientOnly] Sound to play. |
 | `position` | Vector3 |  | [ClientOnly] World position of the sound source. |
-| `volume` | number | ✅ | [ClientOnly] Sound volume. 1 is 100%. |
-| `minDistance` | number | ✅ | [ClientOnly] Distance within which the sound is heard at full volume. 5 is the normal value. |
-| `maxDistance` | number | ✅ | [ClientOnly] Distance beyond which the sound stops being audible. 500 is the normal value. |
-| `pitch` | number | ✅ | [ClientOnly] Pitch and playback speed. 1 is the normal value. |
+| `volume` | number | ✅ | [ClientOnly] Sound volume in the range from 0 to 1. |
+| `minDistance` | number | ✅ | [ClientOnly] Distance within which the sound is audible at full volume. The default value is 5. |
+| `maxDistance` | number | ✅ | [ClientOnly] Distance beyond which the sound stops being audible. The default value is 500. |
+| `pitch` | number | ✅ | [ClientOnly] Pitch and playback speed. The default value is 1. |
 
 #### PlaySound2D
 
@@ -63,8 +63,8 @@ Sounds:PlaySound2D(sound: Sound, volume: number = ..., pitch: number = ...)
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
 | `sound` | [Sound](./Audio.md#sound) |  | [ClientOnly] Sound to play. |
-| `volume` | number | ✅ | [ClientOnly] Sound volume. 1 is 100%. |
-| `pitch` | number | ✅ | [ClientOnly] Pitch and playback speed. 1 is the normal value. |
+| `volume` | number | ✅ | [ClientOnly] Sound volume in the range from 0 to 1. |
+| `pitch` | number | ✅ | [ClientOnly] Pitch and playback speed. The default value is 1. |
 
 ## VoiceChat
 

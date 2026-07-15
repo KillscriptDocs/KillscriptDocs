@@ -152,7 +152,7 @@ Planted BridgeCharge on the map.
 
 | Name | Type | Access | Static | Comment |
 |---|---|---|:---:|---|
-| `Icon` | [Sprite](./Sprite.md#sprite) | `get` |  | BridgeCharge icon as a sprite. |
+| `Icon` | [Texture](./Texture.md#texture) | `get` |  | BridgeCharge icon as a texture. |
 
 ## PlantedBridgeCharges
 
@@ -180,7 +180,7 @@ Planted BridgeCharge in training.
 
 | Name | Type | Access | Static | Comment |
 |---|---|---|:---:|---|
-| `Icon` | [Sprite](./Sprite.md#sprite) | `get` |  | BridgeCharge icon as a sprite. |
+| `Icon` | [Texture](./Texture.md#texture) | `get` |  | BridgeCharge icon as a texture. |
 
 ## PowerShellExplosion
 

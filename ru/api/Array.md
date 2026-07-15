@@ -6,11 +6,10 @@ API массивов.
 
 ## Array<T>
 
-Массив, индексация начинается с `1`.
+Массив, индексация начинается с `1`
 
-### Properties
+### Fields
 
-| Name | Type | Access | Static | Comment |
-|---|---|---|:---:|---|
-| `Length` | `number` | `get` |  | Длина массива |
-
+| Name | Type | Static | Comment |
+|---|---|:---:|---|
+| `Length` | `integer` |  | Длина массива |

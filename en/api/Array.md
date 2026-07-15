@@ -6,11 +6,10 @@ Array API.
 
 ## Array<T>
 
-Array, indexing starts at `1`.
+Array, indexing starts at `1`
 
-### Properties
+### Fields
 
-| Name | Type | Access | Static | Comment |
-|---|---|---|:---:|---|
-| `Length` | `number` | `get` |  | Array length |
-
+| Name | Type | Static | Comment |
+|---|---|:---:|---|
+| `Length` | `integer` |  | Array length |

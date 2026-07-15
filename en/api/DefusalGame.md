@@ -20,7 +20,7 @@ Global Defusal mode API: round state, teams, and BridgeCharge.
 |---|---|---|:---:|---|
 | `BridgeChargeExplosionRemainingTicks` | int | `get` |  | Remaining number of ticks until the BridgeCharge explodes. |
 | `BridgerFrontTeam` | [Team](./Team.md#team) | `get` |  | Attacking team. |
-| `BridgerFrontTeamSprite` | [Sprite](./Sprite.md#sprite) | `get` |  | Sprite of the attacking team. |
+| `BridgerFrontTeamTexture` | [Texture](./Texture.md#texture) | `get` |  | Attacking team texture. |
 | `IsBridgeChargeDefused` | bool | `get` |  | true if the BridgeCharge has been defused. |
 | `IsBridgeChargeExploded` | bool | `get` |  | true if the BridgeCharge has exploded. |
 | `IsBridgeChargePlanted` | bool | `get` |  | true if the BridgeCharge is planted. |
@@ -32,7 +32,7 @@ Global Defusal mode API: round state, teams, and BridgeCharge.
 | `IsVictory` | bool | `get` |  | [ClientOnly] true if the match ended in victory for our team. |
 | `IsWarmupTimerActive` | bool | `get` |  | true if the warmup player-waiting timer or match-start timer is active. |
 | `KillScriptCompanyTeam` | [Team](./Team.md#team) | `get` |  | Defending team. |
-| `KillScriptCompanyTeamSprite` | [Sprite](./Sprite.md#sprite) | `get` |  | Sprite of the defending team. |
+| `KillScriptCompanyTeamTexture` | [Texture](./Texture.md#texture) | `get` |  | Defending team texture. |
 | `RoundId` | int | `get` |  | Current round number, starting from 1. |
 | `RoundWinnerTeam` | [Team](./Team.md#team) | `get` |  | Winning team of the current round, if defined. |
 | `Stage` | [EDefusalRoundStage](./DefusalGame.md#edefusalroundstage) | `get` |  | Current round stage. |

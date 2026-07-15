@@ -170,8 +170,8 @@ ConfigConstant.GetShopConfigs(): Array<ConfigDefusalShop>
 | `CarryLimit` | int | `get` |  | Maximum number of identical items of this type in the inventory. It is currently used mainly for grenades. |
 | `DrawTime` | number | `get` |  | Time to draw or switch to the item in seconds. |
 | `Droppable` | bool | `get` |  | Whether the item can be dropped, dropped on death, and purchased with a world drop. |
-| `Icon` | [Sprite](./Sprite.md#sprite) | `get` |  | Full-resolution item icon. Returns nil if the configuration has no icon. |
-| `IconSmall` | [Sprite](./Sprite.md#sprite) | `get` |  | Small item icon with reduced detail. Returns nil if the configuration has no such icon. |
+| `Icon` | [Texture](./Texture.md#texture) | `get` |  | Full-resolution item icon. Returns nil if the configuration has no icon. |
+| `IconSmall` | [Texture](./Texture.md#texture) | `get` |  | Small item icon with reduced detail. Returns nil if the configuration has no such icon. |
 | `ItemSlot` | [EItemSlot](./Item.md#eitemslot) | `get` |  | Item inventory slot and category. |
 | `KillReward` | int | `get` |  | Money reward for a kill with this item. |
 | `MovementSpeedFactor` | number | `get` |  | Movement speed multiplier while the item is equipped. |
@@ -370,7 +370,7 @@ Returns the item configuration by ID, or nil if the ID is invalid or the item is
 #### GetItemIconById
 
 ```lua
-ItemConfigs.GetItemIconById(itemId: int): Sprite
+ItemConfigs.GetItemIconById(itemId: int): Texture
 ```
 
 Returns the item icon by ID, or nil if the ID is invalid, the item is not found, or it has no icon.
@@ -379,7 +379,7 @@ Returns the item icon by ID, or nil if the ID is invalid, the item is not found,
 |---|---|:---:|---|
 | `itemId` | int |  |  |
 
-**Returns:** [Sprite](./Sprite.md#sprite)
+**Returns:** [Texture](./Texture.md#texture)
 
 #### GetItemNameById
 
@@ -404,16 +404,16 @@ Returns the item name by ID. Returns 'Unknown' if the item is not found.
 #### GetWeaponPreview
 
 ```lua
-WeaponPreview.GetWeaponPreview(weaponName: string): Sprite
+WeaponPreview.GetWeaponPreview(weaponName: string): Texture
 ```
 
-[ClientOnly] Returns the weapon preview sprite by name, or nil if the preview renderer is unavailable or the preview could not be obtained.
+[ClientOnly] Returns the weapon preview texture by name, or nil if the preview renderer is unavailable or the preview could not be obtained.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
 | `weaponName` | string |  |  |
 
-**Returns:** [Sprite](./Sprite.md#sprite)
+**Returns:** [Texture](./Texture.md#texture)
 
 #### RemoveFromCache
 

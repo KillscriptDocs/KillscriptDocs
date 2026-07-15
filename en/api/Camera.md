@@ -24,7 +24,7 @@ Camera API. Allows creating additional custom cameras.
 | `IsOrthographic` | bool | `get/set` |  | [ClientOnly] Orthographic projection mode. |
 | `NearClipPlane` | number | `get/set` |  | [ClientOnly] Near clipping plane. |
 | `OrthographicSize` | number | `get/set` |  | [ClientOnly] Orthographic camera size. |
-| `OutputSprite` | [Sprite](./Sprite.md#sprite) | `get/set` |  | [ClientOnly] Sprite with the render result. Returns nil for the main camera. |
+| `OutputTexture` | [Texture](./Texture.md#texture) | `get/set` |  | [ClientOnly] Texture with the render result. Returns nil for the main camera. |
 | `Position` | Vector3 | `get/set` |  | [ClientOnly] Camera position in the world. |
 | `Rotation` | Quaternion | `get/set` |  | [ClientOnly] Camera rotation in the world. |
 

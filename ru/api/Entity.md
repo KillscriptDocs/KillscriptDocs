@@ -152,7 +152,7 @@ Explosions:GetSonarExplosions(): Array<SonarExplosion>
 
 | Name | Type | Access | Static | Comment |
 |---|---|---|:---:|---|
-| `Icon` | [Sprite](./Sprite.md#sprite) | `get` |  | Иконка BridgeCharge как спрайт. |
+| `Icon` | [Texture](./Texture.md#texture) | `get` |  | Иконка BridgeCharge как текстура. |
 
 ## PlantedBridgeCharges
 
@@ -180,7 +180,7 @@ PlantedBridgeCharges:GetPlanted(): Array<PlantedBridgeCharge>
 
 | Name | Type | Access | Static | Comment |
 |---|---|---|:---:|---|
-| `Icon` | [Sprite](./Sprite.md#sprite) | `get` |  | Иконка BridgeCharge как спрайт. |
+| `Icon` | [Texture](./Texture.md#texture) | `get` |  | Иконка BridgeCharge как текстура. |
 
 ## PowerShellExplosion
 

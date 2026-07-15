@@ -2,10 +2,9 @@
 local CurrentFirearm = nil
 
 local ToggleSniperModeAction = nil
-
-local function IsAgentAlive(agent)
-    return agent and agent.Health and agent.Health.IsAlive == true
-end
+local NetworkState = {
+    SniperMode = false
+}
 
 local function GetWeaponName(firearm)
     return string.gsub(firearm.Name, " ", "")
@@ -13,6 +12,10 @@ end
 
 local function GetDefaultSniperMode(weaponName)
     return weaponName == "SniperRifle" or weaponName == "Revolver"
+end
+
+local function SendNetworkState()
+    Network:SendTable(NetworkState)
 end
 
 local function SaveSniperModeForWeapon()
@@ -25,11 +28,7 @@ local function SaveSniperModeForWeapon()
     end
 
     local weaponName = GetWeaponName(CurrentFirearm)
-    Storage.Weapons[weaponName] = {
-        SniperMode = Network.SniperMode
-    }
-
-    StorageProvider:SaveStorageTable()
+    Storage.Weapons[weaponName] = NetworkState.SniperMode
 end
 
 local function LoadSniperModeForWeapon()
@@ -38,16 +37,15 @@ local function LoadSniperModeForWeapon()
     end
 
     local weaponName = GetWeaponName(CurrentFirearm)
+    local savedMode = Storage.Weapons and Storage.Weapons[weaponName]
 
-    if Storage.Weapons
-        and Storage.Weapons[weaponName]
-        and Storage.Weapons[weaponName].SniperMode ~= nil then
-        Network.SniperMode = Storage.Weapons[weaponName].SniperMode
+    if savedMode ~= nil then
+        NetworkState.SniperMode = savedMode
     else
-        Network.SniperMode = GetDefaultSniperMode(weaponName)
+        NetworkState.SniperMode = GetDefaultSniperMode(weaponName)
     end
 
-    NetworkProvider:SendBuffer()
+    SendNetworkState()
 end
 
 local function ToggleSniperMode()
@@ -55,18 +53,12 @@ local function ToggleSniperMode()
         return
     end
 
-    Network.SniperMode = not Network.SniperMode
+    NetworkState.SniperMode = not NetworkState.SniperMode
     SaveSniperModeForWeapon()
-    NetworkProvider:SendBuffer()
+    SendNetworkState()
 end
 
-local function CheckFirearmChanged()
-    local localAgent = Agents:GetLocalAgent()
-    if not localAgent then
-        CurrentFirearm = nil
-        return false
-    end
-
+local function CheckFirearmChanged(localAgent)
     local currentItem = localAgent.Inventory.CurrentItem
 
     if currentItem and currentItem.IsFirearm then
@@ -76,11 +68,9 @@ local function CheckFirearmChanged()
             CurrentFirearm = firearm
             return true
         end
-    else
-        if CurrentFirearm then
-            CurrentFirearm = nil
-            return true
-        end
+    elseif CurrentFirearm then
+        CurrentFirearm = nil
+        return true
     end
 
     return false
@@ -92,35 +82,35 @@ local function DrawSniperMode()
     end
 
     local text = "Sniper: off"
-    if Network.SniperMode then
+
+    if NetworkState.SniperMode then
         text = "Sniper: on"
     end
 
     ImGui:DrawText(
         text,
-        Rect((Screen.Width * 0.5) - 100, Screen.Height - 80, 200, 30),
+        Rect.new((Screen.Width * 0.5) - 100, Screen.Height - 80, 200, 30),
         20,
-        Color(1.0, 1.0, 1.0, 1.0),
+        Color.new(1.0, 1.0, 1.0, 1.0),
         TextAnchor.MiddleCenter)
 end
 
 local function Tick()
     local localAgent = Agents:GetLocalAgent()
-    if not IsAgentAlive(localAgent) then
+
+    if not localAgent or not localAgent.Health.IsAlive then
         return
     end
 
-    if CheckFirearmChanged() and CurrentFirearm then
+    if CheckFirearmChanged(localAgent) and CurrentFirearm then
         LoadSniperModeForWeapon()
     end
 
     DrawSniperMode()
 end
 
-Network.SniperMode = false
-
-StorageProvider:LoadStorageTable()
-
 ToggleSniperModeAction = InputActions:FindAction("ToggleSniperMode")
-ToggleSniperModeAction:OnPerformed(ToggleSniperMode)
-Events:On("Tick", Tick)
+if ToggleSniperModeAction then
+    ToggleSniperModeAction:OnPerformed(ToggleSniperMode)
+end
+Scheduler:OnFrame(Tick)

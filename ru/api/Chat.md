@@ -23,9 +23,9 @@ API игрового чата.
 | `Id` | string | `get/set` |  | [ClientOnly] Внутренний id канала. |
 | `IsAvailable` | bool | `get/set` |  | [ClientOnly] true, если канал сейчас доступен. |
 | `IsReadOnly` | bool | `get/set` |  | [ClientOnly] true, если в канал нельзя отправлять сообщения. |
-| `Kind` | int | `get/set` |  | [ClientOnly] Тип канала как число. |
+| `Kind` | [ChatChannelKind](./Chat.md#chatchannelkind) | `get/set` |  | [ClientOnly] Тип канала. |
 | `KindName` | string | `get/set` |  | [ClientOnly] Тип канала как строка. |
-| `TeamId` | UInt32 | `get/set` |  | [ClientOnly] Id команды для командного канала, иначе 0. |
+| `Team` | [Team](./Team.md#team) | `get/set` |  | [ClientOnly] Команда для командного канала. |
 
 ## ChatChannelKind
 
@@ -37,6 +37,7 @@ API игрового чата.
 | `Private` | `1` | Приватный |
 | `Match` | `2` | Матч |
 | `Team` | `3` | Команда |
+| `System` | `4` | Системный |
 
 ## ChatManager
 
@@ -57,7 +58,7 @@ API игрового чата.
 ChatManager:AddLocalMessage(text: string)
 ```
 
-[ClientOnly] Добавляет локальное сообщение в чат которое будет видно только локальному игроку.
+[ClientOnly] Добавляет в системный канал сообщение от имени модуля. Сообщение видно только локальному игроку.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
@@ -223,6 +224,6 @@ ChatManager:ShowMessageContextMenu(messageId: string)
 | `MessageId` | string | `get/set` |  | [ClientOnly] Id сообщения. |
 | `SenderDisplayName` | string | `get/set` |  | [ClientOnly] Имя отправителя. |
 | `SenderUserId` | string | `get/set` |  | [ClientOnly] Id отправителя. |
-| `TeamId` | UInt32 | `get/set` |  | [ClientOnly] Id команды для командного сообщения, иначе 0. |
+| `Team` | [Team](./Team.md#team) | `get/set` |  | [ClientOnly] Команда для командного сообщения. |
 | `Text` | string | `get/set` |  | [ClientOnly] Текст сообщения. |
 

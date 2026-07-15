@@ -9,20 +9,19 @@ API для работы с агентами (специалистами).
 - [Agents](#agents)
 - [AgentStats](#agentstats)
 - [Aim](#aim)
-- [DamageData](#damagedata)
-- [DeathEventData](#deatheventdata)
+- [DamageEvent](#damageevent)
+- [DeathEvent](#deathevent)
 - [EHitboxBodyPart](#ehitboxbodypart)
 - [EHitType](#ehittype)
 - [EInputButton](#einputbutton)
 - [Health](#health)
 - [Hitbox](#hitbox)
-- [HitData](#hitdata)
+- [HitEvent](#hitevent)
 - [Interactable](#interactable)
 - [Interactor](#interactor)
 - [Inventory](#inventory)
 - [Movement](#movement)
 - [OcclusionCulling](#occlusionculling)
-- [StunnedData](#stunneddata)
 
 ---
 
@@ -37,7 +36,7 @@ API для работы с агентами (специалистами).
 | Name | Type | Access | Static | Comment |
 |---|---|---|:---:|---|
 | `Aim` | [Aim](./Agent.md#aim) | `get` |  | Доступ к API прицеливания агента. |
-| `Avatar` | [Sprite](./Sprite.md#sprite) | `get` |  | [ClientOnly] Аватар агента (Sprite). Возвращает аватарку игрока или иконку команды. |
+| `Avatar` | [Texture](./Texture.md#texture) | `get` |  | [ClientOnly] Аватар агента. Возвращает аватарку игрока или иконку команды. |
 | `AvatarIsTeamPlaceholder` | bool | `get` |  | [ClientOnly] Возвращает true, если Avatar сейчас является командной иконкой-заглушкой, а не настоящим аватаром игрока. |
 | `Color` | Color | `get` |  | Возвращает цвет, назначенный агенту. |
 | `Health` | [Health](./Agent.md#health) | `get` |  | Доступ к API здоровья агента. |
@@ -221,20 +220,6 @@ Agents:GetLocalOrSpectatedAgent(): Agent
 
 **Returns:** [Agent](./Agent.md#agent)
 
-#### OnDamage
-
-```lua
-Agents:OnDamage(callback: LuaFunction): EventSubscription
-```
-
-[ClientOnly] Вызывает коллбек при получении урона локальным игроком. Возвращает подписку, которую можно отменить.
-
-| Param | Type | Optional | Comment |
-|---|---|:---:|---|
-| `callback` | LuaFunction |  |  |
-
-**Returns:** [EventSubscription](./Scheduler.md#eventsubscription)
-
 #### OnDeath
 
 ```lua
@@ -249,13 +234,13 @@ Agents:OnDeath(callback: LuaFunction): EventSubscription
 
 **Returns:** [EventSubscription](./Scheduler.md#eventsubscription)
 
-#### OnHit
+#### OnLocalPlayerDealtDamage
 
 ```lua
-Agents:OnHit(callback: LuaFunction): EventSubscription
+Agents:OnLocalPlayerDealtDamage(callback: LuaFunction): EventSubscription
 ```
 
-[ClientOnly] Вызывает коллбек при попадании локального игрока по врагу. Возвращает подписку, которую можно отменить.
+[ClientOnly] Вызывает коллбек при нанесении урона локальным игроком. Возвращает подписку, которую можно отменить.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
@@ -263,13 +248,13 @@ Agents:OnHit(callback: LuaFunction): EventSubscription
 
 **Returns:** [EventSubscription](./Scheduler.md#eventsubscription)
 
-#### OnStunned
+#### OnLocalPlayerReceivedDamage
 
 ```lua
-Agents:OnStunned(callback: LuaFunction): EventSubscription
+Agents:OnLocalPlayerReceivedDamage(callback: LuaFunction): EventSubscription
 ```
 
-[ClientOnly] Вызывает коллбек при получении оглушения локальным игроком. Возвращает подписку, которую можно отменить.
+[ClientOnly] Вызывает коллбек при получении урона локальным игроком. Событие содержит информацию об оглушении, если оно было наложено этим уроном. Возвращает подписку, которую можно отменить.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
@@ -343,9 +328,9 @@ Aim:SetAimTarget(targetPosition: Vector3, agent: Agent)
 | `targetPosition` | Vector3 |  |  |
 | `agent` | [Agent](./Agent.md#agent) |  |  |
 
-## DamageData
+## DamageEvent
 
-Данные о полученном уроне.
+Событие получения урона.
 
 ### Fields
 
@@ -356,10 +341,12 @@ Aim:SetAimTarget(targetPosition: Vector3, agent: Agent)
 | `DamageDirectionFromHead` | Vector3 |  | Направление урона: от головы к источнику атаки. |
 | `DamagePosition` | Vector3 |  | Точка получения урона, относительно позиции агента. |
 | `DamageTick` | int |  | Тик, в который был замечен урон. |
+| `StunnedUntilTick` | int |  | Тик, до которого действует оглушение. Равен 0, если этот урон не наложил оглушение. |
+| `WasStunned` | bool |  | true, если этот урон наложил оглушение. |
 
-## DeathEventData
+## DeathEvent
 
-Данные о смерти агента (см. Agents.OnDeath).
+Событие смерти агента (см. Agents.OnDeath).
 
 ### Fields
 
@@ -450,9 +437,9 @@ Aim:SetAimTarget(targetPosition: Vector3, agent: Agent)
 | `Rotation` | Quaternion | `get` |  | Поворот хитбокса в мире. |
 | `Size` | Vector3 | `get` |  | Размер кубоидного хитбокса по каждой оси в локальных координатах. |
 
-## HitData
+## HitEvent
 
-Данные о попадании.
+Событие попадания.
 
 ### Fields
 
@@ -462,6 +449,8 @@ Aim:SetAimTarget(targetPosition: Vector3, agent: Agent)
 | `HitEventId` | int |  | Уникальный ID события попадания. |
 | `HitTick` | int |  | Тик, в который произошло попадание. |
 | `HitType` | [EHitType](./Agent.md#ehittype) |  | Тип попадания. |
+| `StunnedUntilTick` | int |  | Тик, до которого действует оглушение. Равен 0, если попадание не наложило оглушение. |
+| `WasStunned` | bool |  | true, если попадание наложило оглушение. |
 
 ## Interactable
 
@@ -631,14 +620,4 @@ Movement:GetZones(): Array<string>
 | `HasBeenVisible` | bool | `get` |  | [ClientOnly] true, если агент уже был виден раньше или виден сейчас. |
 | `SoundRange` | number | `get` |  | Радиус слышимости звука, создаваемого агентом. |
 | `TicksSinceLastVisible` | int | `get` |  | [ClientOnly] Количество тиков с момента, когда агент был виден в последний раз. |
-
-## StunnedData
-
-Данные о статусе оглушения.
-
-### Fields
-
-| Name | Type | Static | Comment |
-|---|---|:---:|---|
-| `StunnedUntilTick` | int |  | Тик, до которого действует оглушение. |
 

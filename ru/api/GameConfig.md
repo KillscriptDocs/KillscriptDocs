@@ -170,8 +170,8 @@ ConfigConstant.GetShopConfigs(): Array<ConfigDefusalShop>
 | `CarryLimit` | int | `get` |  | Максимум одинаковых предметов этого типа в инвентаре. Сейчас в основном используется для гранат. |
 | `DrawTime` | number | `get` |  | Длительность доставания или переключения на предмет в секундах. |
 | `Droppable` | bool | `get` |  | Можно ли выбрасывать предмет, ронять его после смерти и покупать с выбросом в мир. |
-| `Icon` | [Sprite](./Sprite.md#sprite) | `get` |  | Иконка предмета в полном разрешении. Возвращает nil, если у конфигурации нет иконки. |
-| `IconSmall` | [Sprite](./Sprite.md#sprite) | `get` |  | Маленькая иконка предмета с уменьшенной детализацией. Возвращает nil, если у конфигурации нет такой иконки. |
+| `Icon` | [Texture](./Texture.md#texture) | `get` |  | Иконка предмета в полном разрешении. Возвращает nil, если у конфигурации нет иконки. |
+| `IconSmall` | [Texture](./Texture.md#texture) | `get` |  | Маленькая иконка предмета с уменьшенной детализацией. Возвращает nil, если у конфигурации нет такой иконки. |
 | `ItemSlot` | [EItemSlot](./Item.md#eitemslot) | `get` |  | Слот инвентаря и категория предмета. |
 | `KillReward` | int | `get` |  | Денежная награда за убийство этим предметом. |
 | `MovementSpeedFactor` | number | `get` |  | Множитель скорости передвижения, пока предмет экипирован. |
@@ -370,7 +370,7 @@ ItemConfigs.GetItemConfigById(itemId: int): ConfigItem
 #### GetItemIconById
 
 ```lua
-ItemConfigs.GetItemIconById(itemId: int): Sprite
+ItemConfigs.GetItemIconById(itemId: int): Texture
 ```
 
 Возвращает иконку предмета по ID или nil, если ID некорректен, предмет не найден или у него нет иконки.
@@ -379,7 +379,7 @@ ItemConfigs.GetItemIconById(itemId: int): Sprite
 |---|---|:---:|---|
 | `itemId` | int |  |  |
 
-**Returns:** [Sprite](./Sprite.md#sprite)
+**Returns:** [Texture](./Texture.md#texture)
 
 #### GetItemNameById
 
@@ -404,16 +404,16 @@ ItemConfigs.GetItemNameById(itemId: int): string
 #### GetWeaponPreview
 
 ```lua
-WeaponPreview.GetWeaponPreview(weaponName: string): Sprite
+WeaponPreview.GetWeaponPreview(weaponName: string): Texture
 ```
 
-[ClientOnly] Возвращает спрайт предпросмотра оружия по имени или nil, если рендерер предпросмотра недоступен или предпросмотр не удалось получить.
+[ClientOnly] Возвращает текстуру предпросмотра оружия по имени или nil, если рендерер предпросмотра недоступен или предпросмотр не удалось получить.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
 | `weaponName` | string |  |  |
 
-**Returns:** [Sprite](./Sprite.md#sprite)
+**Returns:** [Texture](./Texture.md#texture)
 
 #### RemoveFromCache
 

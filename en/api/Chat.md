@@ -23,9 +23,9 @@ In-game chat API.
 | `Id` | string | `get/set` |  | [ClientOnly] Internal channel ID. |
 | `IsAvailable` | bool | `get/set` |  | [ClientOnly] true if the channel is currently available. |
 | `IsReadOnly` | bool | `get/set` |  | [ClientOnly] true if messages cannot be sent to the channel. |
-| `Kind` | int | `get/set` |  | [ClientOnly] Channel type as a number. |
+| `Kind` | [ChatChannelKind](./Chat.md#chatchannelkind) | `get/set` |  | [ClientOnly] Channel type. |
 | `KindName` | string | `get/set` |  | [ClientOnly] Channel type as a string. |
-| `TeamId` | UInt32 | `get/set` |  | [ClientOnly] Team ID for a team channel, otherwise 0. |
+| `Team` | [Team](./Team.md#team) | `get/set` |  | [ClientOnly] Team for a team channel. |
 
 ## ChatChannelKind
 
@@ -37,6 +37,7 @@ In-game chat API.
 | `Private` | `1` | Private. |
 | `Match` | `2` | Match. |
 | `Team` | `3` | Team. |
+| `System` | `4` | System. |
 
 ## ChatManager
 
@@ -57,7 +58,7 @@ In-game chat API.
 ChatManager:AddLocalMessage(text: string)
 ```
 
-[ClientOnly] Adds a local chat message visible only to the local player.
+[ClientOnly] Adds a message to the system channel on behalf of the module. The message is visible only to the local player.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
@@ -223,6 +224,6 @@ ChatManager:ShowMessageContextMenu(messageId: string)
 | `MessageId` | string | `get/set` |  | [ClientOnly] Message ID. |
 | `SenderDisplayName` | string | `get/set` |  | [ClientOnly] Sender name. |
 | `SenderUserId` | string | `get/set` |  | [ClientOnly] Sender ID. |
-| `TeamId` | UInt32 | `get/set` |  | [ClientOnly] Team ID for a team message, otherwise 0. |
+| `Team` | [Team](./Team.md#team) | `get/set` |  | [ClientOnly] Team for a team message. |
 | `Text` | string | `get/set` |  | [ClientOnly] Message text. |
 

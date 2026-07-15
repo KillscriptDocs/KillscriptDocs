@@ -43,33 +43,6 @@ ImGui:DrawDebugText(text: string)
 |---|---|:---:|---|
 | `text` | string |  | Текст |
 
-#### DrawSprite
-
-```lua
-ImGui:DrawSprite(sprite: Sprite, rect: Rect? = ...)
-```
-
-[ClientOnly] Рисует спрайт на экране.
-
-| Param | Type | Optional | Comment |
-|---|---|:---:|---|
-| `sprite` | [Sprite](./Sprite.md#sprite) |  | Спрайт для отрисовки |
-| `rect` | Rect? | ✅ | Экранная область, в которой будет отрисован спрайт (Если nil, то используется вся доступная область) |
-
-#### DrawSpriteColor
-
-```lua
-ImGui:DrawSpriteColor(sprite: Sprite, color: Color, rect: Rect? = ...)
-```
-
-[ClientOnly] Рисует спрайт на экране с наложением цветовой маски.
-
-| Param | Type | Optional | Comment |
-|---|---|:---:|---|
-| `sprite` | [Sprite](./Sprite.md#sprite) |  | Спрайт для отрисовки |
-| `color` | Color |  | Цветовая маска, применяемая к спрайту |
-| `rect` | Rect? | ✅ | Экранная область, в которой будет отрисован спрайт (Если nil, то используется вся доступная область) |
-
 #### DrawText
 
 ```lua
@@ -118,38 +91,38 @@ ImGui:DrawTextUV(text: string, viewportPosition: Vector2, fontSize: number = ...
 | `color` | Color? | ✅ | Цвет текста |
 | `alignment` | [TextAnchor](./UI.md#textanchor) | ✅ | Позиционирование текста |
 
+#### DrawTexture
+
+```lua
+ImGui:DrawTexture(texture: Texture, rect: Rect? = ...)
+```
+
+[ClientOnly] Рисует текстуру на экране.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `texture` | [Texture](./Texture.md#texture) |  | Текстура для отрисовки |
+| `rect` | Rect? | ✅ | Экранная область, в которой будет отрисована текстура (Если nil, то используется вся доступная область) |
+
+#### DrawTextureColor
+
+```lua
+ImGui:DrawTextureColor(texture: Texture, color: Color, rect: Rect? = ...)
+```
+
+[ClientOnly] Рисует текстуру на экране с наложением цветовой маски.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `texture` | [Texture](./Texture.md#texture) |  | Текстура для отрисовки |
+| `color` | Color |  | Цветовая маска, применяемая к текстуре |
+| `rect` | Rect? | ✅ | Экранная область, в которой будет отрисована текстура (Если nil, то используется вся доступная область) |
+
 ## ImGuiWindow
 
 [ClientOnly]
 
 ### Methods
-
-#### DrawSprite
-
-```lua
-ImGuiWindow:DrawSprite(sprite: Sprite, rect: Rect? = ...)
-```
-
-Рисует спрайт внуртри окна.
-
-| Param | Type | Optional | Comment |
-|---|---|:---:|---|
-| `sprite` | [Sprite](./Sprite.md#sprite) |  | Спрайт для отрисовки |
-| `rect` | Rect? | ✅ | Оконная область, в которой будет отрисован спрайт (Если nil, то используется вся доступная область) |
-
-#### DrawSpriteColor
-
-```lua
-ImGuiWindow:DrawSpriteColor(sprite: Sprite, color: Color, rect: Rect? = ...)
-```
-
-Рисует спрайт внуртри окна с наложением цветовой маски.
-
-| Param | Type | Optional | Comment |
-|---|---|:---:|---|
-| `sprite` | [Sprite](./Sprite.md#sprite) |  | Спрайт для отрисовки |
-| `color` | Color |  | Цветовая маска, применяемая к спрайту |
-| `rect` | Rect? | ✅ | Оконная область, в которой будет отрисован спрайт (Если nil, то используется вся доступная область) |
 
 #### DrawText
 
@@ -166,6 +139,33 @@ ImGuiWindow:DrawText(text: string, rect: Rect, fontSize: number, color: Color, a
 | `fontSize` | number |  | Размер шрифта текста |
 | `color` | Color |  | Цвет текста |
 | `alignment` | [TextAnchor](./UI.md#textanchor) | ✅ | Позиционирование текста |
+
+#### DrawTexture
+
+```lua
+ImGuiWindow:DrawTexture(texture: Texture, rect: Rect? = ...)
+```
+
+Рисует текстуру внуртри окна.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `texture` | [Texture](./Texture.md#texture) |  | Текстура для отрисовки |
+| `rect` | Rect? | ✅ | Оконная область, в которой будет отрисована текстура (Если nil, то используется вся доступная область) |
+
+#### DrawTextureColor
+
+```lua
+ImGuiWindow:DrawTextureColor(texture: Texture, color: Color, rect: Rect? = ...)
+```
+
+Рисует текстуру внуртри окна с наложением цветовой маски.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `texture` | [Texture](./Texture.md#texture) |  | Текстура для отрисовки |
+| `color` | Color |  | Цветовая маска, применяемая к текстуре |
+| `rect` | Rect? | ✅ | Оконная область, в которой будет отрисована текстура (Если nil, то используется вся доступная область) |
 
 #### GetContentRenderSize
 

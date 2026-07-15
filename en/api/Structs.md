@@ -16,25 +16,24 @@ Basic structure API: Vector, Quaternion, Color, and Rect.
 
 ## Color
 
-RGBA color format (red, green, blue, alpha). Used to define color and transparency in rendering and UI.
-
-**Kind:** Class
+Color in RGBA format (red, green, blue, alpha).
+Used to set color/transparency in rendering and UI.
 
 ### Fields
 
 | Name | Type | Static | Comment |
 |---|---|:---:|---|
-| `a` | `number` |  | Alpha channel / transparency (value in the range 0..1) |
-| `b` | `number` |  | Blue component (value in the range 0..1) |
-| `g` | `number` |  | Green component (value in the range 0..1) |
-| `r` | `number` |  | Red component (value in the range 0..1) |
+| `r` | `number` |  | Red component (number in the 0..1 range) |
+| `g` | `number` |  | Green component (number in the 0..1 range) |
+| `b` | `number` |  | Blue component (number in the 0..1 range) |
+| `a` | `number` |  | Alpha channel / transparency (number in the 0..1 range) |
 
 ### Constructors
 
-#### Color
+#### new
 
 ```lua
-Color(r: number, g: number, b: number, a: number): Color
+Color.new(r: number, g: number, b: number, a: number): Color
 ```
 
 Creates a color from 4 RGBA components.
@@ -46,13 +45,15 @@ Creates a color from 4 RGBA components.
 | `b` | `number` |  | Blue component |
 | `a` | `number` |  | Alpha channel (transparency) |
 
-#### Color
+**Returns:** `Color`
+
+#### new
 
 ```lua
-Color(r: number, g: number, b: number): Color
+Color.new(r: number, g: number, b: number): Color
 ```
 
-Creates a color from 3 RGB components (alpha defaults to `1`).
+Creates a color from 3 RGB components (alpha defaults to 1).
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
@@ -60,123 +61,51 @@ Creates a color from 3 RGB components (alpha defaults to `1`).
 | `g` | `number` |  | Green component |
 | `b` | `number` |  | Blue component |
 
+**Returns:** `Color`
+
 ## Quaternion
 
-Quaternion used to represent rotations without Euler angle issues such as gimbal lock.
-
-**Kind:** Class
+Quaternion: a representation of rotation in 3D space.
 
 ### Fields
 
 | Name | Type | Static | Comment |
 |---|---|:---:|---|
-| `eulerAngles` | `Vector3` |  | Euler angles in degrees (pitch=x, yaw=y, roll=z) |
-| `identity` | `Quaternion` |  | Identity rotation `(0,0,0,1)` |
-| `normalized` | `Quaternion` |  | Normalized copy of this quaternion |
-| `w` | `number` |  | W component of the quaternion |
 | `x` | `number` |  | X component of the quaternion |
 | `y` | `number` |  | Y component of the quaternion |
 | `z` | `number` |  | Z component of the quaternion |
+| `w` | `number` |  | W component of the quaternion |
+| `normalized` | `Quaternion` |  | Normalized copy of this quaternion |
+| `eulerAngles` | `Vector3` |  | Euler angles in degrees (pitch=x, yaw=y, roll=z) |
 
 ### Constructors
 
-#### Quaternion
+#### new
 
 ```lua
-Quaternion(x: number?, y: number?, z: number?, w: number?): Quaternion
+Quaternion.new(x: number, y: number, z: number, w: number): Quaternion
 ```
 
 Creates a new quaternion.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
-| `x` | `number?` | ✅ | X component |
-| `y` | `number?` | ✅ | Y component |
-| `z` | `number?` | ✅ | Z component |
-| `w` | `number?` | ✅ | W component |
-
-### Static Methods
-
-#### Dot
-
-```lua
-Quaternion.Dot(a: Quaternion, b: Quaternion): number
-```
-
-Dot product of two quaternions.
-
-| Param | Type | Optional | Comment |
-|---|---|:---:|---|
-| `a` | `Quaternion` |  | First quaternion |
-| `b` | `Quaternion` |  | Second quaternion |
-
-**Returns:** `number`
-
-#### Normalize
-
-```lua
-Quaternion.Normalize(q: Quaternion): Quaternion
-```
-
-Normalizes a quaternion and returns a new copy.
-
-| Param | Type | Optional | Comment |
-|---|---|:---:|---|
-| `q` | `Quaternion` |  | Source quaternion |
+| `x` | `number` |  | X component |
+| `y` | `number` |  | Y component |
+| `z` | `number` |  | Z component |
+| `w` | `number` |  | W component |
 
 **Returns:** `Quaternion`
 
-#### Inverse
+### Methods
+
+#### euler
 
 ```lua
-Quaternion.Inverse(rotation: Quaternion): Quaternion
+Quaternion.euler(x: number, y: number, z: number): Quaternion
 ```
 
-Returns the inverse quaternion that cancels out `rotation`.
-
-| Param | Type | Optional | Comment |
-|---|---|:---:|---|
-| `rotation` | `Quaternion` |  | Source rotation |
-
-**Returns:** `Quaternion`
-
-#### Angle
-
-```lua
-Quaternion.Angle(a: Quaternion, b: Quaternion): number
-```
-
-Angle in degrees between two rotations.
-
-| Param | Type | Optional | Comment |
-|---|---|:---:|---|
-| `a` | `Quaternion` |  | First rotation |
-| `b` | `Quaternion` |  | Second rotation |
-
-**Returns:** `number`
-
-#### AngleAxis
-
-```lua
-Quaternion.AngleAxis(angle: number, axis: Vector3|table): Quaternion
-```
-
-Creates a quaternion from an angle in degrees and a rotation axis.
-
-| Param | Type | Optional | Comment |
-|---|---|:---:|---|
-| `angle` | `number` |  | Angle in degrees |
-| `axis` | `Vector3|table` |  | Rotation axis |
-
-**Returns:** `Quaternion`
-
-#### Euler
-
-```lua
-Quaternion.Euler(x: number, y: number, z: number): Quaternion
-```
-
-Creates a quaternion from Euler angles in degrees.
+Creates a quaternion from Euler angles (in degrees).
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
@@ -186,13 +115,43 @@ Creates a quaternion from Euler angles in degrees.
 
 **Returns:** `Quaternion`
 
-#### FromToRotation
+#### lookRotation
 
 ```lua
-Quaternion.FromToRotation(fromDir: Vector3|table, toDir: Vector3|table): Quaternion
+Quaternion.lookRotation(forward: Vector3|table, up?: Vector3|table): Quaternion
 ```
 
-Rotates direction `fromDir` into `toDir`.
+Creates a quaternion that points "forward" along the given vector.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `forward` | `Vector3|table` |  | Forward direction |
+| `up` | `Vector3|table` | yes | Up vector |
+
+**Returns:** `Quaternion`
+
+#### angleAxis
+
+```lua
+Quaternion.angleAxis(angle: number, axis: Vector3|table): Quaternion
+```
+
+Creates a quaternion from an angle (in degrees) and a rotation axis.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `angle` | `number` |  | Angle in degrees |
+| `axis` | `Vector3|table` |  | Rotation axis (Vector3 or table {x, y, z}) |
+
+**Returns:** `Quaternion`
+
+#### fromToRotation
+
+```lua
+Quaternion.fromToRotation(fromDir: Vector3|table, toDir: Vector3|table): Quaternion
+```
+
+Rotates direction `fromDir` into `toDir` and returns the quaternion of that rotation.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
@@ -201,126 +160,19 @@ Rotates direction `fromDir` into `toDir`.
 
 **Returns:** `Quaternion`
 
-#### Lerp
+#### Dot
 
 ```lua
-Quaternion.Lerp(a: Quaternion, b: Quaternion, t: number): Quaternion
+Quaternion:Dot(b: Quaternion): number
 ```
 
-Linear interpolation between `a` and `b` with normalization.
+Dot product of two quaternions.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
-| `a` | `Quaternion` |  | Starting rotation |
-| `b` | `Quaternion` |  | Ending rotation |
-| `t` | `number` |  | Interpolation factor `(0..1)` |
+| `b` | `Quaternion` |  | Second quaternion |
 
-**Returns:** `Quaternion`
-
-#### LerpUnclamped
-
-```lua
-Quaternion.LerpUnclamped(a: Quaternion, b: Quaternion, t: number): Quaternion
-```
-
-Same as `Lerp`, but `t` is not clamped to `0..1`.
-
-| Param | Type | Optional | Comment |
-|---|---|:---:|---|
-| `a` | `Quaternion` |  | Starting rotation |
-| `b` | `Quaternion` |  | Ending rotation |
-| `t` | `number` |  | Interpolation factor |
-
-**Returns:** `Quaternion`
-
-#### Slerp
-
-```lua
-Quaternion.Slerp(a: Quaternion, b: Quaternion, t: number): Quaternion
-```
-
-Spherical interpolation between `a` and `b`.
-
-| Param | Type | Optional | Comment |
-|---|---|:---:|---|
-| `a` | `Quaternion` |  | Starting rotation |
-| `b` | `Quaternion` |  | Ending rotation |
-| `t` | `number` |  | Interpolation factor `(0..1)` |
-
-**Returns:** `Quaternion`
-
-#### SlerpUnclamped
-
-```lua
-Quaternion.SlerpUnclamped(a: Quaternion, b: Quaternion, t: number): Quaternion
-```
-
-Spherical interpolation without clamping `t`.
-
-| Param | Type | Optional | Comment |
-|---|---|:---:|---|
-| `a` | `Quaternion` |  | Starting rotation |
-| `b` | `Quaternion` |  | Ending rotation |
-| `t` | `number` |  | Interpolation factor |
-
-**Returns:** `Quaternion`
-
-#### LookRotation
-
-```lua
-Quaternion.LookRotation(forward: Vector3|table, up: Vector3|table = ...): Quaternion
-```
-
-Builds a quaternion that points forward along the given vector.
-
-| Param | Type | Optional | Comment |
-|---|---|:---:|---|
-| `forward` | `Vector3|table` |  | Forward direction |
-| `up` | `Vector3|table` | ✅ | Up vector |
-
-**Returns:** `Quaternion`
-
-#### RotateTowards
-
-```lua
-Quaternion.RotateTowards(from: Quaternion, to: Quaternion, maxDegreesDelta: number): Quaternion
-```
-
-Smoothly rotates `from` toward `to`, but by no more than `maxDegreesDelta` degrees per step.
-
-| Param | Type | Optional | Comment |
-|---|---|:---:|---|
-| `from` | `Quaternion` |  | Source rotation |
-| `to` | `Quaternion` |  | Target rotation |
-| `maxDegreesDelta` | `number` |  | Maximum step in degrees |
-
-**Returns:** `Quaternion`
-
-#### ToAngleAxis
-
-```lua
-Quaternion.ToAngleAxis(q: Quaternion): number, Vector3
-```
-
-Converts a quaternion to angle-axis representation.
-
-| Param | Type | Optional | Comment |
-|---|---|:---:|---|
-| `q` | `Quaternion` |  | Source quaternion |
-
-**Returns:** `number`, `Vector3`
-
-#### identity
-
-```lua
-Quaternion.identity(): Quaternion
-```
-
-Returns the identity quaternion.
-
-**Returns:** `Quaternion`
-
-### Instance Methods
+**Returns:** `number`
 
 #### Normalize
 
@@ -328,19 +180,108 @@ Returns the identity quaternion.
 Quaternion:Normalize(): Quaternion
 ```
 
-Normalizes the quaternion in place and returns `self`.
+Normalizes the quaternion in place (modifies the object) and returns self.
 
 **Returns:** `Quaternion`
 
-#### ToString
+#### Inverse
 
 ```lua
-Quaternion:ToString(): string
+Quaternion:Inverse(): Quaternion
 ```
 
-Returns a string representation of the quaternion.
+Returns the inverse quaternion: the rotation that cancels self.
 
-**Returns:** `string`
+**Returns:** `Quaternion`
+
+#### Angle
+
+```lua
+Quaternion:Angle(b: Quaternion): number
+```
+
+Angle (in degrees) between self and another rotation.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `b` | `Quaternion` |  | Second rotation |
+
+**Returns:** `number`
+
+#### Lerp
+
+```lua
+Quaternion:Lerp(b: Quaternion, t: number): Quaternion
+```
+
+Linear interpolation between self and b with normalization (t in the 0..1 range).
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `b` | `Quaternion` |  | End rotation |
+| `t` | `number` |  | Interpolation parameter (0..1) |
+
+**Returns:** `Quaternion`
+
+#### LerpUnclamped
+
+```lua
+Quaternion:LerpUnclamped(b: Quaternion, t: number): Quaternion
+```
+
+Same as Lerp, but t is not limited to the 0..1 range.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `b` | `Quaternion` |  | End rotation |
+| `t` | `number` |  | Interpolation parameter (may be outside 0..1) |
+
+**Returns:** `Quaternion`
+
+#### Slerp
+
+```lua
+Quaternion:Slerp(b: Quaternion, t: number): Quaternion
+```
+
+Spherical interpolation between self and b (Slerp), t in the 0..1 range.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `b` | `Quaternion` |  | End rotation |
+| `t` | `number` |  | Interpolation parameter (0..1) |
+
+**Returns:** `Quaternion`
+
+#### SlerpUnclamped
+
+```lua
+Quaternion:SlerpUnclamped(b: Quaternion, t: number): Quaternion
+```
+
+Slerp without clamping t.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `b` | `Quaternion` |  | End rotation |
+| `t` | `number` |  | Interpolation parameter (may be outside 0..1) |
+
+**Returns:** `Quaternion`
+
+#### RotateTowards
+
+```lua
+Quaternion:RotateTowards(to: Quaternion, maxDegreesDelta: number): Quaternion
+```
+
+Smoothly rotates self toward to, but by no more than maxDegreesDelta (in degrees) per step.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `to` | `Quaternion` |  | Target rotation |
+| `maxDegreesDelta` | `number` |  | Maximum rotation step in degrees |
+
+**Returns:** `Quaternion`
 
 #### ToAngleAxis
 
@@ -348,37 +289,34 @@ Returns a string representation of the quaternion.
 Quaternion:ToAngleAxis(): number, Vector3
 ```
 
-Angle-axis decomposition as an instance method.
+Decomposes the quaternion into angle and axis.
 
 **Returns:** `number`, `Vector3`
 
 ## Rect
 
-2D rectangle commonly used for UI, drawing areas, and hitboxes.
-
-**Kind:** Class
+Rectangle in 2D (position and size).
 
 ### Fields
 
 | Name | Type | Static | Comment |
 |---|---|:---:|---|
-| `Zero` | `Rect` |  | Rectangle `Rect(0, 0, 0, 0)` |
-| `center` | `Vector2` |  | Rectangle center |
-| `height` | `number` |  | Rectangle height |
-| `width` | `number` |  | Rectangle width |
 | `x` | `number` |  | X coordinate |
-| `xMax` | `number` |  | Maximum X coordinate |
-| `xMin` | `number` |  | Minimum X coordinate |
 | `y` | `number` |  | Y coordinate |
-| `yMax` | `number` |  | Maximum Y coordinate |
+| `width` | `number` |  | Rectangle width |
+| `height` | `number` |  | Rectangle height |
+| `xMin` | `number` |  | Minimum X coordinate |
 | `yMin` | `number` |  | Minimum Y coordinate |
+| `xMax` | `number` |  | Maximum X coordinate |
+| `yMax` | `number` |  | Maximum Y coordinate |
+| `center` | `Vector2` |  | Rectangle center |
 
 ### Constructors
 
-#### Rect
+#### new
 
 ```lua
-Rect(x: number, y: number, width: number, height: number): Rect
+Rect.new(x: number, y: number, width: number, height: number): Rect
 ```
 
 Creates a rectangle from position and size.
@@ -390,225 +328,191 @@ Creates a rectangle from position and size.
 | `width` | `number` |  | Width |
 | `height` | `number` |  | Height |
 
+**Returns:** `Rect`
+
 ## Vector2
 
-2D vector used for coordinates, directions, and offsets in a plane.
-
-**Kind:** Class
+2D vector (x, y).
 
 ### Fields
 
 | Name | Type | Static | Comment |
 |---|---|:---:|---|
-| `left` | `Vector2` |  | Left vector `Vector2(-1, 0)` |
-| `magnitude` | `number` |  | Vector length |
-| `normalized` | `Vector2` |  | Normalized copy of the vector |
-| `one` | `Vector2` |  | All-ones vector `Vector2(1, 1)` |
-| `right` | `Vector2` |  | Right vector `Vector2(1, 0)` |
 | `x` | `number` |  | X component |
 | `y` | `number` |  | Y component |
-| `zero` | `Vector2` |  | Zero vector `Vector2(0, 0)` |
+| `zero` | `Vector2` |  | Zero vector Vector2.new(0, 0) |
+| `one` | `Vector2` |  | All-ones vector Vector2.new(1, 1) |
+| `normalized` | `Vector2` |  | Normalized copy of the vector |
+| `magnitude` | `number` |  | Vector length (magnitude) |
+| `sqrMagnitude` | `number` |  | Squared length |
 
 ### Constructors
 
-#### Vector2
+#### new
 
 ```lua
-Vector2(x: number, y: number): Vector2
+Vector2.new(x: number, y: number): Vector2
 ```
 
-Creates a `Vector2`.
+Creates a Vector2.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
 | `x` | `number` |  | X component |
 | `y` | `number` |  | Y component |
+
+**Returns:** `Vector2`
 
 ### Methods
 
 #### Magnitude
 
 ```lua
-Vector2.Magnitude(vector: Vector2): number
+Vector2:Magnitude(): number
 ```
 
-Returns the vector length.
-
-| Param | Type | Optional | Comment |
-|---|---|:---:|---|
-| `vector` | `Vector2` |  | Vector |
+Returns the vector length (magnitude).
 
 **Returns:** `number`
 
 #### Normalize
 
 ```lua
-Vector2.Normalize(value: Vector2): Vector2
+Vector2:Normalize(): Vector2
 ```
 
-Normalizes a vector and returns a new vector of length `1`, when possible.
-
-| Param | Type | Optional | Comment |
-|---|---|:---:|---|
-| `value` | `Vector2` |  | Source vector |
+Normalizes the vector and returns a new vector of length 1 (when possible).
 
 **Returns:** `Vector2`
-
-#### Distance
-
-```lua
-Vector2.Distance(a: Vector2, b: Vector2): number
-```
-
-Distance between two points.
-
-| Param | Type | Optional | Comment |
-|---|---|:---:|---|
-| `a` | `Vector2` |  | First point |
-| `b` | `Vector2` |  | Second point |
-
-**Returns:** `number`
-
-## Vector3
-
-3D vector used for coordinates, directions, velocities, and other spatial values.
-
-### Fields
-
-| Name | Type | Static | Comment |
-|---|---|:---:|---|
-| `forward` | `Vector3` |  | Forward vector `Vector3(0, 0, 1)` |
-| `magnitude` | `number` |  | Vector length |
-| `normalized` | `Vector3` |  | Normalized copy of the vector |
-| `sqrMagnitude` | `number` |  | Squared length |
-| `up` | `Vector3` |  | Up vector `Vector3(0, 1, 0)` |
-| `x` | `number` |  | X component |
-| `y` | `number` |  | Y component |
-| `z` | `number` |  | Z component |
-| `zero` | `Vector3` |  | Zero vector `Vector3(0, 0, 0)` |
-
-### Constructors
-
-#### Vector3
-
-```lua
-Vector3(x: number, y: number, z: number): Vector3
-```
-
-Creates a `Vector3`.
-
-| Param | Type | Optional | Comment |
-|---|---|:---:|---|
-| `x` | `number` |  | X component |
-| `y` | `number` |  | Y component |
-| `z` | `number` |  | Z component |
-
-### Static Methods
-
-#### Magnitude
-
-```lua
-Vector3.Magnitude(vector: Vector3): number
-```
-
-Returns the vector length.
-
-| Param | Type | Optional | Comment |
-|---|---|:---:|---|
-| `vector` | `Vector3` |  | Vector |
-
-**Returns:** `number`
-
-#### Normalize
-
-```lua
-Vector3.Normalize(value: Vector3): Vector3
-```
-
-Normalizes a vector and returns a new copy.
-
-| Param | Type | Optional | Comment |
-|---|---|:---:|---|
-| `value` | `Vector3` |  | Source vector |
-
-**Returns:** `Vector3`
-
-#### Angle
-
-```lua
-Vector3.Angle(from: Vector3, to: Vector3): number
-```
-
-Returns the angle in degrees between two directions.
-
-| Param | Type | Optional | Comment |
-|---|---|:---:|---|
-| `from` | `Vector3` |  | First direction |
-| `to` | `Vector3` |  | Second direction |
-
-**Returns:** `number`
 
 #### Dot
 
 ```lua
-Vector3.Dot(lhs: Vector3, rhs: Vector3): number
+Vector2:Dot(rhs: Vector2): number
 ```
 
 Dot product of two vectors.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
-| `lhs` | `Vector3` |  | First vector |
-| `rhs` | `Vector3` |  | Second vector |
+| `rhs` | `Vector2` |  | Second vector |
 
 **Returns:** `number`
 
-#### FromYawPitchToDirection
+#### Angle
 
 ```lua
-Vector3.FromYawPitchToDirection(yaw: number, pitch: number): Vector3
+Vector2:Angle(to: Vector2): number
 ```
 
-Converts yaw/pitch into a unit direction.
+Returns the angle in degrees between self and to.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
-| `yaw` | `number` |  | Rotation around Y |
-| `pitch` | `number` |  | Up/down tilt |
+| `to` | `Vector2` |  | Second direction |
 
-**Returns:** `Vector3`
+**Returns:** `number`
 
 #### Distance
 
 ```lua
-Vector3.Distance(a: Vector3, b: Vector3): number
+Vector2:Distance(b: Vector2): number
 ```
 
-Distance between two points.
+Distance between self and b.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
-| `a` | `Vector3` |  | First point |
-| `b` | `Vector3` |  | Second point |
+| `b` | `Vector2` |  | Second point |
 
 **Returns:** `number`
 
-#### Cross
+## Vector3
+
+3D vector (x, y, z).
+
+### Fields
+
+| Name | Type | Static | Comment |
+|---|---|:---:|---|
+| `x` | `number` |  | X component |
+| `y` | `number` |  | Y component |
+| `z` | `number` |  | Z component |
+| `back` | `Vector3` |  | Back vector Vector3.new(0, 0, -1) |
+| `down` | `Vector3` |  | Down vector Vector3.new(0, -1, 0) |
+| `forward` | `Vector3` |  | Forward vector Vector3.new(0, 0, 1) |
+| `left` | `Vector3` |  | Left vector Vector3.new(-1, 0, 0) |
+| `negativeInfinity` | `Vector3` |  | Vector3.new(-inf, -inf, -inf) |
+| `zero` | `Vector3` |  | Zero vector Vector3.new(0, 0, 0) |
+| `one` | `Vector3` |  | All-ones vector Vector3.new(1, 1, 1) |
+| `positiveInfinity` | `Vector3` |  | Vector3.new(inf, inf, inf) |
+| `right` | `Vector3` |  | Right vector Vector3.new(1, 0, 0) |
+| `up` | `Vector3` |  | Up vector Vector3.new(0, 1, 0) |
+| `normalized` | `Vector3` |  | Normalized copy of the vector |
+| `sqrMagnitude` | `number` |  | Squared length |
+| `magnitude` | `number` |  | Vector length (magnitude) |
+
+### Operators
+
+| Signature | Comment |
+|---|---|
+| `add(Vector3):Vector3` | Vector addition |
+| `sub(Vector3):Vector3` | Vector subtraction |
+
+### Constructors
+
+#### new
 
 ```lua
-Vector3.Cross(lhs: Vector3, rhs: Vector3): Vector3
+Vector3.new(x: number, y: number, z: number): Vector3
 ```
 
-Cross product of two vectors.
+Creates a Vector3.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
-| `lhs` | `Vector3` |  | First vector |
-| `rhs` | `Vector3` |  | Second vector |
+| `x` | `number` |  | X component |
+| `y` | `number` |  | Y component |
+| `z` | `number` |  | Z component |
 
 **Returns:** `Vector3`
 
-### Instance Methods
+### Methods
+
+#### fromYawPitchToDirection
+
+```lua
+Vector3.fromYawPitchToDirection(yaw: number, pitch: number): Vector3
+```
+
+Converts yaw/pitch to a unit direction.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `yaw` | `number` |  | Rotation around Y (azimuth) |
+| `pitch` | `number` |  | Up/down tilt |
+
+**Returns:** `Vector3`
+
+#### Magnitude
+
+```lua
+Vector3:Magnitude(): number
+```
+
+Returns the vector length (magnitude).
+
+**Returns:** `number`
+
+#### Normalize
+
+```lua
+Vector3:Normalize(): Vector3
+```
+
+Normalizes the vector and returns a new vector of length 1 (when possible).
+
+**Returns:** `Vector3`
 
 #### OnlyXZ
 
@@ -616,17 +520,62 @@ Cross product of two vectors.
 Vector3:OnlyXZ(): Vector3
 ```
 
-Returns a copy of the vector projected onto the XZ plane, where `y = 0`.
+Returns a copy of the vector only in the XZ plane (the Y component is set to zero).
 
 **Returns:** `Vector3`
 
-#### ToString
+#### Angle
 
 ```lua
-Vector3:ToString(): string
+Vector3:Angle(to: Vector3): number
 ```
 
-Returns a string representation of the vector.
+Returns the angle (in degrees) between self and to.
 
-**Returns:** `string`
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `to` | `Vector3` |  | Second direction |
 
+**Returns:** `number`
+
+#### Dot
+
+```lua
+Vector3:Dot(rhs: Vector3): number
+```
+
+Dot product of two vectors.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `rhs` | `Vector3` |  | Second vector |
+
+**Returns:** `number`
+
+#### Distance
+
+```lua
+Vector3:Distance(b: Vector3): number
+```
+
+Distance between self and b.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `b` | `Vector3` |  | Second point |
+
+**Returns:** `number`
+
+#### Cross
+
+```lua
+Vector3:Cross(rhs: Vector3): Vector3
+```
+
+Cross product of two vectors.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `rhs` | `Vector3` |  | Second vector |
+
+**Returns:** `Vector3`

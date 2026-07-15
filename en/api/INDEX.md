@@ -22,10 +22,10 @@
 - [Physics](./Physics.md) — Physics API.
 - [Scheduler](./Scheduler.md) — Scheduler API: subscribing to simulation ticks.
 - [Shop](./Shop.md) — API for interacting with the in-match shop.
-- [Sprite](./Sprite.md) — API for retrieving images.
 - [Storage](./Storage.md) — API for storing module data locally.
 - [Structs](./Structs.md) — Basic structure API: Vector, Quaternion, Color, and Rect.
 - [Team](./Team.md) — Match team API.
+- [Texture](./Texture.md)
 - [Time](./Time.md) — API for retrieving and converting time and simulation ticks.
 - [Tutorial](./Tutorial.md) — Tutorial mode API. User modules are not supported in this mode.
 - [UI](./UI.md) — API for creating advanced user interfaces. Provides access to Unity UI Toolkit.
@@ -40,20 +40,19 @@
 - [Agents](./Agent.md#agents)
 - [AgentStats](./Agent.md#agentstats)
 - [Aim](./Agent.md#aim)
-- [DamageData](./Agent.md#damagedata)
-- [DeathEventData](./Agent.md#deatheventdata)
+- [DamageEvent](./Agent.md#damageevent)
+- [DeathEvent](./Agent.md#deathevent)
 - [EHitboxBodyPart](./Agent.md#ehitboxbodypart)
 - [EHitType](./Agent.md#ehittype)
 - [EInputButton](./Agent.md#einputbutton)
 - [Health](./Agent.md#health)
 - [Hitbox](./Agent.md#hitbox)
-- [HitData](./Agent.md#hitdata)
+- [HitEvent](./Agent.md#hitevent)
 - [Interactable](./Agent.md#interactable)
 - [Interactor](./Agent.md#interactor)
 - [Inventory](./Agent.md#inventory)
 - [Movement](./Agent.md#movement)
 - [OcclusionCulling](./Agent.md#occlusionculling)
-- [StunnedData](./Agent.md#stunneddata)
 
 ### Audio
 
@@ -156,16 +155,15 @@
 ### Notification
 
 - [ENotificationCode](./Notification.md#enotificationcode)
-- [HintNotificationData](./Notification.md#hintnotificationdata)
+- [HintNotificationEvent](./Notification.md#hintnotificationevent)
 - [InGameViolationKind](./Notification.md#ingameviolationkind)
 - [InGameViolationSeverity](./Notification.md#ingameviolationseverity)
-- [KillLogData](./Notification.md#killlogdata)
 - [NotificationController](./Notification.md#notificationcontroller)
-- [NotificationData](./Notification.md#notificationdata)
+- [NotificationEvent](./Notification.md#notificationevent)
 - [PingController](./Notification.md#pingcontroller)
-- [PingMarkerData](./Notification.md#pingmarkerdata)
+- [PingEvent](./Notification.md#pingevent)
 - [PingMarkerType](./Notification.md#pingmarkertype)
-- [ViolationNotificationData](./Notification.md#violationnotificationdata)
+- [ViolationNotificationEvent](./Notification.md#violationnotificationevent)
 
 ### Physics
 
@@ -181,14 +179,14 @@
 
 - [Shop](./Shop.md#shop)
 
-### Sprite
-
-- [Sprite](./Sprite.md#sprite)
-- [Sprites](./Sprite.md#sprites)
-
 ### Team
 
 - [Team](./Team.md#team)
+
+### Texture
+
+- [Texture](./Texture.md#texture)
+- [Textures](./Texture.md#textures)
 
 ### Time
 

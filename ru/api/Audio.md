@@ -27,7 +27,7 @@ API для воспроизведения звуков и доступа к го
 Sounds:GetSound(soundName: string): Sound
 ```
 
-[ClientOnly] Возвращает звук из файлов модуля или nil, если звук с таким именем не загружен. Загрузчик ищет аудиофайлы .wav, .mp3 и .ogg внутри папки audio модуля. Имя ищется без пути, но с расширением: например, `Hit.wav`.
+[ClientOnly] Возвращает звук из файлов модуля или nil, если звук с таким именем не загружен. Загрузчик ищет аудиофайлы .wav, .mp3 и .ogg внутри папки sounds модуля. Имя ищется без пути, но с расширением: например, `Hit.wav`.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
@@ -47,10 +47,10 @@ Sounds:PlaySound(sound: Sound, position: Vector3, volume: number = ..., minDista
 |---|---|:---:|---|
 | `sound` | [Sound](./Audio.md#sound) |  | [ClientOnly] Звук для воспроизведения. |
 | `position` | Vector3 |  | [ClientOnly] Мировая позиция источника звука. |
-| `volume` | number | ✅ | [ClientOnly] Громкость звука. 1 - 100%. |
-| `minDistance` | number | ✅ | [ClientOnly] Расстояние, до которого звук слышен на полной громкости. 5 - обычное значение. |
-| `maxDistance` | number | ✅ | [ClientOnly] Расстояние, после которого звук перестает быть слышен. 500 - обычное значение. |
-| `pitch` | number | ✅ | [ClientOnly] Высота тона и скорость воспроизведения. 1 - обычное значение. |
+| `volume` | number | ✅ | [ClientOnly] Громкость звука в диапазоне 0-1. |
+| `minDistance` | number | ✅ | [ClientOnly] Расстояние, до которого звук слышен на полной громкости. Значение  по умолчанию: 5. |
+| `maxDistance` | number | ✅ | [ClientOnly] Расстояние, после которого звук перестает быть слышен. Значение  по умолчанию: 500. |
+| `pitch` | number | ✅ | [ClientOnly] Высота тона и скорость воспроизведения. Значение  по умолчанию: 1. |
 
 #### PlaySound2D
 
@@ -63,8 +63,8 @@ Sounds:PlaySound2D(sound: Sound, volume: number = ..., pitch: number = ...)
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
 | `sound` | [Sound](./Audio.md#sound) |  | [ClientOnly] Звук для воспроизведения. |
-| `volume` | number | ✅ | [ClientOnly] Громкость звука. 1 - 100%. |
-| `pitch` | number | ✅ | [ClientOnly] Высота тона и скорость воспроизведения. 1 - обычное значение. |
+| `volume` | number | ✅ | [ClientOnly] Громкость звука в диапазоне 0-1. |
+| `pitch` | number | ✅ | [ClientOnly] Высота тона и скорость воспроизведения. Значение  по умолчанию: 1. |
 
 ## VoiceChat
 

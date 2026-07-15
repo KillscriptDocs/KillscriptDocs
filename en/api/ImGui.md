@@ -43,33 +43,6 @@ ImGui:DrawDebugText(text: string)
 |---|---|:---:|---|
 | `text` | string |  | Text. |
 
-#### DrawSprite
-
-```lua
-ImGui:DrawSprite(sprite: Sprite, rect: Rect? = ...)
-```
-
-[ClientOnly] Draws a sprite on the screen.
-
-| Param | Type | Optional | Comment |
-|---|---|:---:|---|
-| `sprite` | [Sprite](./Sprite.md#sprite) |  | Sprite to draw. |
-| `rect` | Rect? | ✅ | Screen area where the sprite will be drawn (if nil, the entire available area is used). |
-
-#### DrawSpriteColor
-
-```lua
-ImGui:DrawSpriteColor(sprite: Sprite, color: Color, rect: Rect? = ...)
-```
-
-[ClientOnly] Draws a sprite on the screen with a color mask overlay.
-
-| Param | Type | Optional | Comment |
-|---|---|:---:|---|
-| `sprite` | [Sprite](./Sprite.md#sprite) |  | Sprite to draw. |
-| `color` | Color |  | Color mask applied to the sprite. |
-| `rect` | Rect? | ✅ | Screen area where the sprite will be drawn (if nil, the entire available area is used). |
-
 #### DrawText
 
 ```lua
@@ -118,38 +91,38 @@ ImGui:DrawTextUV(text: string, viewportPosition: Vector2, fontSize: number = ...
 | `color` | Color? | ✅ | Text color. |
 | `alignment` | [TextAnchor](./UI.md#textanchor) | ✅ | Text alignment. |
 
+#### DrawTexture
+
+```lua
+ImGui:DrawTexture(texture: Texture, rect: Rect? = ...)
+```
+
+[ClientOnly] Draws a texture on the screen.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `texture` | [Texture](./Texture.md#texture) |  | Texture to draw. |
+| `rect` | Rect? | ✅ | Screen area where the texture will be drawn (if nil, the entire available area is used). |
+
+#### DrawTextureColor
+
+```lua
+ImGui:DrawTextureColor(texture: Texture, color: Color, rect: Rect? = ...)
+```
+
+[ClientOnly] Draws a texture on the screen with a color mask overlay.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `texture` | [Texture](./Texture.md#texture) |  | Texture to draw. |
+| `color` | Color |  | Color mask applied to the texture. |
+| `rect` | Rect? | ✅ | Screen area where the texture will be drawn (if nil, the entire available area is used). |
+
 ## ImGuiWindow
 
 [ClientOnly]
 
 ### Methods
-
-#### DrawSprite
-
-```lua
-ImGuiWindow:DrawSprite(sprite: Sprite, rect: Rect? = ...)
-```
-
-Draws a sprite inside the window.
-
-| Param | Type | Optional | Comment |
-|---|---|:---:|---|
-| `sprite` | [Sprite](./Sprite.md#sprite) |  | Sprite to draw. |
-| `rect` | Rect? | ✅ | Window area where the sprite will be drawn (if nil, the entire available area is used). |
-
-#### DrawSpriteColor
-
-```lua
-ImGuiWindow:DrawSpriteColor(sprite: Sprite, color: Color, rect: Rect? = ...)
-```
-
-Draws a sprite inside the window with a color mask overlay.
-
-| Param | Type | Optional | Comment |
-|---|---|:---:|---|
-| `sprite` | [Sprite](./Sprite.md#sprite) |  | Sprite to draw. |
-| `color` | Color |  | Color mask applied to the sprite. |
-| `rect` | Rect? | ✅ | Window area where the sprite will be drawn (if nil, the entire available area is used). |
 
 #### DrawText
 
@@ -166,6 +139,33 @@ Draws text inside the window.
 | `fontSize` | number |  | Font size of the text. |
 | `color` | Color |  | Text color. |
 | `alignment` | [TextAnchor](./UI.md#textanchor) | ✅ | Text alignment. |
+
+#### DrawTexture
+
+```lua
+ImGuiWindow:DrawTexture(texture: Texture, rect: Rect? = ...)
+```
+
+Draws a texture inside the window.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `texture` | [Texture](./Texture.md#texture) |  | Texture to draw. |
+| `rect` | Rect? | ✅ | Window area where the texture will be drawn (if nil, the entire available area is used). |
+
+#### DrawTextureColor
+
+```lua
+ImGuiWindow:DrawTextureColor(texture: Texture, color: Color, rect: Rect? = ...)
+```
+
+Draws a texture inside the window with a color mask overlay.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `texture` | [Texture](./Texture.md#texture) |  | Texture to draw. |
+| `color` | Color |  | Color mask applied to the texture. |
+| `rect` | Rect? | ✅ | Window area where the texture will be drawn (if nil, the entire available area is used). |
 
 #### GetContentRenderSize
 

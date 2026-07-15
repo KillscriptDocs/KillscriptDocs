@@ -20,7 +20,7 @@ API режима Defusal: состояние матча и раунда.
 |---|---|---|:---:|---|
 | `BridgeChargeExplosionRemainingTicks` | int | `get` |  | Оставшееся количество тиков до взрыва BridgeCharge. |
 | `BridgerFrontTeam` | [Team](./Team.md#team) | `get` |  | Атакующая команда. |
-| `BridgerFrontTeamSprite` | [Sprite](./Sprite.md#sprite) | `get` |  | Спрайт атакующей команды. |
+| `BridgerFrontTeamTexture` | [Texture](./Texture.md#texture) | `get` |  | Текстура атакующей команды. |
 | `IsBridgeChargeDefused` | bool | `get` |  | true, если BridgeCharge обезврежена. |
 | `IsBridgeChargeExploded` | bool | `get` |  | true, если BridgeCharge взорвалась. |
 | `IsBridgeChargePlanted` | bool | `get` |  | true, если BridgeCharge установлена. |
@@ -32,7 +32,7 @@ API режима Defusal: состояние матча и раунда.
 | `IsVictory` | bool | `get` |  | [ClientOnly] true, если матч завершён победой нашей команды. |
 | `IsWarmupTimerActive` | bool | `get` |  | true, если в разминке активен таймер ожидания игроков или старта матча. |
 | `KillScriptCompanyTeam` | [Team](./Team.md#team) | `get` |  | Обороняющаяся команда. |
-| `KillScriptCompanyTeamSprite` | [Sprite](./Sprite.md#sprite) | `get` |  | Спрайт обороняющей команды. |
+| `KillScriptCompanyTeamTexture` | [Texture](./Texture.md#texture) | `get` |  | Текстура обороняющей команды. |
 | `RoundId` | int | `get` |  | Порядковый номер текущего раунда, начинается с 1. |
 | `RoundWinnerTeam` | [Team](./Team.md#team) | `get` |  | Команда-победитель текущего раунда, если определена. |
 | `Stage` | [EDefusalRoundStage](./DefusalGame.md#edefusalroundstage) | `get` |  | Текущая стадия раунда. |

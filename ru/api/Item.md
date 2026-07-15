@@ -182,8 +182,8 @@ FirearmItem:HitscanFirearm(firePosition: Vector3, projectileDirection: Vector3):
 | `AsMeleeItem` | [MeleeItem](./Item.md#meleeitem) | `get` |  | Возвращает предмет как MeleeItem или nil, если это предмет другого типа. |
 | `AsThrowableItem` | [ThrowableItem](./Item.md#throwableitem) | `get` |  | Возвращает предмет как ThrowableItem или nil, если это предмет другого типа. |
 | `ConfigItem` | [ConfigItem](./GameConfig.md#configitem) | `get` |  | Конфигурация предмета. Возвращает nil, если конфигурация недоступна. |
-| `Icon` | [Sprite](./Sprite.md#sprite) | `get` |  | Иконка предмета в полном разрешении. Возвращает nil, если у предмета нет иконки или объект предмета уже недоступен. |
-| `IconSmall` | [Sprite](./Sprite.md#sprite) | `get` |  | Маленькая иконка предмета с уменьшенной детализацией. Возвращает nil, если у предмета нет такой иконки или объект предмета уже недоступен. |
+| `Icon` | [Texture](./Texture.md#texture) | `get` |  | Иконка предмета в полном разрешении. Возвращает nil, если у предмета нет иконки или объект предмета уже недоступен. |
+| `IconSmall` | [Texture](./Texture.md#texture) | `get` |  | Маленькая иконка предмета с уменьшенной детализацией. Возвращает nil, если у предмета нет такой иконки или объект предмета уже недоступен. |
 | `IsBridgeCharge` | bool | `get` |  | true, если предмет — BridgeCharge. |
 | `IsDropped` | bool | `get` |  | true, если у предмета нет владельца. |
 | `IsFirearm` | bool | `get` |  | true, если предмет — огнестрельное оружие. |

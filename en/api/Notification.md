@@ -5,16 +5,15 @@ Notification API: receiving and sending notifications and hints to the player.
 ## Contents
 
 - [ENotificationCode](#enotificationcode)
-- [HintNotificationData](#hintnotificationdata)
+- [HintNotificationEvent](#hintnotificationevent)
 - [InGameViolationKind](#ingameviolationkind)
 - [InGameViolationSeverity](#ingameviolationseverity)
-- [KillLogData](#killlogdata)
 - [NotificationController](#notificationcontroller)
-- [NotificationData](#notificationdata)
+- [NotificationEvent](#notificationevent)
 - [PingController](#pingcontroller)
-- [PingMarkerData](#pingmarkerdata)
+- [PingEvent](#pingevent)
 - [PingMarkerType](#pingmarkertype)
-- [ViolationNotificationData](#violationnotificationdata)
+- [ViolationNotificationEvent](#violationnotificationevent)
 
 ---
 
@@ -45,9 +44,9 @@ Notification code that defines its type and the set of additional fields.
 | `MatchStarting` | `18` | Все игроки подключились, матч скоро начнётся. |
 | `WarmupConsoleHint` | `19` | Hint for custom game warmup, the match is started with a console command. |
 
-## HintNotificationData
+## HintNotificationEvent
 
-Hint data.
+Hint event.
 
 ### Fields
 
@@ -79,44 +78,16 @@ Severity of the in-game violation.
 | `Moderate` | `2` | Moderate violation. |
 | `Severe` | `3` | Severe violation. |
 
-## KillLogData
-
-Kill log entry.
-
-### Fields
-
-| Name | Type | Static | Comment |
-|---|---|:---:|---|
-| `ID` | int |  | Kill log entry ID. |
-| `IsCritical` | bool |  | true if the kill was critical. |
-| `Killer` | string |  | Killer name. |
-| `Victim` | string |  | Victim name. |
-| `WeaponId` | int |  | ID of the weapon used to make the kill. |
-
 ## NotificationController
 
 [ClientOnly] Global API for notifications and hints.
 
 ### Methods
 
-#### GetKillLogs
+#### OnHint
 
 ```lua
-NotificationController:GetKillLogs(lastKillLogId: int): Array<KillLogData>
-```
-
-[ClientOnly] Returns new kill log entries after the specified ID.
-
-| Param | Type | Optional | Comment |
-|---|---|:---:|---|
-| `lastKillLogId` | int |  |  |
-
-**Returns:** Array<[KillLogData](./Notification.md#killlogdata)>
-
-#### OnHintNotification
-
-```lua
-NotificationController:OnHintNotification(callback: LuaFunction): EventSubscription
+NotificationController:OnHint(callback: LuaFunction): EventSubscription
 ```
 
 [ClientOnly] Calls the callback when a hint arrives. Returns a subscription that can be cancelled.
@@ -155,10 +126,10 @@ NotificationController:OnViolationNotification(callback: LuaFunction): EventSubs
 
 **Returns:** [EventSubscription](./Scheduler.md#eventsubscription)
 
-#### SendHintNotification
+#### ShowHint
 
 ```lua
-NotificationController:SendHintNotification(message: string, duration: number = ...)
+NotificationController:ShowHint(message: string, duration: number = ...)
 ```
 
 [ClientOnly] Shows a hint to the local player.
@@ -181,9 +152,9 @@ NotificationController:ShowNotification(message: string, duration: number)
 | `message` | string |  |  |
 | `duration` | number |  |  |
 
-## NotificationData
+## NotificationEvent
 
-Structured data of the active notification.
+Active notification event.
 
 ### Fields
 
@@ -231,9 +202,9 @@ PingController:SetPing(position: Vector3)
 |---|---|:---:|---|
 | `position` | Vector3 |  |  |
 
-## PingMarkerData
+## PingEvent
 
-World ping data.
+World ping event.
 
 ### Fields
 
@@ -257,9 +228,9 @@ Ping marker type.
 | `Party` | `1` | Party member ping. |
 | `Ally` | `2` | Ally ping. |
 
-## ViolationNotificationData
+## ViolationNotificationEvent
 
-Structured data for the violation notification.
+Violation notification event.
 
 ### Fields
 

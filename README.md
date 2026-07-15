@@ -3,12 +3,13 @@
 # Killscript Official Docs
 
 _Docs are available in other languages:_
-- [Документация Killscript на русском](./ru/guide/INDEX.md)
+- [Документация Killscript на русском](./ru/INDEX.md)
 
 ## Documentation Sections
 
 * [Custom Servers](./en/guide/servers/1.CustomServers.md) allow you to host your own matches, study game mechanics, and even change the game configuration.
 * [Modules](./en/guide/modules/1.Modules.md) allow you to automate in-game actions and modify any HUD elements.
+* [API](./en/api/INDEX.md) contains reference documentation for the game APIs and available entities.
 
 ## Links
 

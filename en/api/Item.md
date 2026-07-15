@@ -182,8 +182,8 @@ Base object for all items.
 | `AsMeleeItem` | [MeleeItem](./Item.md#meleeitem) | `get` |  | Returns the item as MeleeItem, or nil if it is a different item type. |
 | `AsThrowableItem` | [ThrowableItem](./Item.md#throwableitem) | `get` |  | Returns the item as ThrowableItem, or nil if it is a different item type. |
 | `ConfigItem` | [ConfigItem](./GameConfig.md#configitem) | `get` |  | Item configuration. Returns nil if the configuration is unavailable. |
-| `Icon` | [Sprite](./Sprite.md#sprite) | `get` |  | Full-resolution item icon. Returns nil if the item has no icon or the item object is no longer available. |
-| `IconSmall` | [Sprite](./Sprite.md#sprite) | `get` |  | Small item icon with reduced detail. Returns nil if the item has no such icon or the item object is no longer available. |
+| `Icon` | [Texture](./Texture.md#texture) | `get` |  | Full-resolution item icon. Returns nil if the item has no icon or the item object is no longer available. |
+| `IconSmall` | [Texture](./Texture.md#texture) | `get` |  | Small item icon with reduced detail. Returns nil if the item has no such icon or the item object is no longer available. |
 | `IsBridgeCharge` | bool | `get` |  | true if the item is a BridgeCharge. |
 | `IsDropped` | bool | `get` |  | true if the item has no owner. |
 | `IsFirearm` | bool | `get` |  | true if the item is a firearm. |

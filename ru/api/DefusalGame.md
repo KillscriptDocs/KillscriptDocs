@@ -48,7 +48,7 @@ API режима Defusal: состояние матча и раунда.
 DefusalGame:GetMatchRoundsLog(): Array<DefusalRoundState>
 ```
 
-История раундов матча.
+История начавшихся раундов матча, включая текущий раунд.
 
 **Returns:** Array<[DefusalRoundState](./DefusalGame.md#defusalroundstate)>
 

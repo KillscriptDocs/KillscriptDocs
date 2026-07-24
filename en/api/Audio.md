@@ -7,7 +7,6 @@ API for playing sounds and accessing voice chat.
 - [Sound](#sound)
 - [Sounds](#sounds)
 - [VoiceChat](#voicechat)
-- [VoiceLinePlayer](#voicelineplayer)
 
 ---
 
@@ -142,15 +141,4 @@ VoiceChat:ToggleMuted(agent: Agent): bool
 | `agent` | [Agent](./Agent.md#agent) |  |  |
 
 **Returns:** bool
-
-## VoiceLinePlayer
-
-[ClientOnly] Global API for reading the voice line player state.
-
-### Properties
-
-| Name | Type | Access | Static | Comment |
-|---|---|---|:---:|---|
-| `IsPlaying` | bool | `get` |  | [ClientOnly] true if a voice line is currently playing. |
-| `Subtitle` | string | `get` |  | [ClientOnly] Subtitle text for the currently playing voice line. |
 

@@ -5,6 +5,7 @@ Tutorial mode API. User modules are not supported in this mode.
 ## Contents
 
 - [TutorialManager](#tutorialmanager)
+- [VoiceLinePlayer](#voicelineplayer)
 
 ---
 
@@ -35,4 +36,15 @@ TutorialManager:GetAllPlantedBridgeCharges(): Array<Entity>
 [ClientOnly] Returns all planted training BridgeCharges on the map.
 
 **Returns:** Array<[Entity](./Entity.md#entity)>
+
+## VoiceLinePlayer
+
+[ClientOnly] Global API for reading the voice line player state.
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `IsPlaying` | bool | `get` |  | [ClientOnly] true if a voice line is currently playing. |
+| `Subtitle` | string | `get` |  | [ClientOnly] Subtitle text for the currently playing voice line. |
 

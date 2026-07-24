@@ -30,10 +30,10 @@ API базовых структур: Vector, Quaternion, Color, Rect.
 
 ### Constructors
 
-#### new
+#### Color
 
 ```lua
-Color.new(r: number, g: number, b: number, a: number): Color
+Color(r: number, g: number, b: number, a: number): Color
 ```
 
 Создаёт цвет из 4 компонентов RGBA.
@@ -47,10 +47,10 @@ Color.new(r: number, g: number, b: number, a: number): Color
 
 **Returns:** `Color`
 
-#### new
+#### Color
 
 ```lua
-Color.new(r: number, g: number, b: number): Color
+Color(r: number, g: number, b: number): Color
 ```
 
 Создаёт цвет из 3 компонентов RGB (альфа по умолчанию 1).
@@ -80,10 +80,10 @@ Color.new(r: number, g: number, b: number): Color
 
 ### Constructors
 
-#### new
+#### Quaternion
 
 ```lua
-Quaternion.new(x: number, y: number, z: number, w: number): Quaternion
+Quaternion(x: number, y: number, z: number, w: number): Quaternion
 ```
 
 Создаёт новый кватернион.
@@ -313,10 +313,10 @@ Quaternion:ToAngleAxis(): number, Vector3
 
 ### Constructors
 
-#### new
+#### Rect
 
 ```lua
-Rect.new(x: number, y: number, width: number, height: number): Rect
+Rect(x: number, y: number, width: number, height: number): Rect
 ```
 
 Создаёт прямоугольник по позиции и размеру.
@@ -340,18 +340,18 @@ Rect.new(x: number, y: number, width: number, height: number): Rect
 |---|---|:---:|---|
 | `x` | `number` |  | Компонента X |
 | `y` | `number` |  | Компонента Y |
-| `zero` | `Vector2` |  | Нулевой вектор Vector2.new(0, 0) |
-| `one` | `Vector2` |  | Вектор из единиц Vector2.new(1, 1) |
+| `zero` | `Vector2` |  | Нулевой вектор Vector2(0, 0) |
+| `one` | `Vector2` |  | Вектор из единиц Vector2(1, 1) |
 | `normalized` | `Vector2` |  | Нормализованная копия вектора |
 | `magnitude` | `number` |  | Длина (модуль) вектора |
 | `sqrMagnitude` | `number` |  | Квадрат длины |
 
 ### Constructors
 
-#### new
+#### Vector2
 
 ```lua
-Vector2.new(x: number, y: number): Vector2
+Vector2(x: number, y: number): Vector2
 ```
 
 Создаёт Vector2.
@@ -438,16 +438,16 @@ Vector2:Distance(b: Vector2): number
 | `x` | `number` |  | Компонента X |
 | `y` | `number` |  | Компонента Y |
 | `z` | `number` |  | Компонента Z |
-| `back` | `Vector3` |  | Вектор назад Vector3.new(0, 0, -1) |
-| `down` | `Vector3` |  | Вектор вниз Vector3.new(0, -1, 0) |
-| `forward` | `Vector3` |  | Вектор вперёд Vector3.new(0, 0, 1) |
-| `left` | `Vector3` |  | Вектор влево Vector3.new(-1, 0, 0) |
-| `negativeInfinity` | `Vector3` |  | Vector3.new(-inf, -inf, -inf) |
-| `zero` | `Vector3` |  | Нулевой вектор Vector3.new(0, 0, 0) |
-| `one` | `Vector3` |  | Вектор из единиц Vector3.new(1, 1, 1) |
-| `positiveInfinity` | `Vector3` |  | Vector3.new(inf, inf, inf) |
-| `right` | `Vector3` |  | Вектор вправо Vector3.new(1, 0, 0) |
-| `up` | `Vector3` |  | Вектор вверх Vector3.new(0, 1, 0) |
+| `back` | `Vector3` |  | Вектор назад Vector3(0, 0, -1) |
+| `down` | `Vector3` |  | Вектор вниз Vector3(0, -1, 0) |
+| `forward` | `Vector3` |  | Вектор вперёд Vector3(0, 0, 1) |
+| `left` | `Vector3` |  | Вектор влево Vector3(-1, 0, 0) |
+| `negativeInfinity` | `Vector3` |  | Vector3(-inf, -inf, -inf) |
+| `zero` | `Vector3` |  | Нулевой вектор Vector3(0, 0, 0) |
+| `one` | `Vector3` |  | Вектор из единиц Vector3(1, 1, 1) |
+| `positiveInfinity` | `Vector3` |  | Vector3(inf, inf, inf) |
+| `right` | `Vector3` |  | Вектор вправо Vector3(1, 0, 0) |
+| `up` | `Vector3` |  | Вектор вверх Vector3(0, 1, 0) |
 | `normalized` | `Vector3` |  | Нормализованная копия вектора |
 | `sqrMagnitude` | `number` |  | Квадрат длины |
 | `magnitude` | `number` |  | Длина (модуль) вектора |
@@ -461,10 +461,10 @@ Vector2:Distance(b: Vector2): number
 
 ### Constructors
 
-#### new
+#### Vector3
 
 ```lua
-Vector3.new(x: number, y: number, z: number): Vector3
+Vector3(x: number, y: number, z: number): Vector3
 ```
 
 Создаёт Vector3.

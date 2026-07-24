@@ -5,6 +5,7 @@ API режима Tutorial. Пользовательские модули в не
 ## Contents
 
 - [TutorialManager](#tutorialmanager)
+- [VoiceLinePlayer](#voicelineplayer)
 
 ---
 
@@ -35,4 +36,15 @@ TutorialManager:GetAllPlantedBridgeCharges(): Array<Entity>
 [ClientOnly] Возвращает все установленные BridgeCharge на карте обучения.
 
 **Returns:** Array<[Entity](./Entity.md#entity)>
+
+## VoiceLinePlayer
+
+[ClientOnly] Глобальный API для чтения состояния проигрывателя реплик.
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `IsPlaying` | bool | `get` |  | [ClientOnly] Возвращает true, если сейчас проигрывается реплика. |
+| `Subtitle` | string | `get` |  | [ClientOnly] Текст субтитров текущей проигрываемой реплики. |
 

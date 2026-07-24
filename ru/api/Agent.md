@@ -5,9 +5,15 @@ API для работы с агентами (специалистами).
 ## Contents
 
 - [Agent](#agent)
+- [AgentDespawnEvent](#agentdespawnevent)
 - [AgentInput](#agentinput)
+- [AgentInventoryChangedEvent](#agentinventorychangedevent)
+- [AgentMetadataChangedEvent](#agentmetadatachangedevent)
+- [AgentReceivedDamageEvent](#agentreceiveddamageevent)
 - [Agents](#agents)
+- [AgentSpawnEvent](#agentspawnevent)
 - [AgentStats](#agentstats)
+- [AgentStatsChangedEvent](#agentstatschangedevent)
 - [Aim](#aim)
 - [DamageEvent](#damageevent)
 - [DeathEvent](#deathevent)
@@ -42,6 +48,7 @@ API для работы с агентами (специалистами).
 | `Health` | [Health](./Agent.md#health) | `get` |  | Доступ к API здоровья агента. |
 | `Interactor` | [Interactor](./Agent.md#interactor) | `get` |  | Доступ к API взаимодействий агента. |
 | `Inventory` | [Inventory](./Agent.md#inventory) | `get` |  | Доступ к API инвентаря агента. |
+| `IsBot` | bool | `get` |  | true, если агентом управляет бот, а не подключенный игрок. |
 | `IsSpectated` | bool | `get` |  | [ClientOnly] true, если идет наблюдение за этим агентом (когда локальный агент мертв, либо в режиме наблюдателя). |
 | `Movement` | [Movement](./Agent.md#movement) | `get` |  | Доступ к API перемещения агента. |
 | `Nickname` | string | `get` |  | Никнейм игрока. |
@@ -72,6 +79,16 @@ Agent:TrySpectate(): bool
 [ClientOnly] Переключает наблюдение на данного агента, если это допустимо в текущем spectator-режиме.
 
 **Returns:** bool
+
+## AgentDespawnEvent
+
+Событие деспавна агента.
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `Agent` | [Agent](./Agent.md#agent) | `get` |  | Агент, который был деспавнен. У него уже нет активного сетевого объекта. |
 
 ## AgentInput
 
@@ -164,9 +181,46 @@ AgentInput:SetMoveDirection(vector: Vector2)
 |---|---|:---:|---|
 | `vector` | Vector2 |  |  |
 
+## AgentInventoryChangedEvent
+
+[ClientOnly] Событие изменения инвентаря агента.
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `Agent` | [Agent](./Agent.md#agent) | `get` |  | [ClientOnly] Агент, инвентарь которого изменился. |
+
+## AgentMetadataChangedEvent
+
+[ClientOnly] Событие изменения метаинформации агента.
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `Agent` | [Agent](./Agent.md#agent) | `get` |  | [ClientOnly] Агент, метаинформация которого изменилась. |
+
+## AgentReceivedDamageEvent
+
+[ClientOnly] Событие получения урона агентом.
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `Agent` | [Agent](./Agent.md#agent) | `get` |  | [ClientOnly] Агент, который получил урон. |
+| `Damage` | number | `get` |  | [ClientOnly] Полученный урон. |
+| `DamageDirection` | Vector3 | `get` |  | [ClientOnly] Направление урона: от точки получения урона к источнику атаки. |
+| `DamageDirectionFromHead` | Vector3 | `get` |  | [ClientOnly] Направление урона: от головы к источнику атаки. |
+| `DamagePosition` | Vector3 | `get` |  | [ClientOnly] Точка получения урона, относительно позиции агента. |
+| `DamageTick` | int | `get` |  | [ClientOnly] Тик, в который был замечен урон. |
+| `StunnedUntilTick` | int | `get` |  | [ClientOnly] Тик, до которого действует оглушение. Равен 0, если этот урон не наложил оглушение. |
+| `WasStunned` | bool | `get` |  | [ClientOnly] true, если этот урон наложил оглушение. |
+
 ## Agents
 
-API для листинга агентов и их ивентов.
+API для получения списка агентов и подписки на их события.
 
 ### Methods
 
@@ -220,6 +274,20 @@ Agents:GetLocalOrSpectatedAgent(): Agent
 
 **Returns:** [Agent](./Agent.md#agent)
 
+#### OnAgentReceivedDamage
+
+```lua
+Agents:OnAgentReceivedDamage(callback: LuaFunction): EventSubscription
+```
+
+[ClientOnly] Вызывает коллбек при получении урона любым агентом, для которого клиент получил это событие. В коллбек передается событие с агентом и данными урона. Событие содержит информацию об оглушении, если оно было наложено этим уроном. Возвращает подписку, которую можно отменить.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `callback` | LuaFunction |  |  |
+
+**Returns:** [EventSubscription](./Scheduler.md#eventsubscription)
+
 #### OnDeath
 
 ```lua
@@ -227,6 +295,34 @@ Agents:OnDeath(callback: LuaFunction): EventSubscription
 ```
 
 [ClientOnly] Вызывает коллбек при смерти агента. Возвращает подписку, которую можно отменить.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `callback` | LuaFunction |  |  |
+
+**Returns:** [EventSubscription](./Scheduler.md#eventsubscription)
+
+#### OnDespawn
+
+```lua
+Agents:OnDespawn(callback: LuaFunction): EventSubscription
+```
+
+Вызывает коллбек при деспавне агента. В коллбек передается событие со ссылкой на агента, у которого уже нет активного сетевого объекта. Возвращает подписку, которую можно отменить.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `callback` | LuaFunction |  |  |
+
+**Returns:** [EventSubscription](./Scheduler.md#eventsubscription)
+
+#### OnInventoryChanged
+
+```lua
+Agents:OnInventoryChanged(callback: LuaFunction): EventSubscription
+```
+
+[ClientOnly] Вызывает коллбек при изменении инвентаря агента. В коллбек передается событие со ссылкой на агента, у которого изменился состав инвентаря или текущий выбранный предмет. Возвращает подписку, которую можно отменить.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
@@ -262,6 +358,58 @@ Agents:OnLocalPlayerReceivedDamage(callback: LuaFunction): EventSubscription
 
 **Returns:** [EventSubscription](./Scheduler.md#eventsubscription)
 
+#### OnMetadataChanged
+
+```lua
+Agents:OnMetadataChanged(callback: LuaFunction): EventSubscription
+```
+
+[ClientOnly] Вызывает коллбек при изменении метаинформации агента: никнейма, статуса бота, аватара или команды. В коллбек передается событие со ссылкой на изменившегося агента. Возвращает подписку, которую можно отменить.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `callback` | LuaFunction |  |  |
+
+**Returns:** [EventSubscription](./Scheduler.md#eventsubscription)
+
+#### OnSpawn
+
+```lua
+Agents:OnSpawn(callback: LuaFunction): EventSubscription
+```
+
+Вызывает коллбек при спавне агента. В коллбек передается событие со ссылкой на агента. Возвращает подписку, которую можно отменить.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `callback` | LuaFunction |  |  |
+
+**Returns:** [EventSubscription](./Scheduler.md#eventsubscription)
+
+#### OnStatsChanged
+
+```lua
+Agents:OnStatsChanged(callback: LuaFunction): EventSubscription
+```
+
+[ClientOnly] Вызывает коллбек при изменении статистики агента. В коллбек передается событие со ссылкой на изменившегося агента. Возвращает подписку, которую можно отменить.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `callback` | LuaFunction |  |  |
+
+**Returns:** [EventSubscription](./Scheduler.md#eventsubscription)
+
+## AgentSpawnEvent
+
+Событие спавна агента.
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `Agent` | [Agent](./Agent.md#agent) | `get` |  | Агент, который был заспавнен. |
+
 ## AgentStats
 
 Общая статистика агента.
@@ -279,6 +427,16 @@ Agents:OnLocalPlayerReceivedDamage(callback: LuaFunction): EventSubscription
 | `Kills` | int |  | Количество убийств. |
 | `Money` | int |  | Количество кредитов, это поле известно только для союзной команды, для всех других команд равно 0. |
 | `Ping` | int |  | Средний пинг в миллисекундах по последним измерениям. |
+
+## AgentStatsChangedEvent
+
+[ClientOnly] Событие изменения статистики агента.
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `Agent` | [Agent](./Agent.md#agent) | `get` |  | [ClientOnly] Агент, статистика которого изменилась. |
 
 ## Aim
 
@@ -321,7 +479,7 @@ Aim:ResetAimTarget()
 Aim:SetAimTarget(targetPosition: Vector3, agent: Agent)
 ```
 
-[ServerOnly] [LocalAgent] Устанавливает цель и позицию прицеливания.
+[ServerOnly] [LocalAgent] Устанавливает цель и позицию прицеливания. Если цель не видна команде локального агента, текущая цель сбрасывается.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
@@ -436,6 +594,19 @@ Aim:SetAimTarget(targetPosition: Vector3, agent: Agent)
 | `Radius` | number | `get` |  | Радиус сферического хитбокса. |
 | `Rotation` | Quaternion | `get` |  | Поворот хитбокса в мире. |
 | `Size` | Vector3 | `get` |  | Размер кубоидного хитбокса по каждой оси в локальных координатах. |
+
+
+### Methods
+
+#### GetExtrapolatedPosition
+
+```lua
+Hitbox:GetExtrapolatedPosition(): Vector3
+```
+
+Возвращает позицию центра хитбокса, экстраполированную на один тик вперед по текущей скорости агента.
+
+**Returns:** Vector3
 
 ## HitEvent
 
@@ -598,6 +769,16 @@ Inventory:IsSlotEmpty(slot: EItemSlot): bool
 
 
 ### Methods
+
+#### GetExtrapolatedPosition
+
+```lua
+Movement:GetExtrapolatedPosition(): Vector3
+```
+
+Возвращает мировую позицию агента, экстраполированную на один тик вперед по его текущей скорости.
+
+**Returns:** Vector3
 
 #### GetZones
 

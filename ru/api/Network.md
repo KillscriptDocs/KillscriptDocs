@@ -29,12 +29,14 @@ Network:OnTableReceived(callback: LuaFunction)
 #### SendTable
 
 ```lua
-Network:SendTable(table: LuaTable)
+Network:SendTable(table: LuaTable): bool
 ```
 
-Отправляет таблицу на противоположную сторону (клиент или сервер). Таблица может содержать string, number, boolean, nil и вложенные таблицы. Значения других типов молча игнорируются.
+Отправляет таблицу на противоположную сторону (клиент или сервер) и возвращает true, если отправка удалась. За тик можно отправить не более 8 таблиц общим размером до 16384 байт. При превышении лимита или передаче nil вызывает ошибку. Таблица может содержать string, number, boolean, nil и вложенные таблицы. Значения других типов молча игнорируются.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
 | `table` | LuaTable |  |  |
+
+**Returns:** bool
 

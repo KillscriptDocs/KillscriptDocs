@@ -11,7 +11,7 @@ Scheduler API: subscribing to simulation ticks.
 
 ## EventSubscription
 
-Subscription to an event. Allows unsubscribing from the event.
+Event subscription object. Allows unsubscribing from the event.
 
 ### Methods
 

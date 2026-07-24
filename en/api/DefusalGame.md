@@ -48,7 +48,7 @@ Global Defusal mode API: round state, teams, and BridgeCharge.
 DefusalGame:GetMatchRoundsLog(): Array<DefusalRoundState>
 ```
 
-Match round history.
+History of match rounds that have started, including the current round.
 
 **Returns:** Array<[DefusalRoundState](./DefusalGame.md#defusalroundstate)>
 

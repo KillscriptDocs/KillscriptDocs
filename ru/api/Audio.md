@@ -7,7 +7,6 @@ API для воспроизведения звуков и доступа к го
 - [Sound](#sound)
 - [Sounds](#sounds)
 - [VoiceChat](#voicechat)
-- [VoiceLinePlayer](#voicelineplayer)
 
 ---
 
@@ -142,15 +141,4 @@ VoiceChat:ToggleMuted(agent: Agent): bool
 | `agent` | [Agent](./Agent.md#agent) |  |  |
 
 **Returns:** bool
-
-## VoiceLinePlayer
-
-[ClientOnly] Глобальный API для чтения состояния проигрывателя реплик.
-
-### Properties
-
-| Name | Type | Access | Static | Comment |
-|---|---|---|:---:|---|
-| `IsPlaying` | bool | `get` |  | [ClientOnly] Возвращает true, если сейчас проигрывается реплика. |
-| `Subtitle` | string | `get` |  | [ClientOnly] Текст субтитров текущей проигрываемой реплики. |
 

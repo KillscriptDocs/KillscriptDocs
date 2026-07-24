@@ -36,9 +36,15 @@
 ### Agent
 
 - [Agent](./Agent.md#agent)
+- [AgentDespawnEvent](./Agent.md#agentdespawnevent)
 - [AgentInput](./Agent.md#agentinput)
+- [AgentInventoryChangedEvent](./Agent.md#agentinventorychangedevent)
+- [AgentMetadataChangedEvent](./Agent.md#agentmetadatachangedevent)
+- [AgentReceivedDamageEvent](./Agent.md#agentreceiveddamageevent)
 - [Agents](./Agent.md#agents)
+- [AgentSpawnEvent](./Agent.md#agentspawnevent)
 - [AgentStats](./Agent.md#agentstats)
+- [AgentStatsChangedEvent](./Agent.md#agentstatschangedevent)
 - [Aim](./Agent.md#aim)
 - [DamageEvent](./Agent.md#damageevent)
 - [DeathEvent](./Agent.md#deathevent)
@@ -59,7 +65,6 @@
 - [Sound](./Audio.md#sound)
 - [Sounds](./Audio.md#sounds)
 - [VoiceChat](./Audio.md#voicechat)
-- [VoiceLinePlayer](./Audio.md#voicelineplayer)
 
 ### Camera
 
@@ -195,6 +200,7 @@
 ### Tutorial
 
 - [TutorialManager](./Tutorial.md#tutorialmanager)
+- [VoiceLinePlayer](./Tutorial.md#voicelineplayer)
 
 ### UI
 

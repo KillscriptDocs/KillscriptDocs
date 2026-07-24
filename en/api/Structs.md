@@ -30,10 +30,10 @@ Used to set color/transparency in rendering and UI.
 
 ### Constructors
 
-#### new
+#### Color
 
 ```lua
-Color.new(r: number, g: number, b: number, a: number): Color
+Color(r: number, g: number, b: number, a: number): Color
 ```
 
 Creates a color from 4 RGBA components.
@@ -47,10 +47,10 @@ Creates a color from 4 RGBA components.
 
 **Returns:** `Color`
 
-#### new
+#### Color
 
 ```lua
-Color.new(r: number, g: number, b: number): Color
+Color(r: number, g: number, b: number): Color
 ```
 
 Creates a color from 3 RGB components (alpha defaults to 1).
@@ -80,10 +80,10 @@ Quaternion: a representation of rotation in 3D space.
 
 ### Constructors
 
-#### new
+#### Quaternion
 
 ```lua
-Quaternion.new(x: number, y: number, z: number, w: number): Quaternion
+Quaternion(x: number, y: number, z: number, w: number): Quaternion
 ```
 
 Creates a new quaternion.
@@ -313,10 +313,10 @@ Rectangle in 2D (position and size).
 
 ### Constructors
 
-#### new
+#### Rect
 
 ```lua
-Rect.new(x: number, y: number, width: number, height: number): Rect
+Rect(x: number, y: number, width: number, height: number): Rect
 ```
 
 Creates a rectangle from position and size.
@@ -340,18 +340,18 @@ Creates a rectangle from position and size.
 |---|---|:---:|---|
 | `x` | `number` |  | X component |
 | `y` | `number` |  | Y component |
-| `zero` | `Vector2` |  | Zero vector Vector2.new(0, 0) |
-| `one` | `Vector2` |  | All-ones vector Vector2.new(1, 1) |
+| `zero` | `Vector2` |  | Zero vector Vector2(0, 0) |
+| `one` | `Vector2` |  | All-ones vector Vector2(1, 1) |
 | `normalized` | `Vector2` |  | Normalized copy of the vector |
 | `magnitude` | `number` |  | Vector length (magnitude) |
 | `sqrMagnitude` | `number` |  | Squared length |
 
 ### Constructors
 
-#### new
+#### Vector2
 
 ```lua
-Vector2.new(x: number, y: number): Vector2
+Vector2(x: number, y: number): Vector2
 ```
 
 Creates a Vector2.
@@ -438,16 +438,16 @@ Distance between self and b.
 | `x` | `number` |  | X component |
 | `y` | `number` |  | Y component |
 | `z` | `number` |  | Z component |
-| `back` | `Vector3` |  | Back vector Vector3.new(0, 0, -1) |
-| `down` | `Vector3` |  | Down vector Vector3.new(0, -1, 0) |
-| `forward` | `Vector3` |  | Forward vector Vector3.new(0, 0, 1) |
-| `left` | `Vector3` |  | Left vector Vector3.new(-1, 0, 0) |
-| `negativeInfinity` | `Vector3` |  | Vector3.new(-inf, -inf, -inf) |
-| `zero` | `Vector3` |  | Zero vector Vector3.new(0, 0, 0) |
-| `one` | `Vector3` |  | All-ones vector Vector3.new(1, 1, 1) |
-| `positiveInfinity` | `Vector3` |  | Vector3.new(inf, inf, inf) |
-| `right` | `Vector3` |  | Right vector Vector3.new(1, 0, 0) |
-| `up` | `Vector3` |  | Up vector Vector3.new(0, 1, 0) |
+| `back` | `Vector3` |  | Back vector Vector3(0, 0, -1) |
+| `down` | `Vector3` |  | Down vector Vector3(0, -1, 0) |
+| `forward` | `Vector3` |  | Forward vector Vector3(0, 0, 1) |
+| `left` | `Vector3` |  | Left vector Vector3(-1, 0, 0) |
+| `negativeInfinity` | `Vector3` |  | Vector3(-inf, -inf, -inf) |
+| `zero` | `Vector3` |  | Zero vector Vector3(0, 0, 0) |
+| `one` | `Vector3` |  | All-ones vector Vector3(1, 1, 1) |
+| `positiveInfinity` | `Vector3` |  | Vector3(inf, inf, inf) |
+| `right` | `Vector3` |  | Right vector Vector3(1, 0, 0) |
+| `up` | `Vector3` |  | Up vector Vector3(0, 1, 0) |
 | `normalized` | `Vector3` |  | Normalized copy of the vector |
 | `sqrMagnitude` | `number` |  | Squared length |
 | `magnitude` | `number` |  | Vector length (magnitude) |
@@ -461,10 +461,10 @@ Distance between self and b.
 
 ### Constructors
 
-#### new
+#### Vector3
 
 ```lua
-Vector3.new(x: number, y: number, z: number): Vector3
+Vector3(x: number, y: number, z: number): Vector3
 ```
 
 Creates a Vector3.

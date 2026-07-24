@@ -317,7 +317,7 @@ Returns the item configuration by name, or nil if the name is empty or the item 
 ItemConfigs.GetConfigItemFirearmByName(name: string): ConfigItemFirearm
 ```
 
-Returns the firearm configuration by name, or nil if the name is empty or the item is not found.
+Returns the firearm configuration by name, or nil if the name is empty, the item is not found, or the item is not a firearm.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
@@ -331,7 +331,7 @@ Returns the firearm configuration by name, or nil if the name is empty or the it
 ItemConfigs.GetConfigItemMeleeByName(name: string): ConfigItemMelee
 ```
 
-Returns the melee weapon configuration by name, or nil if the name is empty or the item is not found.
+Returns the melee weapon configuration by name, or nil if the name is empty, the item is not found, or the item is not a melee weapon.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
@@ -345,7 +345,7 @@ Returns the melee weapon configuration by name, or nil if the name is empty or t
 ItemConfigs.GetConfigItemThrowableByName(name: string): ConfigItemThrowable
 ```
 
-Returns the throwable item configuration by name, or nil if the name is empty or the item is not found.
+Returns the throwable item configuration by name, or nil if the name is empty, the item is not found, or the item is not throwable.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|

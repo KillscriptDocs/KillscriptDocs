@@ -5,9 +5,15 @@ API for working with agents (specialists).
 ## Contents
 
 - [Agent](#agent)
+- [AgentDespawnEvent](#agentdespawnevent)
 - [AgentInput](#agentinput)
+- [AgentInventoryChangedEvent](#agentinventorychangedevent)
+- [AgentMetadataChangedEvent](#agentmetadatachangedevent)
+- [AgentReceivedDamageEvent](#agentreceiveddamageevent)
 - [Agents](#agents)
+- [AgentSpawnEvent](#agentspawnevent)
 - [AgentStats](#agentstats)
+- [AgentStatsChangedEvent](#agentstatschangedevent)
 - [Aim](#aim)
 - [DamageEvent](#damageevent)
 - [DeathEvent](#deathevent)
@@ -42,6 +48,7 @@ Represents an agent in the game. This class provides access to various propertie
 | `Health` | [Health](./Agent.md#health) | `get` |  | Access to the agent health API. |
 | `Interactor` | [Interactor](./Agent.md#interactor) | `get` |  | Access to the agent interaction API. |
 | `Inventory` | [Inventory](./Agent.md#inventory) | `get` |  | Access to the agent inventory API. |
+| `IsBot` | bool | `get` |  | true if the agent is controlled by a bot rather than a connected player. |
 | `IsSpectated` | bool | `get` |  | [ClientOnly] true if this agent is being spectated (when the local agent is dead or in spectator mode). |
 | `Movement` | [Movement](./Agent.md#movement) | `get` |  | Access to the agent movement API. |
 | `Nickname` | string | `get` |  | Player nickname. |
@@ -72,6 +79,16 @@ Agent:TrySpectate(): bool
 [ClientOnly] Switches spectating to this agent if allowed by the current spectator mode.
 
 **Returns:** bool
+
+## AgentDespawnEvent
+
+Agent despawn event.
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `Agent` | [Agent](./Agent.md#agent) | `get` |  | The agent that despawned. It no longer has an active network object. |
 
 ## AgentInput
 
@@ -164,9 +181,46 @@ Sets the local agent's movement vector in input axes (X = left/right, Y = forwar
 |---|---|:---:|---|
 | `vector` | Vector2 |  |  |
 
+## AgentInventoryChangedEvent
+
+[ClientOnly] Agent inventory changed event.
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `Agent` | [Agent](./Agent.md#agent) | `get` |  | [ClientOnly] The agent whose inventory changed. |
+
+## AgentMetadataChangedEvent
+
+[ClientOnly] Agent metadata changed event.
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `Agent` | [Agent](./Agent.md#agent) | `get` |  | [ClientOnly] The agent whose metadata changed. |
+
+## AgentReceivedDamageEvent
+
+[ClientOnly] Agent received damage event.
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `Agent` | [Agent](./Agent.md#agent) | `get` |  | [ClientOnly] The agent that received damage. |
+| `Damage` | number | `get` |  | [ClientOnly] The damage received. |
+| `DamageDirection` | Vector3 | `get` |  | [ClientOnly] The damage direction, from the damage position toward the attack source. |
+| `DamageDirectionFromHead` | Vector3 | `get` |  | [ClientOnly] The damage direction, from the head toward the attack source. |
+| `DamagePosition` | Vector3 | `get` |  | [ClientOnly] The damage position relative to the agent's position. |
+| `DamageTick` | int | `get` |  | [ClientOnly] The tick on which the damage was detected. |
+| `StunnedUntilTick` | int | `get` |  | [ClientOnly] The tick until which the stun lasts. 0 if this damage did not apply a stun. |
+| `WasStunned` | bool | `get` |  | [ClientOnly] true if this damage applied a stun. |
+
 ## Agents
 
-Agent listing and events API.
+API for getting a list of agents and subscribing to their events.
 
 ### Methods
 
@@ -220,6 +274,20 @@ Returns the local player's agent or the spectated agent, or nil if no such agent
 
 **Returns:** [Agent](./Agent.md#agent)
 
+#### OnAgentReceivedDamage
+
+```lua
+Agents:OnAgentReceivedDamage(callback: LuaFunction): EventSubscription
+```
+
+[ClientOnly] Calls the callback when any agent takes damage, if the client received this event for that agent. The callback receives an event containing the agent and damage data. The event includes stun information if this damage applied a stun. Returns a subscription that can be cancelled.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `callback` | LuaFunction |  |  |
+
+**Returns:** [EventSubscription](./Scheduler.md#eventsubscription)
+
 #### OnDeath
 
 ```lua
@@ -227,6 +295,34 @@ Agents:OnDeath(callback: LuaFunction): EventSubscription
 ```
 
 [ClientOnly] Calls the callback when an agent dies. Returns a subscription that can be cancelled.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `callback` | LuaFunction |  |  |
+
+**Returns:** [EventSubscription](./Scheduler.md#eventsubscription)
+
+#### OnDespawn
+
+```lua
+Agents:OnDespawn(callback: LuaFunction): EventSubscription
+```
+
+Calls the callback when an agent despawns. The callback receives an event referencing an agent that no longer has an active network object. Returns a subscription that can be cancelled.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `callback` | LuaFunction |  |  |
+
+**Returns:** [EventSubscription](./Scheduler.md#eventsubscription)
+
+#### OnInventoryChanged
+
+```lua
+Agents:OnInventoryChanged(callback: LuaFunction): EventSubscription
+```
+
+[ClientOnly] Calls the callback when an agent's inventory changes. The callback receives an event referencing an agent whose inventory contents or currently selected item changed. Returns a subscription that can be cancelled.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
@@ -262,6 +358,58 @@ Agents:OnLocalPlayerReceivedDamage(callback: LuaFunction): EventSubscription
 
 **Returns:** [EventSubscription](./Scheduler.md#eventsubscription)
 
+#### OnMetadataChanged
+
+```lua
+Agents:OnMetadataChanged(callback: LuaFunction): EventSubscription
+```
+
+[ClientOnly] Calls the callback when an agent's metadata changes: nickname, bot status, avatar, or team. The callback receives an event referencing the changed agent. Returns a subscription that can be cancelled.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `callback` | LuaFunction |  |  |
+
+**Returns:** [EventSubscription](./Scheduler.md#eventsubscription)
+
+#### OnSpawn
+
+```lua
+Agents:OnSpawn(callback: LuaFunction): EventSubscription
+```
+
+Calls the callback when an agent spawns. The callback receives an event referencing the agent. Returns a subscription that can be cancelled.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `callback` | LuaFunction |  |  |
+
+**Returns:** [EventSubscription](./Scheduler.md#eventsubscription)
+
+#### OnStatsChanged
+
+```lua
+Agents:OnStatsChanged(callback: LuaFunction): EventSubscription
+```
+
+[ClientOnly] Calls the callback when an agent's stats change. The callback receives an event referencing the changed agent. Returns a subscription that can be cancelled.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `callback` | LuaFunction |  |  |
+
+**Returns:** [EventSubscription](./Scheduler.md#eventsubscription)
+
+## AgentSpawnEvent
+
+Agent spawn event.
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `Agent` | [Agent](./Agent.md#agent) | `get` |  | The agent that spawned. |
+
 ## AgentStats
 
 General agent stats.
@@ -279,6 +427,16 @@ General agent stats.
 | `Kills` | int |  | Number of kills. |
 | `Money` | int |  | Number of credits. This field is known only for the allied team, for all other teams it is 0. |
 | `Ping` | int |  | Average ping in milliseconds based on recent measurements. |
+
+## AgentStatsChangedEvent
+
+[ClientOnly] Agent stats changed event.
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `Agent` | [Agent](./Agent.md#agent) | `get` |  | [ClientOnly] The agent whose stats changed. |
 
 ## Aim
 
@@ -321,7 +479,7 @@ Aim:ResetAimTarget()
 Aim:SetAimTarget(targetPosition: Vector3, agent: Agent)
 ```
 
-[ServerOnly] [LocalAgent] Sets the aim target and position.
+[ServerOnly] [LocalAgent] Sets the aim target and position. If the target is not visible to the local agent's team, the current target is reset.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
@@ -436,6 +594,19 @@ Agent hitbox: position, radius, body part, and hit checks.
 | `Radius` | number | `get` |  | Spherical hitbox radius. |
 | `Rotation` | Quaternion | `get` |  | Hitbox rotation in world space. |
 | `Size` | Vector3 | `get` |  | Box hitbox size along each axis in local coordinates. |
+
+
+### Methods
+
+#### GetExtrapolatedPosition
+
+```lua
+Hitbox:GetExtrapolatedPosition(): Vector3
+```
+
+Returns the hitbox center position extrapolated one tick ahead using the agent's current velocity.
+
+**Returns:** Vector3
 
 ## HitEvent
 
@@ -598,6 +769,16 @@ Data and calculations related to the agent's movement and position in the world.
 
 
 ### Methods
+
+#### GetExtrapolatedPosition
+
+```lua
+Movement:GetExtrapolatedPosition(): Vector3
+```
+
+Returns the agent's world position extrapolated one tick ahead using its current velocity.
+
+**Returns:** Vector3
 
 #### GetZones
 

@@ -317,7 +317,7 @@ ItemConfigs.GetConfigItemByName(name: string): ConfigItem
 ItemConfigs.GetConfigItemFirearmByName(name: string): ConfigItemFirearm
 ```
 
-Возвращает конфигурацию огнестрельного предмета по имени или nil, если имя пустое или предмет не найден.
+Возвращает конфигурацию огнестрельного предмета по имени или nil, если имя пустое, предмет не найден или не является огнестрельным.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
@@ -331,7 +331,7 @@ ItemConfigs.GetConfigItemFirearmByName(name: string): ConfigItemFirearm
 ItemConfigs.GetConfigItemMeleeByName(name: string): ConfigItemMelee
 ```
 
-Возвращает конфигурацию холодного оружия по имени или nil, если имя пустое или предмет не найден.
+Возвращает конфигурацию холодного оружия по имени или nil, если имя пустое, предмет не найден или не является холодным оружием.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
@@ -345,7 +345,7 @@ ItemConfigs.GetConfigItemMeleeByName(name: string): ConfigItemMelee
 ItemConfigs.GetConfigItemThrowableByName(name: string): ConfigItemThrowable
 ```
 
-Возвращает конфигурацию метательного предмета по имени или nil, если имя пустое или предмет не найден.
+Возвращает конфигурацию метательного предмета по имени или nil, если имя пустое, предмет не найден или не является метательным.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|

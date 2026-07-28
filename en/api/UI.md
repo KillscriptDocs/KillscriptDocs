@@ -403,7 +403,7 @@ UI:BuildFromUxmlInteractive(path: string): VisualElement
 UI:CloseWindow(element: VisualElement, hideVisual: bool = ...): bool
 ```
 
-[ClientOnly]
+[ClientOnly] Closes the specified open window. If hideVisual = false, the element remains visible. Returns true on success.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
@@ -518,7 +518,7 @@ UI:LockPlayerInput(element: VisualElement): bool
 UI:OpenWindow(element: VisualElement, unlockCursor: bool, lockInput: bool, hideOverlappingUI: bool, blurBackground: bool): bool
 ```
 
-[ClientOnly]
+[ClientOnly] Opens an exclusive module window. A module window tagged Chat can open over any other exclusive window. Returns true on success.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|

@@ -65,6 +65,7 @@
 - [Sound](./Audio.md#sound)
 - [Sounds](./Audio.md#sounds)
 - [VoiceChat](./Audio.md#voicechat)
+- [VoiceConnectionState](./Audio.md#voiceconnectionstate)
 
 ### Camera
 

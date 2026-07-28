@@ -403,7 +403,7 @@ UI:BuildFromUxmlInteractive(path: string): VisualElement
 UI:CloseWindow(element: VisualElement, hideVisual: bool = ...): bool
 ```
 
-[ClientOnly] Закрывает указанное открытое окно. Если hideVisual = false, элемент остается видимым. Возвращает true при успехе.
+[ClientOnly]
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
@@ -518,7 +518,7 @@ UI:LockPlayerInput(element: VisualElement): bool
 UI:OpenWindow(element: VisualElement, unlockCursor: bool, lockInput: bool, hideOverlappingUI: bool, blurBackground: bool): bool
 ```
 
-[ClientOnly] Открывает эксклюзивное окно модуля. Окно модуля с тегом Chat может открываться поверх любого другого эксклюзивного окна. Возвращает true при успехе.
+[ClientOnly]
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|

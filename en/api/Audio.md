@@ -7,7 +7,6 @@ API for playing sounds and accessing voice chat.
 - [Sound](#sound)
 - [Sounds](#sounds)
 - [VoiceChat](#voicechat)
-- [VoiceConnectionState](#voiceconnectionstate)
 
 ---
 
@@ -71,34 +70,6 @@ Sounds:PlaySound2D(sound: Sound, volume: number = ..., pitch: number = ...)
 [ClientOnly] Global API for reading EOS voice chat state and locally muting players.
 
 ### Methods
-
-#### GetConnectionState
-
-```lua
-VoiceChat:GetConnectionState(agent: Agent): VoiceConnectionState
-```
-
-[ClientOnly] Returns the agent's client-reported team voice channel connection state.
-
-| Param | Type | Optional | Comment |
-|---|---|:---:|---|
-| `agent` | [Agent](./Agent.md#agent) |  |  |
-
-**Returns:** [VoiceConnectionState](./Audio.md#voiceconnectionstate)
-
-#### GetOutputLevel
-
-```lua
-VoiceChat:GetOutputLevel(agent: Agent): number
-```
-
-[ClientOnly] Returns the agent's normalized voice level from 0 to 1. Measures sent audio for the local agent and received audio for other agents. Returns 0 if no audio is being transmitted.
-
-| Param | Type | Optional | Comment |
-|---|---|:---:|---|
-| `agent` | [Agent](./Agent.md#agent) |  |  |
-
-**Returns:** number
 
 #### IsAvailable
 
@@ -170,15 +141,4 @@ VoiceChat:ToggleMuted(agent: Agent): bool
 | `agent` | [Agent](./Agent.md#agent) |  |  |
 
 **Returns:** bool
-
-## VoiceConnectionState
-
-[ClientOnly] Agent's voice channel connection state.
-
-| Name | Value | Comment |
-|---|---:|---|
-| `Disabled` | `0` | [ClientOnly] Voice chat is disabled or no voice channel is selected. |
-| `Connecting` | `1` | [ClientOnly] Connecting or retrying the connection. |
-| `Connected` | `2` | [ClientOnly] Connected to the voice channel. |
-| `Failed` | `3` | [ClientOnly] Connection failed with a non-recoverable error. |
 

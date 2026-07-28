@@ -7,7 +7,6 @@ API для воспроизведения звуков и доступа к го
 - [Sound](#sound)
 - [Sounds](#sounds)
 - [VoiceChat](#voicechat)
-- [VoiceConnectionState](#voiceconnectionstate)
 
 ---
 
@@ -71,34 +70,6 @@ Sounds:PlaySound2D(sound: Sound, volume: number = ..., pitch: number = ...)
 [ClientOnly] Глобальный API для чтения состояния голосового чата EOS и локального заглушения игроков.
 
 ### Methods
-
-#### GetConnectionState
-
-```lua
-VoiceChat:GetConnectionState(agent: Agent): VoiceConnectionState
-```
-
-[ClientOnly] Возвращает переданное клиентом агента состояние подключения к командному голосовому каналу.
-
-| Param | Type | Optional | Comment |
-|---|---|:---:|---|
-| `agent` | [Agent](./Agent.md#agent) |  |  |
-
-**Returns:** [VoiceConnectionState](./Audio.md#voiceconnectionstate)
-
-#### GetOutputLevel
-
-```lua
-VoiceChat:GetOutputLevel(agent: Agent): number
-```
-
-[ClientOnly] Возвращает нормализованный уровень голоса агента от 0 до 1. Для локального агента измеряет отправляемый звук, для остальных - принимаемый. Возвращает 0, если звук не передается.
-
-| Param | Type | Optional | Comment |
-|---|---|:---:|---|
-| `agent` | [Agent](./Agent.md#agent) |  |  |
-
-**Returns:** number
 
 #### IsAvailable
 
@@ -170,15 +141,4 @@ VoiceChat:ToggleMuted(agent: Agent): bool
 | `agent` | [Agent](./Agent.md#agent) |  |  |
 
 **Returns:** bool
-
-## VoiceConnectionState
-
-[ClientOnly] Состояние подключения агента к голосовому каналу.
-
-| Name | Value | Comment |
-|---|---:|---|
-| `Disabled` | `0` | [ClientOnly] Голосовой чат отключен или голосовой канал не выбран. |
-| `Connecting` | `1` | [ClientOnly] Выполняется подключение или повторная попытка подключения. |
-| `Connected` | `2` | [ClientOnly] Подключение к голосовому каналу установлено. |
-| `Failed` | `3` | [ClientOnly] Подключение завершилось неустранимой ошибкой. |
 

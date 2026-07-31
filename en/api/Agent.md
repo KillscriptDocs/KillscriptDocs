@@ -449,7 +449,7 @@ Access to the agent aiming system. Handles the current aim direction, aim spread
 | `AccumulatedUncertainty` | number | `get` |  | [LocalAgent] Accumulated aiming inaccuracy caused by aim direction changes and other sources. |
 | `AimingDownSightsProgress` | number | `get` |  | Aiming progress (ADS) from 0 to 1. |
 | `Direction` | Vector3 | `get` |  | Current aim direction in world coordinates. |
-| `DirectionViewportPoint` | Vector3 | `get` |  | [ClientOnly] [LocalAgent] Viewport coordinates of the aim direction position for UI rendering. |
+| `DirectionViewportPoint` | Vector3 | `get` |  | [ClientOnly] Viewport coordinates of the agent's aim direction for display in the UI. The value is correct only for the local agent or the agent currently being spectated. |
 | `IsAimingDownSights` | bool | `get` |  | true if the agent is currently aiming (ADS). |
 | `IsStunned` | bool | `get` |  | true if the agent is currently stunned. |
 | `IsStunnedVisually` | bool | `get` |  | true if the stun visual effect is currently active for the agent. Remains active longer than IsStunned so the effect from a short stun does not disappear completely on high ping when the client learns about the stun after it has already ended. |

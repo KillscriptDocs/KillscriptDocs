@@ -314,8 +314,8 @@ Tweener:Stop(complete: bool = ...)
 |---|---|---|:---:|---|
 | `IsConsoleVisible` | bool | `get` |  | [ClientOnly] true, если окно отладочной консоли сейчас отображается. |
 | `IsCursorUnlocked` | bool | `get` |  | [ClientOnly] true, если курсор сейчас разблокирован игровым состоянием или через UI API. |
-| `IsExclusiveWindowOpen` | bool | `get` |  | [ClientOnly] |
-| `IsWindowOpen` | bool | `get` |  | [ClientOnly] |
+| `IsExclusiveWindowOpen` | bool | `get` |  | [ClientOnly] true, если хотя бы у одного модуля открыто окно. |
+| `IsWindowOpen` | bool | `get` |  | [ClientOnly] true, если у этого модуля открыто хотя бы одно окно. |
 
 
 ### Methods
@@ -326,7 +326,7 @@ Tweener:Stop(complete: bool = ...)
 UI:BlurBackground(element: VisualElement): bool
 ```
 
-[ClientOnly]
+[ClientOnly] Включает размытие фона для указанного открытого окна. Возвращает true при успехе.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
@@ -403,7 +403,7 @@ UI:BuildFromUxmlInteractive(path: string): VisualElement
 UI:CloseWindow(element: VisualElement, hideVisual: bool = ...): bool
 ```
 
-[ClientOnly]
+[ClientOnly] Закрывает указанное открытое окно. Если hideVisual = false, элемент остается видимым. Возвращает true при успехе.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
@@ -476,7 +476,7 @@ UI:GetMousePosition(): Vector2
 UI:HideOverlappingUI(element: VisualElement): bool
 ```
 
-[ClientOnly]
+[ClientOnly] Скрывает HUD-элементы, которые перекрываются указанным открытым окном. Другие открытые окна остаются видимыми. Возвращает true при успехе.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
@@ -490,7 +490,7 @@ UI:HideOverlappingUI(element: VisualElement): bool
 UI:LockCursor(element: VisualElement): bool
 ```
 
-[ClientOnly]
+[ClientOnly] Снимает разблокировку курсора для указанного открытого окна. Возвращает true при успехе.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
@@ -504,7 +504,7 @@ UI:LockCursor(element: VisualElement): bool
 UI:LockPlayerInput(element: VisualElement): bool
 ```
 
-[ClientOnly]
+[ClientOnly] Блокирует ввод игрока для указанного открытого окна. Возвращает true при успехе.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
@@ -518,7 +518,7 @@ UI:LockPlayerInput(element: VisualElement): bool
 UI:OpenWindow(element: VisualElement, unlockCursor: bool, lockInput: bool, hideOverlappingUI: bool, blurBackground: bool): bool
 ```
 
-[ClientOnly]
+[ClientOnly] Открывает окно модуля с ранее заданным приоритетом. Несколько окон могут быть открыты одновременно. Возвращает true при успехе.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
@@ -572,6 +572,21 @@ UI:ScheduleAnimation(root: VisualElement, paramsTable: LuaTable): Tweener
 
 **Returns:** [Tweener](./UI.md#tweener)
 
+#### SetWindowPriority
+
+```lua
+UI:SetWindowPriority(element: VisualElement, priority: int): bool
+```
+
+[ClientOnly] Задает приоритет окна или HUD-элемента. Элемент с большим priority отображается выше; при одинаковом priority выше отображается элемент, которому приоритет задан позже. Приоритет по умолчанию равен 0. Возвращает true при успехе.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `element` | [VisualElement](./UI.md#visualelement) |  |  |
+| `priority` | int |  |  |
+
+**Returns:** bool
+
 #### SetWindowVisibilityTypes
 
 ```lua
@@ -593,7 +608,7 @@ UI:SetWindowVisibilityTypes(element: VisualElement, visibilityTypes: LuaTable): 
 UI:ShowOverlappingUI(element: VisualElement): bool
 ```
 
-[ClientOnly]
+[ClientOnly] Отключает скрытие HUD-элементов для указанного открытого окна. Возвращает true при успехе.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
@@ -635,7 +650,7 @@ UI:UiToViewportPoint(uiPoint: Vector2): Vector2
 UI:UnblurBackground(element: VisualElement): bool
 ```
 
-[ClientOnly]
+[ClientOnly] Отключает размытие фона для указанного открытого окна. Возвращает true при успехе.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
@@ -649,7 +664,7 @@ UI:UnblurBackground(element: VisualElement): bool
 UI:UnlockCursor(element: VisualElement): bool
 ```
 
-[ClientOnly]
+[ClientOnly] Разблокирует курсор для указанного открытого окна. Возвращает true при успехе.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
@@ -663,7 +678,7 @@ UI:UnlockCursor(element: VisualElement): bool
 UI:UnlockPlayerInput(element: VisualElement): bool
 ```
 
-[ClientOnly]
+[ClientOnly] Снимает блокировку ввода игрока для указанного открытого окна. Возвращает true при успехе.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|

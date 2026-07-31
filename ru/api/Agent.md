@@ -449,7 +449,7 @@ Agents:OnStatsChanged(callback: LuaFunction): EventSubscription
 | `AccumulatedUncertainty` | number | `get` |  | [LocalAgent] Накопленная неточность прицеливания из-за изменения направления прицеливания и других источников. |
 | `AimingDownSightsProgress` | number | `get` |  | Прогресс прицеливания (ADS) от 0 до 1. |
 | `Direction` | Vector3 | `get` |  | Текущее направление прицеливания в мировых координатах. |
-| `DirectionViewportPoint` | Vector3 | `get` |  | [ClientOnly] [LocalAgent] Viewport координаты позиции направления прицеливания для UI-рендера. |
+| `DirectionViewportPoint` | Vector3 | `get` |  | [ClientOnly] Viewport-координаты направления прицеливания агента для отображения в UI. Значение корректно только для локального агента или агента, за которым сейчас ведется наблюдение. |
 | `IsAimingDownSights` | bool | `get` |  | true, если агент сейчас прицеливается (ADS). |
 | `IsStunned` | bool | `get` |  | true, если агент сейчас оглушен. |
 | `IsStunnedVisually` | bool | `get` |  | true, если для агента сейчас активен визуальный эффект оглушения. Действует дольше, чем IsStunned. Нужно, чтобы эффект от короткого оглушения не пропадал полностью при высоком пинге, когда клиент узнает об оглушении когда оно уже закончилось. |

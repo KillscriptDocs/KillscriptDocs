@@ -314,8 +314,8 @@ Tweener:Stop(complete: bool = ...)
 |---|---|---|:---:|---|
 | `IsConsoleVisible` | bool | `get` |  | [ClientOnly] true if the debug console window is currently visible. |
 | `IsCursorUnlocked` | bool | `get` |  | [ClientOnly] true if the cursor is currently unlocked by the gameplay state or through the UI API. |
-| `IsExclusiveWindowOpen` | bool | `get` |  | [ClientOnly] |
-| `IsWindowOpen` | bool | `get` |  | [ClientOnly] |
+| `IsExclusiveWindowOpen` | bool | `get` |  | [ClientOnly] true if at least one module has an open window. |
+| `IsWindowOpen` | bool | `get` |  | [ClientOnly] true if this module has at least one open window. |
 
 
 ### Methods
@@ -326,7 +326,7 @@ Tweener:Stop(complete: bool = ...)
 UI:BlurBackground(element: VisualElement): bool
 ```
 
-[ClientOnly]
+[ClientOnly] Enables background blur for the specified open window. Returns true on success.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
@@ -476,7 +476,7 @@ UI:GetMousePosition(): Vector2
 UI:HideOverlappingUI(element: VisualElement): bool
 ```
 
-[ClientOnly]
+[ClientOnly] Hides HUD elements that overlap the specified open window. Other open windows remain visible. Returns true on success.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
@@ -490,7 +490,7 @@ UI:HideOverlappingUI(element: VisualElement): bool
 UI:LockCursor(element: VisualElement): bool
 ```
 
-[ClientOnly]
+[ClientOnly] Stops the specified open window from unlocking the cursor. Returns true on success.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
@@ -504,7 +504,7 @@ UI:LockCursor(element: VisualElement): bool
 UI:LockPlayerInput(element: VisualElement): bool
 ```
 
-[ClientOnly]
+[ClientOnly] Locks player input for the specified open window. Returns true on success.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
@@ -518,7 +518,7 @@ UI:LockPlayerInput(element: VisualElement): bool
 UI:OpenWindow(element: VisualElement, unlockCursor: bool, lockInput: bool, hideOverlappingUI: bool, blurBackground: bool): bool
 ```
 
-[ClientOnly] Opens an exclusive module window. A module window tagged Chat can open over any other exclusive window. Returns true on success.
+[ClientOnly] Opens a module window with its previously assigned priority. Multiple windows can be open at the same time. Returns true on success.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
@@ -572,6 +572,21 @@ UI:ScheduleAnimation(root: VisualElement, paramsTable: LuaTable): Tweener
 
 **Returns:** [Tweener](./UI.md#tweener)
 
+#### SetWindowPriority
+
+```lua
+UI:SetWindowPriority(element: VisualElement, priority: int): bool
+```
+
+[ClientOnly] Sets the priority of a window or HUD element. An element with a higher priority is displayed on top. If priorities are equal, the element whose priority was set later is displayed on top. The default priority is 0. Returns true on success.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `element` | [VisualElement](./UI.md#visualelement) |  |  |
+| `priority` | int |  |  |
+
+**Returns:** bool
+
 #### SetWindowVisibilityTypes
 
 ```lua
@@ -593,7 +608,7 @@ UI:SetWindowVisibilityTypes(element: VisualElement, visibilityTypes: LuaTable): 
 UI:ShowOverlappingUI(element: VisualElement): bool
 ```
 
-[ClientOnly]
+[ClientOnly] Stops hiding HUD elements for the specified open window. Returns true on success.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
@@ -635,7 +650,7 @@ UI:UiToViewportPoint(uiPoint: Vector2): Vector2
 UI:UnblurBackground(element: VisualElement): bool
 ```
 
-[ClientOnly]
+[ClientOnly] Disables background blur for the specified open window. Returns true on success.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
@@ -649,7 +664,7 @@ UI:UnblurBackground(element: VisualElement): bool
 UI:UnlockCursor(element: VisualElement): bool
 ```
 
-[ClientOnly]
+[ClientOnly] Unlocks the cursor for the specified open window. Returns true on success.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
@@ -663,7 +678,7 @@ UI:UnlockCursor(element: VisualElement): bool
 UI:UnlockPlayerInput(element: VisualElement): bool
 ```
 
-[ClientOnly]
+[ClientOnly] Stops the specified open window from locking player input. Returns true on success.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|

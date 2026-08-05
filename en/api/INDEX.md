@@ -45,6 +45,7 @@
 - [AgentSpawnEvent](./Agent.md#agentspawnevent)
 - [AgentStats](./Agent.md#agentstats)
 - [AgentStatsChangedEvent](./Agent.md#agentstatschangedevent)
+- [AgentVisibilityChangedEvent](./Agent.md#agentvisibilitychangedevent)
 - [Aim](./Agent.md#aim)
 - [DamageEvent](./Agent.md#damageevent)
 - [DeathEvent](./Agent.md#deathevent)
@@ -58,7 +59,9 @@
 - [Interactor](./Agent.md#interactor)
 - [Inventory](./Agent.md#inventory)
 - [Movement](./Agent.md#movement)
+- [ObservedAgentChangedEvent](./Agent.md#observedagentchangedevent)
 - [OcclusionCulling](./Agent.md#occlusionculling)
+- [RoundStateChangeEvent](./Agent.md#roundstatechangeevent)
 
 ### Audio
 
@@ -83,6 +86,10 @@
 
 - [CombatLog](./CombatLog.md#combatlog)
 - [CombatLogEntry](./CombatLog.md#combatlogentry)
+
+### Config
+
+- [ConfigManager](./Config.md#configmanager)
 
 ### DefusalGame
 

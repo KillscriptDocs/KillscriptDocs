@@ -43,6 +43,21 @@ Scheduler:OnFrame(callback: LuaFunction): EventSubscription
 
 **Returns:** [EventSubscription](./Scheduler.md#eventsubscription)
 
+#### OnInterval
+
+```lua
+Scheduler:OnInterval(seconds: number, callback: LuaFunction): EventSubscription
+```
+
+Вызывает коллбек через каждые seconds секунд игрового времени. Пропущенные интервалы не вызываются повторно. Возвращает подписку, которую можно отменить.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `seconds` | number |  |  |
+| `callback` | LuaFunction |  |  |
+
+**Returns:** [EventSubscription](./Scheduler.md#eventsubscription)
+
 #### OnTick
 
 ```lua

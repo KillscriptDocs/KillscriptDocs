@@ -616,6 +616,19 @@ UI:ShowOverlappingUI(element: VisualElement): bool
 
 **Returns:** bool
 
+#### ShowPlayerContextMenu
+
+```lua
+UI:ShowPlayerContextMenu(agent: Agent, ownerWindow: VisualElement = ...)
+```
+
+[ClientOnly] Opens the context menu for the player controlling the specified agent. If an owner window is provided, the menu closes automatically when that window closes.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `agent` | [Agent](./Agent.md#agent) |  |  |
+| `ownerWindow` | [VisualElement](./UI.md#visualelement) | ✅ |  |
+
 #### ToUpperInvariant
 
 ```lua

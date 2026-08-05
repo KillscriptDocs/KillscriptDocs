@@ -52,6 +52,20 @@ DefusalGame:GetMatchRoundsLog(): Array<DefusalRoundState>
 
 **Returns:** Array<[DefusalRoundState](./DefusalGame.md#defusalroundstate)>
 
+#### OnRoundStateChanged
+
+```lua
+DefusalGame:OnRoundStateChanged(callback: LuaFunction): EventSubscription
+```
+
+Вызывает коллбек при установке, обезвреживании или взрыве BridgeCharge, окончании раунда либо смене его стадии. Возвращает подписку, которую можно отменить.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `callback` | LuaFunction |  |  |
+
+**Returns:** [EventSubscription](./Scheduler.md#eventsubscription)
+
 ## DefusalRoundState
 
 Состояние одного раунда DefusalGame из истории матча.

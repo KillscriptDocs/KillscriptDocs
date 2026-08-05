@@ -52,6 +52,20 @@ History of match rounds that have started, including the current round.
 
 **Returns:** Array<[DefusalRoundState](./DefusalGame.md#defusalroundstate)>
 
+#### OnRoundStateChanged
+
+```lua
+DefusalGame:OnRoundStateChanged(callback: LuaFunction): EventSubscription
+```
+
+Calls the callback when the BridgeCharge is planted, defused, or explodes, when the round ends, or when its stage changes. Returns a subscription that can be cancelled.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `callback` | LuaFunction |  |  |
+
+**Returns:** [EventSubscription](./Scheduler.md#eventsubscription)
+
 ## DefusalRoundState
 
 State of one DefusalGame round from the match history.

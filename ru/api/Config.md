@@ -2,6 +2,33 @@
 
 API пользовательских настроек модулей.
 
+## Contents
+
+- [ConfigManager](#configmanager)
+
+---
+
+## ConfigManager
+
+[ClientOnly] Глобальный API для работы с кнфигурацией модуля.
+
+### Methods
+
+#### OnChanged
+
+```lua
+ConfigManager:OnChanged(callback: LuaFunction): EventSubscription
+```
+
+[ClientOnly] Вызывает коллбек после применения новых настроек модуля. Возвращает подписку, которую можно отменить.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `callback` | LuaFunction |  |  |
+
+**Returns:** [EventSubscription](./Scheduler.md#eventsubscription)
+
+
 ---
 
 ## Config

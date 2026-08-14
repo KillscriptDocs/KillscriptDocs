@@ -7,6 +7,7 @@
 - [Audio](./Audio.md) — API for playing sounds and accessing voice chat.
 - [Camera](./Camera.md) — Camera API. Allows creating additional custom cameras.
 - [Chat](./Chat.md) — In-game chat API.
+- [Clipboard](./Clipboard.md)
 - [CombatLog](./CombatLog.md) — Combat log API: history of damage received and dealt.
 - [Config](./Config.md) — Module user settings API.
 - [DefusalGame](./DefusalGame.md) — Defusal mode API: match and round state.
@@ -16,6 +17,7 @@
 - [ImGui](./ImGui.md) — Simple immediate-mode GUI API.
 - [InputAction](./InputAction.md) — Input API: handling button presses.
 - [Item](./Item.md) — Item API.
+- [Json](./Json.md)
 - [Localization](./Localization.md) — Localization API.
 - [Network](./Network.md) — API for interaction between the client and server parts of a Reflex module.
 - [Notification](./Notification.md) — Notification API: receiving and sending notifications and hints to the player.
@@ -81,6 +83,11 @@
 - [ChatChannelKind](./Chat.md#chatchannelkind)
 - [ChatManager](./Chat.md#chatmanager)
 - [ChatMessage](./Chat.md#chatmessage)
+
+### Clipboard
+
+- [Clipboard](./Clipboard.md#clipboard)
+- [ClipboardReadEvent](./Clipboard.md#clipboardreadevent)
 
 ### CombatLog
 
@@ -157,6 +164,10 @@
 - [MeleeItem](./Item.md#meleeitem)
 - [ThrowableItem](./Item.md#throwableitem)
 
+### Json
+
+- [Json](./Json.md#json)
+
 ### Localization
 
 - [Localization](./Localization.md#localization)
@@ -212,12 +223,17 @@
 
 ### UI
 
+- [ArcDirection](./UI.md#arcdirection)
 - [BackgroundPositionKeyword](./UI.md#backgroundpositionkeyword)
 - [BackgroundSizeType](./UI.md#backgroundsizetype)
 - [DisplayStyle](./UI.md#displaystyle)
 - [DotViewElement](./UI.md#dotviewelement)
 - [ElementStyle](./UI.md#elementstyle)
+- [FillRule](./UI.md#fillrule)
 - [ImageElement](./UI.md#imageelement)
+- [LineCap](./UI.md#linecap)
+- [LineJoin](./UI.md#linejoin)
+- [PainterElement](./UI.md#painterelement)
 - [PlayerRankDisplay](./UI.md#playerrankdisplay)
 - [ScrollView](./UI.md#scrollview)
 - [TextAnchor](./UI.md#textanchor)

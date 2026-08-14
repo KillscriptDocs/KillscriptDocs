@@ -28,6 +28,14 @@ ConfigManager:OnChanged(callback: LuaFunction): EventSubscription
 
 **Returns:** [EventSubscription](./Scheduler.md#eventsubscription)
 
+#### Save
+
+```lua
+ConfigManager:Save()
+```
+
+[ClientOnly] Validates the values in the Config table, applies the allowed constraints, and saves the module configuration.
+
 
 ---
 

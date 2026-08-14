@@ -4,12 +4,17 @@ API for creating advanced user interfaces. Provides access to Unity UI Toolkit.
 
 ## Contents
 
+- [ArcDirection](#arcdirection)
 - [BackgroundPositionKeyword](#backgroundpositionkeyword)
 - [BackgroundSizeType](#backgroundsizetype)
 - [DisplayStyle](#displaystyle)
 - [DotViewElement](#dotviewelement)
 - [ElementStyle](#elementstyle)
+- [FillRule](#fillrule)
 - [ImageElement](#imageelement)
+- [LineCap](#linecap)
+- [LineJoin](#linejoin)
+- [PainterElement](#painterelement)
 - [PlayerRankDisplay](#playerrankdisplay)
 - [ScrollView](#scrollview)
 - [TextAnchor](#textanchor)
@@ -21,6 +26,15 @@ API for creating advanced user interfaces. Provides access to Unity UI Toolkit.
 - [WindowVisibilityType](#windowvisibilitytype)
 
 ---
+
+## ArcDirection
+
+[ClientOnly] Arc direction.
+
+| Name | Value | Comment |
+|---|---:|---|
+| `Clockwise` | `0` | [ClientOnly] Clockwise. |
+| `CounterClockwise` | `1` | [ClientOnly] Counterclockwise. |
 
 ## BackgroundPositionKeyword
 
@@ -117,6 +131,15 @@ Reset
 | `width` | number | `get/set` |  |  |
 | `widthPercent` | number | `get/set` |  |  |
 
+## FillRule
+
+[ClientOnly] Rule for determining the interior of a path.
+
+| Name | Value | Comment |
+|---|---:|---|
+| `NonZero` | `0` | [ClientOnly] Non-zero fill rule. |
+| `OddEven` | `1` | [ClientOnly] Odd-even fill rule. |
+
 ## ImageElement
 
 [ClientOnly]
@@ -128,6 +151,216 @@ Reset
 | Name | Type | Access | Static | Comment |
 |---|---|---|:---:|---|
 | `texture` | [Texture](./Texture.md#texture) | `get/set` |  |  |
+
+## LineCap
+
+[ClientOnly] Line cap type.
+
+| Name | Value | Comment |
+|---|---:|---|
+| `Butt` | `0` | [ClientOnly] Flat cap at the line endpoint. |
+| `Round` | `1` | [ClientOnly] Rounded line cap. |
+
+## LineJoin
+
+[ClientOnly] Line join type.
+
+| Name | Value | Comment |
+|---|---:|---|
+| `Miter` | `0` | [ClientOnly] Mitered line join. |
+| `Round` | `1` | [ClientOnly] Rounded line join. |
+| `Bevel` | `2` | [ClientOnly] Beveled line join. |
+
+## PainterElement
+
+[ClientOnly] A UI element for drawing 2D vector graphics with Painter2D commands. Stores up to 1024 drawing commands. Once the limit is reached, new commands are silently ignored until ClearCommands is called.
+
+**Base:** [VisualElement](./UI.md#visualelement)
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `CommandCount` | int | `get` |  | [ClientOnly] Number of retained commands executed when the element is drawn. The maximum value is 1024. |
+| `DashOffset` | number | `get/set` |  | [ClientOnly] Offset at which the dash pattern begins when stroking paths with Stroke. |
+| `FillColor` | Color | `get/set` |  | [ClientOnly] Color used to fill paths with Fill. |
+| `FillTexture` | [Texture](./Texture.md#texture) | `get/set` |  | [ClientOnly] Texture used to fill paths with Fill. Set to nil to disable the texture. |
+| `LineCap` | [LineCap](./UI.md#linecap) | `get/set` |  | [ClientOnly] Line cap used when stroking paths with Stroke. |
+| `LineJoin` | [LineJoin](./UI.md#linejoin) | `get/set` |  | [ClientOnly] Line join used when stroking paths with Stroke. |
+| `LineWidth` | number | `get/set` |  | [ClientOnly] Line width used when stroking paths with Stroke. |
+| `MiterLimit` | number | `get/set` |  | [ClientOnly] Maximum ratio of the miter length to the line width for LineJoin.Miter joins when stroking paths with Stroke. |
+| `StrokeColor` | Color | `get/set` |  | [ClientOnly] Color used to stroke paths with Stroke. |
+
+
+### Methods
+
+#### Arc
+
+```lua
+PainterElement:Arc(center: Vector2, radius: number, startAngle: number, endAngle: number, direction: ArcDirection = ...)
+```
+
+[ClientOnly] Adds an arc with angles in degrees to the current subpath.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `center` | Vector2 |  |  |
+| `radius` | number |  |  |
+| `startAngle` | number |  |  |
+| `endAngle` | number |  |  |
+| `direction` | [ArcDirection](./UI.md#arcdirection) | ✅ |  |
+
+#### ArcTo
+
+```lua
+PainterElement:ArcTo(p1: Vector2, p2: Vector2, radius: number)
+```
+
+[ClientOnly] Adds an arc to the current subpath that is tangent to the segments from the current point to p1 and from p1 to p2.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `p1` | Vector2 |  |  |
+| `p2` | Vector2 |  |  |
+| `radius` | number |  |  |
+
+#### BeginPath
+
+```lua
+PainterElement:BeginPath()
+```
+
+[ClientOnly] Begins a new path and clears the previously recorded subpaths of the current path.
+
+#### BezierCurveTo
+
+```lua
+PainterElement:BezierCurveTo(p1: Vector2, p2: Vector2, p3: Vector2)
+```
+
+[ClientOnly] Adds a cubic Bezier curve to the current subpath.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `p1` | Vector2 |  |  |
+| `p2` | Vector2 |  |  |
+| `p3` | Vector2 |  |  |
+
+#### ClearCommands
+
+```lua
+PainterElement:ClearCommands()
+```
+
+[ClientOnly] Clears all retained drawing commands.
+
+#### ClosePath
+
+```lua
+PainterElement:ClosePath()
+```
+
+[ClientOnly] Closes the current subpath with a straight line.
+
+#### Fill
+
+```lua
+PainterElement:Fill(fillRule: FillRule = ...)
+```
+
+[ClientOnly] Fills the current path.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `fillRule` | [FillRule](./UI.md#fillrule) | ✅ |  |
+
+#### GetDashPattern
+
+```lua
+PainterElement:GetDashPattern(values: LuaTable): int
+```
+
+[ClientOnly] Copies the current dash pattern into the provided table and returns the number of values.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `values` | LuaTable |  |  |
+
+**Returns:** int
+
+#### LineTo
+
+```lua
+PainterElement:LineTo(position: Vector2)
+```
+
+[ClientOnly] Adds a straight line to the specified point.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `position` | Vector2 |  |  |
+
+#### MoveTo
+
+```lua
+PainterElement:MoveTo(position: Vector2)
+```
+
+[ClientOnly] Begins a new subpath at the specified point.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `position` | Vector2 |  |  |
+
+#### QuadraticCurveTo
+
+```lua
+PainterElement:QuadraticCurveTo(p1: Vector2, p2: Vector2)
+```
+
+[ClientOnly] Adds a quadratic Bezier curve to the current subpath.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `p1` | Vector2 |  |  |
+| `p2` | Vector2 |  |  |
+
+#### SetDashPattern
+
+```lua
+PainterElement:SetDashPattern(pattern: LuaTable): bool
+```
+
+[ClientOnly] Sets alternating dash and gap lengths from a numeric table. Returns true if the pattern was set successfully.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `pattern` | LuaTable |  |  |
+
+**Returns:** bool
+
+#### SetDashPattern
+
+```lua
+PainterElement:SetDashPattern(dash: number, gap: number): bool
+```
+
+[ClientOnly] Sets a simple dash pattern from a dash length and a gap length. Returns true if the pattern was set successfully.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `dash` | number |  |  |
+| `gap` | number |  |  |
+
+**Returns:** bool
+
+#### Stroke
+
+```lua
+PainterElement:Stroke()
+```
+
+[ClientOnly] Strokes the current path.
 
 ## PlayerRankDisplay
 
@@ -435,6 +668,16 @@ UI:CreateLabel(): TextElement
 [ClientOnly] Creates a TextElement. Returns nil if the UI object limit is exceeded.
 
 **Returns:** [TextElement](./UI.md#textelement)
+
+#### CreatePainter
+
+```lua
+UI:CreatePainter(): PainterElement
+```
+
+[ClientOnly] Creates a PainterElement for drawing 2D vector graphics. Returns nil if the UI object limit is exceeded.
+
+**Returns:** [PainterElement](./UI.md#painterelement)
 
 #### CreateVisualElement
 

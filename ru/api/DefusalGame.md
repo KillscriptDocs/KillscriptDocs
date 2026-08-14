@@ -80,8 +80,14 @@ DefusalGame:OnRoundStateChanged(callback: LuaFunction): EventSubscription
 | `IsRoundTimeOver` | bool |  | true, если раунд завершился по истечении времени (BridgeCharge не был установлен). |
 | `IsTeamSwapping` | bool |  | true, если в этом раунде идет смена сторон команд. |
 | `RoundId` | int |  | Порядковый номер раунда, начинается с 1. |
-| `RoundWinnerTeam` | [Team](./Team.md#team) |  | Команда-победитель раунда, если определена. |
 | `Stage` | [EDefusalRoundStage](./DefusalGame.md#edefusalroundstage) |  | Стадия раунда. |
+
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `RoundWinnerTeam` | [Team](./Team.md#team) | `get` |  | Команда-победитель раунда, если определена. |
 
 ## EDefusalRoundStage
 

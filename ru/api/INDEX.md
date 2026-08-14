@@ -7,6 +7,7 @@
 - [Audio](./Audio.md) — API для воспроизведения звуков и доступа к голосовому чату.
 - [Camera](./Camera.md) — API камеры. Позволяет создавать дополнительные пользовательские камеры.
 - [Chat](./Chat.md) — API игрового чата.
+- [Clipboard](./Clipboard.md)
 - [CombatLog](./CombatLog.md) — API боевого журнала: история полученного и нанесенного урона.
 - [Config](./Config.md) — API пользовательских настроек модулей.
 - [DefusalGame](./DefusalGame.md) — API режима Defusal: состояние матча и раунда.
@@ -16,6 +17,7 @@
 - [ImGui](./ImGui.md) — API простого Immediate-mode графического интерфейса
 - [InputAction](./InputAction.md) — API ввода: обработка нажатий на кнопки.
 - [Item](./Item.md) — API предметов.
+- [Json](./Json.md)
 - [Localization](./Localization.md) — API локализации.
 - [Network](./Network.md) — API для взаимодействия клиентской и серверной частей Reflex-модуля.
 - [Notification](./Notification.md) — API уведомлений: получение и отправка уведомлений и подсказок игроку.
@@ -81,6 +83,11 @@
 - [ChatChannelKind](./Chat.md#chatchannelkind)
 - [ChatManager](./Chat.md#chatmanager)
 - [ChatMessage](./Chat.md#chatmessage)
+
+### Clipboard
+
+- [Clipboard](./Clipboard.md#clipboard)
+- [ClipboardReadEvent](./Clipboard.md#clipboardreadevent)
 
 ### CombatLog
 
@@ -157,6 +164,10 @@
 - [MeleeItem](./Item.md#meleeitem)
 - [ThrowableItem](./Item.md#throwableitem)
 
+### Json
+
+- [Json](./Json.md#json)
+
 ### Localization
 
 - [Localization](./Localization.md#localization)
@@ -212,12 +223,17 @@
 
 ### UI
 
+- [ArcDirection](./UI.md#arcdirection)
 - [BackgroundPositionKeyword](./UI.md#backgroundpositionkeyword)
 - [BackgroundSizeType](./UI.md#backgroundsizetype)
 - [DisplayStyle](./UI.md#displaystyle)
 - [DotViewElement](./UI.md#dotviewelement)
 - [ElementStyle](./UI.md#elementstyle)
+- [FillRule](./UI.md#fillrule)
 - [ImageElement](./UI.md#imageelement)
+- [LineCap](./UI.md#linecap)
+- [LineJoin](./UI.md#linejoin)
+- [PainterElement](./UI.md#painterelement)
 - [PlayerRankDisplay](./UI.md#playerrankdisplay)
 - [ScrollView](./UI.md#scrollview)
 - [TextAnchor](./UI.md#textanchor)

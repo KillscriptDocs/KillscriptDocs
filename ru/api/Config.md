@@ -10,7 +10,7 @@ API пользовательских настроек модулей.
 
 ## ConfigManager
 
-[ClientOnly] Глобальный API для работы с кнфигурацией модуля.
+[ClientOnly] Глобальный API для работы с конфигурацией модуля.
 
 ### Methods
 
@@ -27,6 +27,14 @@ ConfigManager:OnChanged(callback: LuaFunction): EventSubscription
 | `callback` | LuaFunction |  |  |
 
 **Returns:** [EventSubscription](./Scheduler.md#eventsubscription)
+
+#### Save
+
+```lua
+ConfigManager:Save()
+```
+
+[ClientOnly] Проверяет значения из таблицы Config, применяет допустимые ограничения и сохраняет конфигурацию модуля.
 
 
 ---

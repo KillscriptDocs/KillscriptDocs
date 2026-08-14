@@ -52,6 +52,20 @@ DefusalGame:GetMatchRoundsLog(): Array<DefusalRoundState>
 
 **Returns:** Array<[DefusalRoundState](./DefusalGame.md#defusalroundstate)>
 
+#### OnRoundStateChanged
+
+```lua
+DefusalGame:OnRoundStateChanged(callback: LuaFunction): EventSubscription
+```
+
+Вызывает коллбек при установке, обезвреживании или взрыве BridgeCharge, окончании раунда либо смене его стадии. Возвращает подписку, которую можно отменить.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `callback` | LuaFunction |  |  |
+
+**Returns:** [EventSubscription](./Scheduler.md#eventsubscription)
+
 ## DefusalRoundState
 
 Состояние одного раунда DefusalGame из истории матча.
@@ -66,8 +80,14 @@ DefusalGame:GetMatchRoundsLog(): Array<DefusalRoundState>
 | `IsRoundTimeOver` | bool |  | true, если раунд завершился по истечении времени (BridgeCharge не был установлен). |
 | `IsTeamSwapping` | bool |  | true, если в этом раунде идет смена сторон команд. |
 | `RoundId` | int |  | Порядковый номер раунда, начинается с 1. |
-| `RoundWinnerTeam` | [Team](./Team.md#team) |  | Команда-победитель раунда, если определена. |
 | `Stage` | [EDefusalRoundStage](./DefusalGame.md#edefusalroundstage) |  | Стадия раунда. |
+
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `RoundWinnerTeam` | [Team](./Team.md#team) | `get` |  | Команда-победитель раунда, если определена. |
 
 ## EDefusalRoundStage
 

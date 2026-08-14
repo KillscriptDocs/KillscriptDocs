@@ -4,12 +4,17 @@ API для создания продвинутого пользовательс�
 
 ## Contents
 
+- [ArcDirection](#arcdirection)
 - [BackgroundPositionKeyword](#backgroundpositionkeyword)
 - [BackgroundSizeType](#backgroundsizetype)
 - [DisplayStyle](#displaystyle)
 - [DotViewElement](#dotviewelement)
 - [ElementStyle](#elementstyle)
+- [FillRule](#fillrule)
 - [ImageElement](#imageelement)
+- [LineCap](#linecap)
+- [LineJoin](#linejoin)
+- [PainterElement](#painterelement)
 - [PlayerRankDisplay](#playerrankdisplay)
 - [ScrollView](#scrollview)
 - [TextAnchor](#textanchor)
@@ -21,6 +26,15 @@ API для создания продвинутого пользовательс�
 - [WindowVisibilityType](#windowvisibilitytype)
 
 ---
+
+## ArcDirection
+
+[ClientOnly] Направление построения дуги.
+
+| Name | Value | Comment |
+|---|---:|---|
+| `Clockwise` | `0` | [ClientOnly] По часовой стрелке. |
+| `CounterClockwise` | `1` | [ClientOnly] Против часовой стрелки. |
 
 ## BackgroundPositionKeyword
 
@@ -117,6 +131,15 @@ Reset
 | `width` | number | `get/set` |  |  |
 | `widthPercent` | number | `get/set` |  |  |
 
+## FillRule
+
+[ClientOnly] Правило определения внутренней области пути.
+
+| Name | Value | Comment |
+|---|---:|---|
+| `NonZero` | `0` | [ClientOnly] Ненулевое правило заполнения. |
+| `OddEven` | `1` | [ClientOnly] Правило четности пересечений. |
+
 ## ImageElement
 
 [ClientOnly]
@@ -128,6 +151,216 @@ Reset
 | Name | Type | Access | Static | Comment |
 |---|---|---|:---:|---|
 | `texture` | [Texture](./Texture.md#texture) | `get/set` |  |  |
+
+## LineCap
+
+[ClientOnly] Тип окончания линии.
+
+| Name | Value | Comment |
+|---|---:|---|
+| `Butt` | `0` | [ClientOnly] Плоское окончание на конечной точке линии. |
+| `Round` | `1` | [ClientOnly] Скругленное окончание линии. |
+
+## LineJoin
+
+[ClientOnly] Тип соединения линий.
+
+| Name | Value | Comment |
+|---|---:|---|
+| `Miter` | `0` | [ClientOnly] Острое соединение линий. |
+| `Round` | `1` | [ClientOnly] Скругленное соединение линий. |
+| `Bevel` | `2` | [ClientOnly] Скошенное соединение линий. |
+
+## PainterElement
+
+[ClientOnly] UI-элемент для отрисовки 2D-векторной графики командами Painter2D. Сохраняет не более 1024 команд рисования. После достижения лимита новые команды молча игнорируются до вызова ClearCommands.
+
+**Base:** [VisualElement](./UI.md#visualelement)
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `CommandCount` | int | `get` |  | [ClientOnly] Количество сохраненных команд, выполняемых при отрисовке элемента. Максимальное значение - 1024. |
+| `DashOffset` | number | `get/set` |  | [ClientOnly] Смещение начала пунктирного узора при обводке путей методом Stroke. |
+| `FillColor` | Color | `get/set` |  | [ClientOnly] Цвет, используемый для заливки путей методом Fill. |
+| `FillTexture` | [Texture](./Texture.md#texture) | `get/set` |  | [ClientOnly] Текстура, используемая для заливки путей методом Fill. Установите nil, чтобы отключить текстуру. |
+| `LineCap` | [LineCap](./UI.md#linecap) | `get/set` |  | [ClientOnly] Тип окончания линий при обводке путей методом Stroke. |
+| `LineJoin` | [LineJoin](./UI.md#linejoin) | `get/set` |  | [ClientOnly] Тип соединения линий при обводке путей методом Stroke. |
+| `LineWidth` | number | `get/set` |  | [ClientOnly] Ширина линий при обводке путей методом Stroke. |
+| `MiterLimit` | number | `get/set` |  | [ClientOnly] Предельное отношение длины острого соединения к ширине линии при LineJoin.Miter во время обводки методом Stroke. |
+| `StrokeColor` | Color | `get/set` |  | [ClientOnly] Цвет, используемый для обводки путей методом Stroke. |
+
+
+### Methods
+
+#### Arc
+
+```lua
+PainterElement:Arc(center: Vector2, radius: number, startAngle: number, endAngle: number, direction: ArcDirection = ...)
+```
+
+[ClientOnly] Добавляет дугу с углами в градусах к текущему подпути.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `center` | Vector2 |  |  |
+| `radius` | number |  |  |
+| `startAngle` | number |  |  |
+| `endAngle` | number |  |  |
+| `direction` | [ArcDirection](./UI.md#arcdirection) | ✅ |  |
+
+#### ArcTo
+
+```lua
+PainterElement:ArcTo(p1: Vector2, p2: Vector2, radius: number)
+```
+
+[ClientOnly] Добавляет к текущему подпути дугу, касательную к отрезкам от текущей точки к p1 и от p1 к p2.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `p1` | Vector2 |  |  |
+| `p2` | Vector2 |  |  |
+| `radius` | number |  |  |
+
+#### BeginPath
+
+```lua
+PainterElement:BeginPath()
+```
+
+[ClientOnly] Начинает новый путь и удаляет ранее записанные подпути текущего пути.
+
+#### BezierCurveTo
+
+```lua
+PainterElement:BezierCurveTo(p1: Vector2, p2: Vector2, p3: Vector2)
+```
+
+[ClientOnly] Добавляет кубическую кривую Безье к текущему подпути.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `p1` | Vector2 |  |  |
+| `p2` | Vector2 |  |  |
+| `p3` | Vector2 |  |  |
+
+#### ClearCommands
+
+```lua
+PainterElement:ClearCommands()
+```
+
+[ClientOnly] Удаляет все сохраненные команды рисования.
+
+#### ClosePath
+
+```lua
+PainterElement:ClosePath()
+```
+
+[ClientOnly] Замыкает текущий подпуть прямой линией.
+
+#### Fill
+
+```lua
+PainterElement:Fill(fillRule: FillRule = ...)
+```
+
+[ClientOnly] Заливает текущий путь.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `fillRule` | [FillRule](./UI.md#fillrule) | ✅ |  |
+
+#### GetDashPattern
+
+```lua
+PainterElement:GetDashPattern(values: LuaTable): int
+```
+
+[ClientOnly] Копирует текущий пунктирный узор в переданную таблицу и возвращает число значений.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `values` | LuaTable |  |  |
+
+**Returns:** int
+
+#### LineTo
+
+```lua
+PainterElement:LineTo(position: Vector2)
+```
+
+[ClientOnly] Добавляет прямую линию до указанной точки.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `position` | Vector2 |  |  |
+
+#### MoveTo
+
+```lua
+PainterElement:MoveTo(position: Vector2)
+```
+
+[ClientOnly] Начинает новый подпуть в указанной точке.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `position` | Vector2 |  |  |
+
+#### QuadraticCurveTo
+
+```lua
+PainterElement:QuadraticCurveTo(p1: Vector2, p2: Vector2)
+```
+
+[ClientOnly] Добавляет квадратичную кривую Безье к текущему подпути.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `p1` | Vector2 |  |  |
+| `p2` | Vector2 |  |  |
+
+#### SetDashPattern
+
+```lua
+PainterElement:SetDashPattern(pattern: LuaTable): bool
+```
+
+[ClientOnly] Устанавливает чередующиеся длины штрихов и промежутков из таблицы чисел. Возвращает true, если установка удалась.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `pattern` | LuaTable |  |  |
+
+**Returns:** bool
+
+#### SetDashPattern
+
+```lua
+PainterElement:SetDashPattern(dash: number, gap: number): bool
+```
+
+[ClientOnly] Устанавливает простой пунктирный узор из длины штриха и промежутка. Возвращает true, если установка удалась.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `dash` | number |  |  |
+| `gap` | number |  |  |
+
+**Returns:** bool
+
+#### Stroke
+
+```lua
+PainterElement:Stroke()
+```
+
+[ClientOnly] Обводит текущий путь.
 
 ## PlayerRankDisplay
 
@@ -436,6 +669,16 @@ UI:CreateLabel(): TextElement
 
 **Returns:** [TextElement](./UI.md#textelement)
 
+#### CreatePainter
+
+```lua
+UI:CreatePainter(): PainterElement
+```
+
+[ClientOnly] Создает PainterElement для отрисовки 2D-векторной графики. Возвращает nil, если превышен лимит UI-объектов.
+
+**Returns:** [PainterElement](./UI.md#painterelement)
+
 #### CreateVisualElement
 
 ```lua
@@ -615,6 +858,19 @@ UI:ShowOverlappingUI(element: VisualElement): bool
 | `element` | [VisualElement](./UI.md#visualelement) |  |  |
 
 **Returns:** bool
+
+#### ShowPlayerContextMenu
+
+```lua
+UI:ShowPlayerContextMenu(agent: Agent, ownerWindow: VisualElement = ...)
+```
+
+[ClientOnly] Открывает контекстное меню игрока, управляющего указанным агентом. Если передано окно-владелец, меню автоматически закроется вместе с ним.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `agent` | [Agent](./Agent.md#agent) |  |  |
+| `ownerWindow` | [VisualElement](./UI.md#visualelement) | ✅ |  |
 
 #### ToUpperInvariant
 

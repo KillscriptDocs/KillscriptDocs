@@ -52,6 +52,20 @@ History of match rounds that have started, including the current round.
 
 **Returns:** Array<[DefusalRoundState](./DefusalGame.md#defusalroundstate)>
 
+#### OnRoundStateChanged
+
+```lua
+DefusalGame:OnRoundStateChanged(callback: LuaFunction): EventSubscription
+```
+
+Calls the callback when the BridgeCharge is planted, defused, or explodes, when the round ends, or when its stage changes. Returns a subscription that can be cancelled.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `callback` | LuaFunction |  |  |
+
+**Returns:** [EventSubscription](./Scheduler.md#eventsubscription)
+
 ## DefusalRoundState
 
 State of one DefusalGame round from the match history.
@@ -66,8 +80,14 @@ State of one DefusalGame round from the match history.
 | `IsRoundTimeOver` | bool |  | true if the round ended because time ran out (the BridgeCharge was never planted). |
 | `IsTeamSwapping` | bool |  | true if the teams are switching sides in this round. |
 | `RoundId` | int |  | Round number, starting from 1. |
-| `RoundWinnerTeam` | [Team](./Team.md#team) |  | Winning team of the round, if defined. |
 | `Stage` | [EDefusalRoundStage](./DefusalGame.md#edefusalroundstage) |  | Round stage. |
+
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `RoundWinnerTeam` | [Team](./Team.md#team) | `get` |  | Winning team of the round, if defined. |
 
 ## EDefusalRoundStage
 

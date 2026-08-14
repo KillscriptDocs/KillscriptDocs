@@ -14,6 +14,7 @@ API for working with agents (specialists).
 - [AgentSpawnEvent](#agentspawnevent)
 - [AgentStats](#agentstats)
 - [AgentStatsChangedEvent](#agentstatschangedevent)
+- [AgentVisibilityChangedEvent](#agentvisibilitychangedevent)
 - [Aim](#aim)
 - [DamageEvent](#damageevent)
 - [DeathEvent](#deathevent)
@@ -27,7 +28,9 @@ API for working with agents (specialists).
 - [Interactor](#interactor)
 - [Inventory](#inventory)
 - [Movement](#movement)
+- [ObservedAgentChangedEvent](#observedagentchangedevent)
 - [OcclusionCulling](#occlusionculling)
+- [RoundStateChangeEvent](#roundstatechangeevent)
 
 ---
 
@@ -205,18 +208,24 @@ Sets the local agent's movement vector in input axes (X = left/right, Y = forwar
 
 [ClientOnly] Agent received damage event.
 
+### Fields
+
+| Name | Type | Static | Comment |
+|---|---|:---:|---|
+| `Damage` | number |  | [ClientOnly] The damage received. |
+| `DamageDirection` | Vector3 |  | [ClientOnly] The damage direction, from the damage position toward the attack source. |
+| `DamageDirectionFromHead` | Vector3 |  | [ClientOnly] The damage direction, from the head toward the attack source. |
+| `DamagePosition` | Vector3 |  | [ClientOnly] The damage position relative to the agent's position. |
+| `DamageTick` | int |  | [ClientOnly] The tick on which the damage was detected. |
+| `StunnedUntilTick` | int |  | [ClientOnly] The tick until which the stun lasts. 0 if this damage did not apply a stun. |
+| `WasStunned` | bool |  | [ClientOnly] true if this damage applied a stun. |
+
+
 ### Properties
 
 | Name | Type | Access | Static | Comment |
 |---|---|---|:---:|---|
 | `Agent` | [Agent](./Agent.md#agent) | `get` |  | [ClientOnly] The agent that received damage. |
-| `Damage` | number | `get` |  | [ClientOnly] The damage received. |
-| `DamageDirection` | Vector3 | `get` |  | [ClientOnly] The damage direction, from the damage position toward the attack source. |
-| `DamageDirectionFromHead` | Vector3 | `get` |  | [ClientOnly] The damage direction, from the head toward the attack source. |
-| `DamagePosition` | Vector3 | `get` |  | [ClientOnly] The damage position relative to the agent's position. |
-| `DamageTick` | int | `get` |  | [ClientOnly] The tick on which the damage was detected. |
-| `StunnedUntilTick` | int | `get` |  | [ClientOnly] The tick until which the stun lasts. 0 if this damage did not apply a stun. |
-| `WasStunned` | bool | `get` |  | [ClientOnly] true if this damage applied a stun. |
 
 ## Agents
 
@@ -372,6 +381,20 @@ Agents:OnMetadataChanged(callback: LuaFunction): EventSubscription
 
 **Returns:** [EventSubscription](./Scheduler.md#eventsubscription)
 
+#### OnObservedAgentChanged
+
+```lua
+Agents:OnObservedAgentChanged(callback: LuaFunction): EventSubscription
+```
+
+[ClientOnly] Calls the callback when the agent whose perspective the local client is observing changes. The callback receives an event containing the new agent or nil. Returns a subscription that can be cancelled.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `callback` | LuaFunction |  |  |
+
+**Returns:** [EventSubscription](./Scheduler.md#eventsubscription)
+
 #### OnSpawn
 
 ```lua
@@ -393,6 +416,20 @@ Agents:OnStatsChanged(callback: LuaFunction): EventSubscription
 ```
 
 [ClientOnly] Calls the callback when an agent's stats change. The callback receives an event referencing the changed agent. Returns a subscription that can be cancelled.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `callback` | LuaFunction |  |  |
+
+**Returns:** [EventSubscription](./Scheduler.md#eventsubscription)
+
+#### OnVisibilityChanged
+
+```lua
+Agents:OnVisibilityChanged(callback: LuaFunction): EventSubscription
+```
+
+[ClientOnly] Calls the callback when an agent's visibility to the local client changes. The callback receives the agent, and the current state is available through Agent.IsVisible. Returns a subscription that can be cancelled.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
@@ -437,6 +474,16 @@ General agent stats.
 | Name | Type | Access | Static | Comment |
 |---|---|---|:---:|---|
 | `Agent` | [Agent](./Agent.md#agent) | `get` |  | [ClientOnly] The agent whose stats changed. |
+
+## AgentVisibilityChangedEvent
+
+[ClientOnly] Agent visibility changed event.
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `Agent` | [Agent](./Agent.md#agent) | `get` |  | [ClientOnly] The agent whose visibility changed. |
 
 ## Aim
 
@@ -790,6 +837,16 @@ Returns the list of zones the agent is currently in.
 
 **Returns:** Array<string>
 
+## ObservedAgentChangedEvent
+
+[ClientOnly] Observed agent change event.
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `Agent` | [Agent](./Agent.md#agent) | `get` |  | [ClientOnly] The new observed agent, or nil if the local client is no longer observing an agent. |
+
 ## OcclusionCulling
 
 Access to the agent occlusion/visibility system.
@@ -801,4 +858,8 @@ Access to the agent occlusion/visibility system.
 | `HasBeenVisible` | bool | `get` |  | [ClientOnly] true if the agent has ever been visible, or is visible now. |
 | `SoundRange` | number | `get` |  | Audible radius of the sound produced by the agent. |
 | `TicksSinceLastVisible` | int | `get` |  | [ClientOnly] Number of ticks since the agent was last visible. |
+
+## RoundStateChangeEvent
+
+Round state change event.
 

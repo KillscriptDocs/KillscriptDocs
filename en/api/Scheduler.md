@@ -43,6 +43,21 @@ Scheduler:OnFrame(callback: LuaFunction): EventSubscription
 
 **Returns:** [EventSubscription](./Scheduler.md#eventsubscription)
 
+#### OnInterval
+
+```lua
+Scheduler:OnInterval(seconds: number, callback: LuaFunction): EventSubscription
+```
+
+Calls the callback every `seconds` seconds of game time. Missed intervals are not replayed. Returns a subscription that can be cancelled.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `seconds` | number |  |  |
+| `callback` | LuaFunction |  |  |
+
+**Returns:** [EventSubscription](./Scheduler.md#eventsubscription)
+
 #### OnTick
 
 ```lua

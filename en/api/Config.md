@@ -2,6 +2,41 @@
 
 Module user settings API.
 
+## Contents
+
+- [ConfigManager](#configmanager)
+
+---
+
+## ConfigManager
+
+[ClientOnly] Global API for working with module configuration.
+
+### Methods
+
+#### OnChanged
+
+```lua
+ConfigManager:OnChanged(callback: LuaFunction): EventSubscription
+```
+
+[ClientOnly] Calls the callback after new module settings are applied. Returns a subscription that can be cancelled.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `callback` | LuaFunction |  |  |
+
+**Returns:** [EventSubscription](./Scheduler.md#eventsubscription)
+
+#### Save
+
+```lua
+ConfigManager:Save()
+```
+
+[ClientOnly] Validates the values in the Config table, applies the allowed constraints, and saves the module configuration.
+
+
 ---
 
 ## Config

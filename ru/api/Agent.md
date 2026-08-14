@@ -14,6 +14,7 @@ API для работы с агентами (специалистами).
 - [AgentSpawnEvent](#agentspawnevent)
 - [AgentStats](#agentstats)
 - [AgentStatsChangedEvent](#agentstatschangedevent)
+- [AgentVisibilityChangedEvent](#agentvisibilitychangedevent)
 - [Aim](#aim)
 - [DamageEvent](#damageevent)
 - [DeathEvent](#deathevent)
@@ -27,7 +28,9 @@ API для работы с агентами (специалистами).
 - [Interactor](#interactor)
 - [Inventory](#inventory)
 - [Movement](#movement)
+- [ObservedAgentChangedEvent](#observedagentchangedevent)
 - [OcclusionCulling](#occlusionculling)
+- [RoundStateChangeEvent](#roundstatechangeevent)
 
 ---
 
@@ -205,18 +208,24 @@ AgentInput:SetMoveDirection(vector: Vector2)
 
 [ClientOnly] Событие получения урона агентом.
 
+### Fields
+
+| Name | Type | Static | Comment |
+|---|---|:---:|---|
+| `Damage` | number |  | [ClientOnly] Полученный урон. |
+| `DamageDirection` | Vector3 |  | [ClientOnly] Направление урона: от точки получения урона к источнику атаки. |
+| `DamageDirectionFromHead` | Vector3 |  | [ClientOnly] Направление урона: от головы к источнику атаки. |
+| `DamagePosition` | Vector3 |  | [ClientOnly] Точка получения урона, относительно позиции агента. |
+| `DamageTick` | int |  | [ClientOnly] Тик, в который был замечен урон. |
+| `StunnedUntilTick` | int |  | [ClientOnly] Тик, до которого действует оглушение. Равен 0, если этот урон не наложил оглушение. |
+| `WasStunned` | bool |  | [ClientOnly] true, если этот урон наложил оглушение. |
+
+
 ### Properties
 
 | Name | Type | Access | Static | Comment |
 |---|---|---|:---:|---|
 | `Agent` | [Agent](./Agent.md#agent) | `get` |  | [ClientOnly] Агент, который получил урон. |
-| `Damage` | number | `get` |  | [ClientOnly] Полученный урон. |
-| `DamageDirection` | Vector3 | `get` |  | [ClientOnly] Направление урона: от точки получения урона к источнику атаки. |
-| `DamageDirectionFromHead` | Vector3 | `get` |  | [ClientOnly] Направление урона: от головы к источнику атаки. |
-| `DamagePosition` | Vector3 | `get` |  | [ClientOnly] Точка получения урона, относительно позиции агента. |
-| `DamageTick` | int | `get` |  | [ClientOnly] Тик, в который был замечен урон. |
-| `StunnedUntilTick` | int | `get` |  | [ClientOnly] Тик, до которого действует оглушение. Равен 0, если этот урон не наложил оглушение. |
-| `WasStunned` | bool | `get` |  | [ClientOnly] true, если этот урон наложил оглушение. |
 
 ## Agents
 
@@ -372,6 +381,20 @@ Agents:OnMetadataChanged(callback: LuaFunction): EventSubscription
 
 **Returns:** [EventSubscription](./Scheduler.md#eventsubscription)
 
+#### OnObservedAgentChanged
+
+```lua
+Agents:OnObservedAgentChanged(callback: LuaFunction): EventSubscription
+```
+
+[ClientOnly] Вызывает коллбек при смене агента, от лица которого локальный клиент наблюдает игру. В коллбек передается событие с новым агентом или nil. Возвращает подписку, которую можно отменить.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `callback` | LuaFunction |  |  |
+
+**Returns:** [EventSubscription](./Scheduler.md#eventsubscription)
+
 #### OnSpawn
 
 ```lua
@@ -393,6 +416,20 @@ Agents:OnStatsChanged(callback: LuaFunction): EventSubscription
 ```
 
 [ClientOnly] Вызывает коллбек при изменении статистики агента. В коллбек передается событие со ссылкой на изменившегося агента. Возвращает подписку, которую можно отменить.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `callback` | LuaFunction |  |  |
+
+**Returns:** [EventSubscription](./Scheduler.md#eventsubscription)
+
+#### OnVisibilityChanged
+
+```lua
+Agents:OnVisibilityChanged(callback: LuaFunction): EventSubscription
+```
+
+[ClientOnly] Вызывает коллбек при изменении видимости агента для локального клиента. В коллбек передается агент, актуальное состояние доступно через Agent.IsVisible. Возвращает подписку, которую можно отменить.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
@@ -437,6 +474,16 @@ Agents:OnStatsChanged(callback: LuaFunction): EventSubscription
 | Name | Type | Access | Static | Comment |
 |---|---|---|:---:|---|
 | `Agent` | [Agent](./Agent.md#agent) | `get` |  | [ClientOnly] Агент, статистика которого изменилась. |
+
+## AgentVisibilityChangedEvent
+
+[ClientOnly] Событие изменения видимости агента.
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `Agent` | [Agent](./Agent.md#agent) | `get` |  | [ClientOnly] Агент, видимость которого изменилась. |
 
 ## Aim
 
@@ -790,6 +837,16 @@ Movement:GetZones(): Array<string>
 
 **Returns:** Array<string>
 
+## ObservedAgentChangedEvent
+
+[ClientOnly] Событие смены наблюдаемого агента.
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `Agent` | [Agent](./Agent.md#agent) | `get` |  | [ClientOnly] Новый наблюдаемый агент или nil, если локальный клиент больше не наблюдает за агентом. |
+
 ## OcclusionCulling
 
 Доступ к системе окклюзии/видимости агента.
@@ -801,4 +858,8 @@ Movement:GetZones(): Array<string>
 | `HasBeenVisible` | bool | `get` |  | [ClientOnly] true, если агент уже был виден раньше или виден сейчас. |
 | `SoundRange` | number | `get` |  | Радиус слышимости звука, создаваемого агентом. |
 | `TicksSinceLastVisible` | int | `get` |  | [ClientOnly] Количество тиков с момента, когда агент был виден в последний раз. |
+
+## RoundStateChangeEvent
+
+Событие изменения состояния раунда.
 

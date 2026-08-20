@@ -51,12 +51,13 @@ API для работы с агентами (специалистами).
 | `Health` | [Health](./Agent.md#health) | `get` |  | Доступ к API здоровья агента. |
 | `Interactor` | [Interactor](./Agent.md#interactor) | `get` |  | Доступ к API взаимодействий агента. |
 | `Inventory` | [Inventory](./Agent.md#inventory) | `get` |  | Доступ к API инвентаря агента. |
-| `IsBot` | bool | `get` |  | true, если агентом управляет бот, а не подключенный игрок. |
+| `IsBot` | bool | `get` |  | true, если слот агента принадлежит боту, даже если им временно управляет игрок. |
 | `IsSpectated` | bool | `get` |  | [ClientOnly] true, если идет наблюдение за этим агентом (когда локальный агент мертв, либо в режиме наблюдателя). |
 | `Movement` | [Movement](./Agent.md#movement) | `get` |  | Доступ к API перемещения агента. |
-| `Nickname` | string | `get` |  | Никнейм игрока. |
+| `Nickname` | string | `get` |  | Отображаемое имя агента. |
 | `Number` | int | `get` |  | Возвращает номер, назначенный агенту. |
 | `OcclusionCulling` | [OcclusionCulling](./Agent.md#occlusionculling) | `get` |  | Доступ к API окклюзии/видимости агента. |
+| `SlotId` | int | `get` |  | Стабильный ID слота агента в пределах матча. |
 | `Stats` | [AgentStats](./Agent.md#agentstats) | `get` |  | Статистика агента, доступна всегда. |
 | `Team` | [Team](./Team.md#team) | `get` |  | Команда, к которой относится агент. |
 
@@ -558,9 +559,17 @@ Aim:SetAimTarget(targetPosition: Vector3, agent: Agent)
 | Name | Type | Static | Comment |
 |---|---|:---:|---|
 | `IsCritical` | bool |  | true, если убийство было критическим. |
-| `Killer` | string |  | Имя убийцы. |
-| `Victim` | string |  | Имя жертвы. |
+| `Killer` | string |  | Снимок отображаемого имени убийцы. |
+| `Victim` | string |  | Снимок отображаемого имени жертвы. |
 | `WeaponId` | int |  | ID оружия, которым было совершено убийство. |
+
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `KillerAgent` | [Agent](./Agent.md#agent) | `get` |  | Агент, совершивший убийство, или nil, если убийцы-агента нет. |
+| `VictimAgent` | [Agent](./Agent.md#agent) | `get` |  | Погибший агент. |
 
 ## EHitboxBodyPart
 

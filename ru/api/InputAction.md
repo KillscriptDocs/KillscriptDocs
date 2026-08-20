@@ -37,7 +37,7 @@ InputAction:Enable()
 InputAction:IsPressed(): bool
 ```
 
-[ClientOnly] true, если действие сейчас считается нажатым.
+[ClientOnly] true, если действие сейчас считается нажатым. Возвращает false, пока любое поле ввода находится в фокусе.
 
 **Returns:** bool
 
@@ -47,7 +47,7 @@ InputAction:IsPressed(): bool
 InputAction:OnPerformed(func: LuaFunction)
 ```
 
-[ClientOnly] Подписывает функцию, вызываемую при срабатывании действия.
+[ClientOnly] Подписывает функцию, вызываемую при срабатывании действия. Коллбэк не вызывается, пока любое поле ввода находится в фокусе.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|

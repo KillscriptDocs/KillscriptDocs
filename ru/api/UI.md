@@ -513,6 +513,19 @@ ScrollView:ScrollToTop()
 TextFieldElement:Focus()
 ```
 
+#### OnInputAction
+
+```lua
+TextFieldElement:OnInputAction(inputAction: InputAction, callback: LuaFunction)
+```
+
+[ClientOnly] Перехватывает клавишу, назначенную действию ввода, пока поле находится в фокусе: клавиша не вводится в текст и вызывается коллбэк. Повторный вызов для того же действия заменяет коллбэк, nil удаляет его.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `inputAction` | [InputAction](./InputAction.md#inputaction) |  |  |
+| `callback` | LuaFunction |  |  |
+
 ## Tweener
 
 [ClientOnly]
@@ -865,7 +878,7 @@ UI:ShowOverlappingUI(element: VisualElement): bool
 UI:ShowPlayerContextMenu(agent: Agent, ownerWindow: VisualElement = ...)
 ```
 
-[ClientOnly] Открывает контекстное меню игрока, управляющего указанным агентом. Если передано окно-владелец, меню автоматически закроется вместе с ним.
+[ClientOnly] Открывает контекстное меню игрока, связанного со слотом агента или временно управляющего этим ботом. Если передано окно-владелец, меню автоматически закроется вместе с ним.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|

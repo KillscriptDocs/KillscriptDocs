@@ -513,6 +513,19 @@ ScrollView:ScrollToTop()
 TextFieldElement:Focus()
 ```
 
+#### OnInputAction
+
+```lua
+TextFieldElement:OnInputAction(inputAction: InputAction, callback: LuaFunction)
+```
+
+[ClientOnly] Intercepts the key bound to the input action while the field is focused. The key is not entered as text, and the callback is invoked. Calling this method again for the same action replaces the callback. Passing nil as the callback removes it.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `inputAction` | [InputAction](./InputAction.md#inputaction) |  |  |
+| `callback` | LuaFunction |  |  |
+
 ## Tweener
 
 [ClientOnly]
@@ -865,7 +878,7 @@ UI:ShowOverlappingUI(element: VisualElement): bool
 UI:ShowPlayerContextMenu(agent: Agent, ownerWindow: VisualElement = ...)
 ```
 
-[ClientOnly] Opens the context menu for the player controlling the specified agent. If an owner window is provided, the menu closes automatically when that window closes.
+[ClientOnly] Opens the context menu for the player associated with the agent slot or temporarily controlling this bot. If an owner window is provided, the menu closes automatically when that window closes.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|

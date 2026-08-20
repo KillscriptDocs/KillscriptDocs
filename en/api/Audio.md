@@ -114,6 +114,20 @@ VoiceChat:IsAvailable(agent: Agent): bool
 
 **Returns:** bool
 
+#### IsLocal
+
+```lua
+VoiceChat:IsLocal(agent: Agent): bool
+```
+
+[ClientOnly] true if the agent represents the local voice channel participant.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `agent` | [Agent](./Agent.md#agent) |  |  |
+
+**Returns:** bool
+
 #### IsMuted
 
 ```lua

@@ -114,6 +114,20 @@ VoiceChat:IsAvailable(agent: Agent): bool
 
 **Returns:** bool
 
+#### IsLocal
+
+```lua
+VoiceChat:IsLocal(agent: Agent): bool
+```
+
+[ClientOnly] true, если агент представляет локального участника голосового канала.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `agent` | [Agent](./Agent.md#agent) |  |  |
+
+**Returns:** bool
+
 #### IsMuted
 
 ```lua

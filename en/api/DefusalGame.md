@@ -29,6 +29,7 @@ Global Defusal mode API: round state, teams, and BridgeCharge.
 | `IsRoundBeforeSwap` | bool | `get` |  | true if the teams will switch sides after the current round ends. |
 | `IsRoundTimeOver` | bool | `get` |  | true if the current round ended because time ran out (the BridgeCharge was never planted). |
 | `IsTeamSwapping` | bool | `get` |  | true if the teams are switching sides. |
+| `IsTechnicalPauseActive` | bool | `get` |  | true if a technical pause is active. |
 | `IsVictory` | bool | `get` |  | [ClientOnly] true if the match ended in victory for our team. |
 | `IsWarmupTimerActive` | bool | `get` |  | true if the warmup player-waiting timer or match-start timer is active. |
 | `KillScriptCompanyTeam` | [Team](./Team.md#team) | `get` |  | Defending team. |

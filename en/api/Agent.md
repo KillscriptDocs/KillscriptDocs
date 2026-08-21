@@ -51,12 +51,13 @@ Represents an agent in the game. This class provides access to various propertie
 | `Health` | [Health](./Agent.md#health) | `get` |  | Access to the agent health API. |
 | `Interactor` | [Interactor](./Agent.md#interactor) | `get` |  | Access to the agent interaction API. |
 | `Inventory` | [Inventory](./Agent.md#inventory) | `get` |  | Access to the agent inventory API. |
-| `IsBot` | bool | `get` |  | true if the agent is controlled by a bot rather than a connected player. |
+| `IsBot` | bool | `get` |  | true if the agent slot belongs to a bot, even if it is temporarily controlled by a player. |
 | `IsSpectated` | bool | `get` |  | [ClientOnly] true if this agent is being spectated (when the local agent is dead or in spectator mode). |
 | `Movement` | [Movement](./Agent.md#movement) | `get` |  | Access to the agent movement API. |
-| `Nickname` | string | `get` |  | Player nickname. |
+| `Nickname` | string | `get` |  | The agent's display name. |
 | `Number` | int | `get` |  | Returns the number assigned to the agent. |
 | `OcclusionCulling` | [OcclusionCulling](./Agent.md#occlusionculling) | `get` |  | Access to the agent occlusion/visibility API. |
+| `SlotId` | int | `get` |  | Stable ID of the agent slot within the match. |
 | `Stats` | [AgentStats](./Agent.md#agentstats) | `get` |  | Agent stats, always available. |
 | `Team` | [Team](./Team.md#team) | `get` |  | Team the agent belongs to. |
 
@@ -558,9 +559,17 @@ Agent death event (see Agents.OnDeath).
 | Name | Type | Static | Comment |
 |---|---|:---:|---|
 | `IsCritical` | bool |  | true if the kill was critical. |
-| `Killer` | string |  | Killer name. |
-| `Victim` | string |  | Victim name. |
+| `Killer` | string |  | Snapshot of the killer's display name. |
+| `Victim` | string |  | Snapshot of the victim's display name. |
 | `WeaponId` | int |  | ID of the weapon used to make the kill. |
+
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `KillerAgent` | [Agent](./Agent.md#agent) | `get` |  | The agent who made the kill, or nil if no killer agent exists. |
+| `VictimAgent` | [Agent](./Agent.md#agent) | `get` |  | The agent who died. |
 
 ## EHitboxBodyPart
 

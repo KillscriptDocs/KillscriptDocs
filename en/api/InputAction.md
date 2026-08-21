@@ -37,7 +37,7 @@ InputAction:Enable()
 InputAction:IsPressed(): bool
 ```
 
-[ClientOnly] true if the action is currently considered pressed.
+[ClientOnly] true if the action is currently considered pressed. Returns false while any input field is focused.
 
 **Returns:** bool
 
@@ -47,7 +47,7 @@ InputAction:IsPressed(): bool
 InputAction:OnPerformed(func: LuaFunction)
 ```
 
-[ClientOnly] Subscribes a function that is called when the action is performed.
+[ClientOnly] Subscribes a function that is called when the action is performed. The callback is not called while any input field is focused.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|

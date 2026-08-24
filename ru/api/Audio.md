@@ -31,7 +31,7 @@ Sounds:GetSound(soundName: string): Sound
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
-| `soundName` | string |  | [ClientOnly] Имя файла звука с расширением, без пути к папке. Поддерживаются .wav, .mp3 и .ogg. |
+| `soundName` | string |  | Имя файла звука с расширением, без пути к папке. Поддерживаются .wav, .mp3 и .ogg. |
 
 **Returns:** [Sound](./Audio.md#sound)
 
@@ -45,12 +45,12 @@ Sounds:PlaySound(sound: Sound, position: Vector3, volume: number = ..., minDista
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
-| `sound` | [Sound](./Audio.md#sound) |  | [ClientOnly] Звук для воспроизведения. |
-| `position` | Vector3 |  | [ClientOnly] Мировая позиция источника звука. |
-| `volume` | number | ✅ | [ClientOnly] Громкость звука в диапазоне 0-1. |
-| `minDistance` | number | ✅ | [ClientOnly] Расстояние, до которого звук слышен на полной громкости. Значение  по умолчанию: 5. |
-| `maxDistance` | number | ✅ | [ClientOnly] Расстояние, после которого звук перестает быть слышен. Значение  по умолчанию: 500. |
-| `pitch` | number | ✅ | [ClientOnly] Высота тона и скорость воспроизведения. Значение  по умолчанию: 1. |
+| `sound` | [Sound](./Audio.md#sound) |  | Звук для воспроизведения. |
+| `position` | Vector3 |  | Мировая позиция источника звука. |
+| `volume` | number | ✅ | Громкость звука в диапазоне 0-1. |
+| `minDistance` | number | ✅ | Расстояние, до которого звук слышен на полной громкости. Значение  по умолчанию: 5. |
+| `maxDistance` | number | ✅ | Расстояние, после которого звук перестает быть слышен. Значение  по умолчанию: 500. |
+| `pitch` | number | ✅ | Высота тона и скорость воспроизведения. Значение  по умолчанию: 1. |
 
 #### PlaySound2D
 
@@ -62,9 +62,9 @@ Sounds:PlaySound2D(sound: Sound, volume: number = ..., pitch: number = ...)
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
-| `sound` | [Sound](./Audio.md#sound) |  | [ClientOnly] Звук для воспроизведения. |
-| `volume` | number | ✅ | [ClientOnly] Громкость звука в диапазоне 0-1. |
-| `pitch` | number | ✅ | [ClientOnly] Высота тона и скорость воспроизведения. Значение  по умолчанию: 1. |
+| `sound` | [Sound](./Audio.md#sound) |  | Звук для воспроизведения. |
+| `volume` | number | ✅ | Громкость звука в диапазоне 0-1. |
+| `pitch` | number | ✅ | Высота тона и скорость воспроизведения. Значение  по умолчанию: 1. |
 
 ## VoiceChat
 

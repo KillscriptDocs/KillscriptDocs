@@ -29,6 +29,7 @@ API режима Defusal: состояние матча и раунда.
 | `IsRoundBeforeSwap` | bool | `get` |  | true, если по окончанию текущего раунда будет смена сторон команд. |
 | `IsRoundTimeOver` | bool | `get` |  | true, если текущий раунд завершился по истечении времени (BridgeCharge не был установлен). |
 | `IsTeamSwapping` | bool | `get` |  | true, если идет смена сторон команд. |
+| `IsTechnicalPauseActive` | bool | `get` |  | true, если активна техническая пауза. |
 | `IsVictory` | bool | `get` |  | [ClientOnly] true, если матч завершён победой нашей команды. |
 | `IsWarmupTimerActive` | bool | `get` |  | true, если в разминке активен таймер ожидания игроков или старта матча. |
 | `KillScriptCompanyTeam` | [Team](./Team.md#team) | `get` |  | Обороняющаяся команда. |

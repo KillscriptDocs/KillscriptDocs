@@ -76,6 +76,8 @@
 
 - [Camera](./Camera.md#camera)
 - [Cameras](./Camera.md#cameras)
+- [CustomCamera](./Camera.md#customcamera)
+- [MainCamera](./Camera.md#maincamera)
 
 ### Chat
 

@@ -31,7 +31,7 @@ Sounds:GetSound(soundName: string): Sound
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
-| `soundName` | string |  | [ClientOnly] Sound file name with extension, without the folder path. .wav, .mp3, and .ogg are supported. |
+| `soundName` | string |  | Sound file name with extension, without the folder path. .wav, .mp3, and .ogg are supported. |
 
 **Returns:** [Sound](./Audio.md#sound)
 
@@ -45,12 +45,12 @@ Sounds:PlaySound(sound: Sound, position: Vector3, volume: number = ..., minDista
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
-| `sound` | [Sound](./Audio.md#sound) |  | [ClientOnly] Sound to play. |
-| `position` | Vector3 |  | [ClientOnly] World position of the sound source. |
-| `volume` | number | ✅ | [ClientOnly] Sound volume in the range from 0 to 1. |
-| `minDistance` | number | ✅ | [ClientOnly] Distance within which the sound is audible at full volume. The default value is 5. |
-| `maxDistance` | number | ✅ | [ClientOnly] Distance beyond which the sound stops being audible. The default value is 500. |
-| `pitch` | number | ✅ | [ClientOnly] Pitch and playback speed. The default value is 1. |
+| `sound` | [Sound](./Audio.md#sound) |  | Sound to play. |
+| `position` | Vector3 |  | World position of the sound source. |
+| `volume` | number | ✅ | Sound volume in the range from 0 to 1. |
+| `minDistance` | number | ✅ | Distance within which the sound is audible at full volume. The default value is 5. |
+| `maxDistance` | number | ✅ | Distance beyond which the sound stops being audible. The default value is 500. |
+| `pitch` | number | ✅ | Pitch and playback speed. The default value is 1. |
 
 #### PlaySound2D
 
@@ -62,9 +62,9 @@ Sounds:PlaySound2D(sound: Sound, volume: number = ..., pitch: number = ...)
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
-| `sound` | [Sound](./Audio.md#sound) |  | [ClientOnly] Sound to play. |
-| `volume` | number | ✅ | [ClientOnly] Sound volume in the range from 0 to 1. |
-| `pitch` | number | ✅ | [ClientOnly] Pitch and playback speed. The default value is 1. |
+| `sound` | [Sound](./Audio.md#sound) |  | Sound to play. |
+| `volume` | number | ✅ | Sound volume in the range from 0 to 1. |
+| `pitch` | number | ✅ | Pitch and playback speed. The default value is 1. |
 
 ## VoiceChat
 

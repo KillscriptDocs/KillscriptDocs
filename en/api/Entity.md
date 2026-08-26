@@ -34,7 +34,7 @@ Base object for all entities in the world.
 
 | Name | Type | Access | Static | Comment |
 |---|---|---|:---:|---|
-| `ID` | int | `get` |  | Unique entity ID. |
+| `ID` | int | `get` |  | An ID that is unique for the entity's lifetime or until the round changes. |
 | `IsVisible` | bool | `get` |  | true if the entity is visible to the local team. When the entity is not visible, all members except Name and ID return undefined values. |
 | `Name` | string | `get` |  | Entity name. |
 | `Position` | Vector3 | `get` |  | Entity position in the world. |

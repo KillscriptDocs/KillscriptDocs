@@ -47,7 +47,7 @@ API для работы с агентами (специалистами).
 | `Aim` | [Aim](./Agent.md#aim) | `get` |  | Доступ к API прицеливания агента. |
 | `Avatar` | [Texture](./Texture.md#texture) | `get` |  | [ClientOnly] Аватар агента. Возвращает аватарку игрока или иконку команды. |
 | `AvatarIsTeamPlaceholder` | bool | `get` |  | [ClientOnly] Возвращает true, если Avatar сейчас является командной иконкой-заглушкой, а не настоящим аватаром игрока. |
-| `Color` | Color | `get` |  | Возвращает цвет, назначенный агенту. |
+| `Color` | Color | `get` |  | Возвращает цвет агента в команде. |
 | `Health` | [Health](./Agent.md#health) | `get` |  | Доступ к API здоровья агента. |
 | `Interactor` | [Interactor](./Agent.md#interactor) | `get` |  | Доступ к API взаимодействий агента. |
 | `Inventory` | [Inventory](./Agent.md#inventory) | `get` |  | Доступ к API инвентаря агента. |
@@ -55,9 +55,9 @@ API для работы с агентами (специалистами).
 | `IsSpectated` | bool | `get` |  | [ClientOnly] true, если идет наблюдение за этим агентом (когда локальный агент мертв, либо в режиме наблюдателя). |
 | `Movement` | [Movement](./Agent.md#movement) | `get` |  | Доступ к API перемещения агента. |
 | `Nickname` | string | `get` |  | Отображаемое имя агента. |
-| `Number` | int | `get` |  | Возвращает номер, назначенный агенту. |
+| `Number` | int | `get` |  | Возвращает номер агента в команде. От 1 до 5. |
 | `OcclusionCulling` | [OcclusionCulling](./Agent.md#occlusionculling) | `get` |  | Доступ к API окклюзии/видимости агента. |
-| `SlotId` | int | `get` |  | Стабильный ID слота агента в пределах матча. |
+| `SlotId` | int | `get` |  | ID агента в пределах матча. От 1 до 10. |
 | `Stats` | [AgentStats](./Agent.md#agentstats) | `get` |  | Статистика агента, доступна всегда. |
 | `Team` | [Team](./Team.md#team) | `get` |  | Команда, к которой относится агент. |
 

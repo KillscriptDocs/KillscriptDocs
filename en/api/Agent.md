@@ -47,7 +47,7 @@ Represents an agent in the game. This class provides access to various propertie
 | `Aim` | [Aim](./Agent.md#aim) | `get` |  | Access to the agent aiming API. |
 | `Avatar` | [Texture](./Texture.md#texture) | `get` |  | [ClientOnly] Agent avatar. Returns the player's avatar or the team icon. |
 | `AvatarIsTeamPlaceholder` | bool | `get` |  | [ClientOnly] Returns true if Avatar is currently the team placeholder icon instead of the player's real avatar. |
-| `Color` | Color | `get` |  | Returns the color assigned to the agent. |
+| `Color` | Color | `get` |  | Returns the agent's color within the team. |
 | `Health` | [Health](./Agent.md#health) | `get` |  | Access to the agent health API. |
 | `Interactor` | [Interactor](./Agent.md#interactor) | `get` |  | Access to the agent interaction API. |
 | `Inventory` | [Inventory](./Agent.md#inventory) | `get` |  | Access to the agent inventory API. |
@@ -55,9 +55,9 @@ Represents an agent in the game. This class provides access to various propertie
 | `IsSpectated` | bool | `get` |  | [ClientOnly] true if this agent is being spectated (when the local agent is dead or in spectator mode). |
 | `Movement` | [Movement](./Agent.md#movement) | `get` |  | Access to the agent movement API. |
 | `Nickname` | string | `get` |  | The agent's display name. |
-| `Number` | int | `get` |  | Returns the number assigned to the agent. |
+| `Number` | int | `get` |  | Returns the agent's number within the team. The value ranges from 1 to 5. |
 | `OcclusionCulling` | [OcclusionCulling](./Agent.md#occlusionculling) | `get` |  | Access to the agent occlusion/visibility API. |
-| `SlotId` | int | `get` |  | Stable ID of the agent slot within the match. |
+| `SlotId` | int | `get` |  | The agent's ID within the match. The value ranges from 1 to 10. |
 | `Stats` | [AgentStats](./Agent.md#agentstats) | `get` |  | Agent stats, always available. |
 | `Team` | [Team](./Team.md#team) | `get` |  | Team the agent belongs to. |
 

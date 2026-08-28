@@ -7,6 +7,7 @@ API режима Defusal: состояние матча и раунда.
 - [DefusalGame](#defusalgame)
 - [DefusalRoundState](#defusalroundstate)
 - [EDefusalRoundStage](#edefusalroundstage)
+- [EMatchKind](#ematchkind)
 
 ---
 
@@ -34,6 +35,7 @@ API режима Defusal: состояние матча и раунда.
 | `IsWarmupTimerActive` | bool | `get` |  | true, если в разминке активен таймер ожидания игроков или старта матча. |
 | `KillScriptCompanyTeam` | [Team](./Team.md#team) | `get` |  | Обороняющаяся команда. |
 | `KillScriptCompanyTeamTexture` | [Texture](./Texture.md#texture) | `get` |  | Текстура обороняющей команды. |
+| `MatchKind` | [EMatchKind](./DefusalGame.md#ematchkind) | `get` |  | Тип текущего матча. |
 | `RoundId` | int | `get` |  | Порядковый номер текущего раунда, начинается с 1. |
 | `RoundWinnerTeam` | [Team](./Team.md#team) | `get` |  | Команда-победитель текущего раунда, если определена. |
 | `Stage` | [EDefusalRoundStage](./DefusalGame.md#edefusalroundstage) | `get` |  | Текущая стадия раунда. |
@@ -100,4 +102,15 @@ DefusalGame:OnRoundStateChanged(callback: LuaFunction): EventSubscription
 | `Buy` | `1` | Покупка |
 | `Fight` | `2` | Бой |
 | `End` | `3` | Окончание |
+
+## EMatchKind
+
+Тип матча, определяющий его правила и способ запуска.
+
+| Name | Value | Comment |
+|---|---:|---|
+| `Unknown` | `0` | Тип матча не определён. |
+| `Ranked` | `1` | Рейтинговый матч. |
+| `Casual` | `2` | Публичный Casual-матч. |
+| `Custom` | `3` | Пользовательский матч. |
 

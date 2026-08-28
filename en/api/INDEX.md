@@ -76,6 +76,8 @@
 
 - [Camera](./Camera.md#camera)
 - [Cameras](./Camera.md#cameras)
+- [CustomCamera](./Camera.md#customcamera)
+- [MainCamera](./Camera.md#maincamera)
 
 ### Chat
 
@@ -103,6 +105,7 @@
 - [DefusalGame](./DefusalGame.md#defusalgame)
 - [DefusalRoundState](./DefusalGame.md#defusalroundstate)
 - [EDefusalRoundStage](./DefusalGame.md#edefusalroundstage)
+- [EMatchKind](./DefusalGame.md#ematchkind)
 
 ### Entity
 

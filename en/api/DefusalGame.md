@@ -7,6 +7,7 @@ Defusal mode API: match and round state.
 - [DefusalGame](#defusalgame)
 - [DefusalRoundState](#defusalroundstate)
 - [EDefusalRoundStage](#edefusalroundstage)
+- [EMatchKind](#ematchkind)
 
 ---
 
@@ -34,6 +35,7 @@ Global Defusal mode API: round state, teams, and BridgeCharge.
 | `IsWarmupTimerActive` | bool | `get` |  | true if the warmup player-waiting timer or match-start timer is active. |
 | `KillScriptCompanyTeam` | [Team](./Team.md#team) | `get` |  | Defending team. |
 | `KillScriptCompanyTeamTexture` | [Texture](./Texture.md#texture) | `get` |  | Defending team texture. |
+| `MatchKind` | [EMatchKind](./DefusalGame.md#ematchkind) | `get` |  | Current match type. |
 | `RoundId` | int | `get` |  | Current round number, starting from 1. |
 | `RoundWinnerTeam` | [Team](./Team.md#team) | `get` |  | Winning team of the current round, if defined. |
 | `Stage` | [EDefusalRoundStage](./DefusalGame.md#edefusalroundstage) | `get` |  | Current round stage. |
@@ -100,4 +102,15 @@ Round phase
 | `Buy` | `1` | Buy |
 | `Fight` | `2` | Fight |
 | `End` | `3` | End |
+
+## EMatchKind
+
+Match type that determines its rules and how it is started.
+
+| Name | Value | Comment |
+|---|---:|---|
+| `Unknown` | `0` | Match type is not defined. |
+| `Ranked` | `1` | Ranked match. |
+| `Casual` | `2` | Public Casual match. |
+| `Custom` | `3` | Custom match. |
 

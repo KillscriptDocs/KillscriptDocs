@@ -66,12 +66,15 @@ Returns the list of zones at the specified position.
 |---|---|---|:---:|---|
 | `InKBps` | number | `get` |  | [ClientOnly] Incoming traffic speed in kilobytes per second. |
 | `InPacketLossPercent` | number | `get` |  | [ClientOnly] Incoming packet loss percentage. |
-| `InterpolationDelayMs` | number | `get` |  | [ClientOnly] Current interpolation delay in milliseconds. |
+| `InterpolationDelayMaxMs` | number | `get` |  | [ClientOnly] Maximum interpolation delay in milliseconds over the last second. |
+| `InterpolationDelayMs` | number | `get` |  | [ClientOnly] Average interpolation delay in milliseconds over the last second. |
 | `OutKBps` | number | `get` |  | [ClientOnly] Outgoing traffic speed in kilobytes per second. |
 | `OutPacketLossPercent` | number | `get` |  | [ClientOnly] Outgoing packet loss percentage. |
-| `Ping` | int | `get` |  | [ClientOnly] Average ping in milliseconds based on recent RTT measurements. |
+| `Ping` | int | `get` |  | [ClientOnly] Average ping in milliseconds over the last second. |
+| `PingMax` | int | `get` |  | [ClientOnly] Maximum ping in milliseconds over the last second. |
 | `RttSeconds` | number | `get` |  | [ClientOnly] Current RTT in seconds. |
-| `ServerTickTimeMs` | number | `get` |  | [ClientOnly] Processing time of one server network tick in milliseconds. |
+| `ServerTickTimeMaxMs` | number | `get` |  | [ClientOnly] Maximum server network tick processing time in milliseconds over the last second. |
+| `ServerTickTimeMs` | number | `get` |  | [ClientOnly] Average server network tick processing time in milliseconds over the last second. |
 | `TickTimeMs` | number | `get` |  | [ClientOnly] Processing time of one network tick in milliseconds. |
 
 ## Performance

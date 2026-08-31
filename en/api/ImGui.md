@@ -31,6 +31,30 @@ ImGui:AddImGuiWindow(id: string, title: string, rect: Rect): ImGuiWindow
 
 **Returns:** [ImGuiWindow](./ImGui.md#imguiwindow)
 
+#### ClearAlphaMask
+
+```lua
+ImGui:ClearAlphaMask()
+```
+
+[ClientOnly] Disables the alpha mask for subsequent draw commands in the current frame.
+
+#### DrawCircle
+
+```lua
+ImGui:DrawCircle(center: Vector2, radius: number, color: Color, thickness: number = ..., segments: int = ...)
+```
+
+[ClientOnly] Draws a circle outline on the screen. The stroke extends to both sides of the specified radius.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `center` | Vector2 |  | Circle center in screen coordinates. |
+| `radius` | number |  | Circle radius. |
+| `color` | Color |  | Circle color. |
+| `thickness` | number | ✅ | Stroke thickness. |
+| `segments` | int | ✅ | Number of segments. A value of 0 selects the count automatically, other values are clamped to the range from 3 to 256. |
+
 #### DrawDebugText
 
 ```lua
@@ -42,6 +66,19 @@ ImGui:DrawDebugText(text: string)
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
 | `text` | string |  | Text. |
+
+#### DrawRect
+
+```lua
+ImGui:DrawRect(rect: Rect, color: Color)
+```
+
+[ClientOnly] Draws a filled rectangle on the screen.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `rect` | Rect |  | Rectangle area in screen coordinates. |
+| `color` | Color |  | Rectangle color. |
 
 #### DrawText
 
@@ -118,11 +155,135 @@ ImGui:DrawTextureColor(texture: Texture, color: Color, rect: Rect? = ...)
 | `color` | Color |  | Color mask applied to the texture. |
 | `rect` | Rect? | ✅ | Screen area where the texture will be drawn (if nil, the entire available area is used). |
 
+#### DrawTextureRegion
+
+```lua
+ImGui:DrawTextureRegion(texture: Texture, color: Color, rect: Rect, uvRect: Rect)
+```
+
+[ClientOnly] Draws a texture region on the screen. The UV region uses normalized coordinates starting at the upper-left corner of the texture.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `texture` | [Texture](./Texture.md#texture) |  | Texture to draw. |
+| `color` | Color |  | Color mask applied to the texture. |
+| `rect` | Rect |  | Drawing area in screen coordinates. |
+| `uvRect` | Rect |  | Normalized UV region of the texture with its origin at the upper-left corner. |
+
+#### PopMatrix
+
+```lua
+ImGui:PopMatrix()
+```
+
+[ClientOnly] Restores the last saved transformation matrix. If the stack is empty, the matrix remains unchanged.
+
+#### PushMatrix
+
+```lua
+ImGui:PushMatrix()
+```
+
+[ClientOnly] Saves the current transformation matrix to the stack. The stack depth is limited to 32 levels.
+
+#### Rotate
+
+```lua
+ImGui:Rotate(angle: number)
+```
+
+[ClientOnly] Rotates the coordinate system clockwise for subsequent draw commands in the current frame.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `angle` | number |  | Rotation angle in degrees. |
+
+#### Scale
+
+```lua
+ImGui:Scale(scale: Vector2)
+```
+
+[ClientOnly] Scales the coordinate system relative to its current origin for subsequent draw commands in the current frame.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `scale` | Vector2 |  | Scale along the X and Y axes. |
+
+#### SetAlphaMask
+
+```lua
+ImGui:SetAlphaMask(texture: Texture, rect: Rect)
+```
+
+[ClientOnly] Sets an alpha mask for subsequent draw commands in the current frame. The entire mask texture is mapped to the specified screen area, and nothing is drawn outside it. Calling this again replaces the current mask.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `texture` | [Texture](./Texture.md#texture) |  | Texture whose alpha channel is used as the mask. |
+| `rect` | Rect |  | Screen area of the mask. |
+
+#### Translate
+
+```lua
+ImGui:Translate(translation: Vector2)
+```
+
+[ClientOnly] Translates the coordinate system for subsequent draw commands in the current frame.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `translation` | Vector2 |  | Translation in screen coordinates. |
+
 ## ImGuiWindow
 
 [ClientOnly]
 
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `ShouldClipContent` | bool | `get/set` |  | [ClientOnly] Indicates whether all drawing should be clipped to the window bounds. Defaults to true. |
+
+
 ### Methods
+
+#### ClearAlphaMask
+
+```lua
+ImGuiWindow:ClearAlphaMask()
+```
+
+[ClientOnly] Disables the alpha mask for subsequent draw commands in the current frame.
+
+#### DrawCircle
+
+```lua
+ImGuiWindow:DrawCircle(center: Vector2, radius: number, color: Color, thickness: number = ..., segments: int = ...)
+```
+
+[ClientOnly] Draws a circle outline inside the window. The stroke extends to both sides of the specified radius.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `center` | Vector2 |  | Circle center in window coordinates. |
+| `radius` | number |  | Circle radius. |
+| `color` | Color |  | Circle color. |
+| `thickness` | number | ✅ | Stroke thickness. |
+| `segments` | int | ✅ | Number of segments. A value of 0 selects the count automatically, other values are clamped to the range from 3 to 256. |
+
+#### DrawRect
+
+```lua
+ImGuiWindow:DrawRect(rect: Rect, color: Color)
+```
+
+[ClientOnly] Draws a filled rectangle inside the window.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `rect` | Rect |  | Rectangle area in window coordinates. |
+| `color` | Color |  | Rectangle color. |
 
 #### DrawText
 
@@ -167,6 +328,21 @@ Draws a texture inside the window with a color mask overlay.
 | `color` | Color |  | Color mask applied to the texture. |
 | `rect` | Rect? | ✅ | Window area where the texture will be drawn (if nil, the entire available area is used). |
 
+#### DrawTextureRegion
+
+```lua
+ImGuiWindow:DrawTextureRegion(texture: Texture, color: Color, rect: Rect, uvRect: Rect)
+```
+
+[ClientOnly] Draws a texture region inside the window. The UV region uses normalized coordinates starting at the upper-left corner of the texture.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `texture` | [Texture](./Texture.md#texture) |  | Texture to draw. |
+| `color` | Color |  | Color mask applied to the texture. |
+| `rect` | Rect |  | Drawing area inside the window. |
+| `uvRect` | Rect |  | Normalized UV region of the texture with its origin at the upper-left corner. |
+
 #### GetContentRenderSize
 
 ```lua
@@ -176,6 +352,59 @@ ImGuiWindow:GetContentRenderSize(): Vector2
 [ClientOnly] Returns the actual window content area size on the screen in pixels, including UI scale and floating window scale.
 
 **Returns:** Vector2
+
+#### PopMatrix
+
+```lua
+ImGuiWindow:PopMatrix()
+```
+
+[ClientOnly] Restores the last saved window transformation matrix. If the stack is empty, the matrix remains unchanged.
+
+#### PushMatrix
+
+```lua
+ImGuiWindow:PushMatrix()
+```
+
+[ClientOnly] Saves the current window transformation matrix to the stack. The stack depth is limited to 32 levels.
+
+#### Rotate
+
+```lua
+ImGuiWindow:Rotate(angle: number)
+```
+
+[ClientOnly] Rotates the window coordinate system clockwise for subsequent draw commands in the current frame.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `angle` | number |  | Rotation angle in degrees. |
+
+#### Scale
+
+```lua
+ImGuiWindow:Scale(scale: Vector2)
+```
+
+[ClientOnly] Scales the window coordinate system relative to its current origin for subsequent draw commands in the current frame.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `scale` | Vector2 |  | Scale along the X and Y axes. |
+
+#### SetAlphaMask
+
+```lua
+ImGuiWindow:SetAlphaMask(texture: Texture, rect: Rect)
+```
+
+[ClientOnly] Sets an alpha mask for subsequent draw commands in the current frame. The entire mask texture is mapped to the specified window area, and nothing is drawn outside it. Calling this again replaces the current mask.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `texture` | [Texture](./Texture.md#texture) |  | Texture whose alpha channel is used as the mask. |
+| `rect` | Rect |  | Mask area in window coordinates. |
 
 #### SetVisibilityTypes
 
@@ -190,4 +419,16 @@ ImGuiWindow:SetVisibilityTypes(visibilityTypes: LuaTable): bool
 | `visibilityTypes` | LuaTable |  |  |
 
 **Returns:** bool
+
+#### Translate
+
+```lua
+ImGuiWindow:Translate(translation: Vector2)
+```
+
+[ClientOnly] Translates the window coordinate system for subsequent draw commands in the current frame.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `translation` | Vector2 |  | Translation in window coordinates. |
 

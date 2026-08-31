@@ -7,19 +7,36 @@ API для создания продвинутого пользовательс�
 - [ArcDirection](#arcdirection)
 - [BackgroundPositionKeyword](#backgroundpositionkeyword)
 - [BackgroundSizeType](#backgroundsizetype)
+- [ButtonElement](#buttonelement)
+- [ColorFieldElement](#colorfieldelement)
 - [DisplayStyle](#displaystyle)
 - [DotViewElement](#dotviewelement)
+- [DropdownFieldElement](#dropdownfieldelement)
 - [ElementStyle](#elementstyle)
 - [FillRule](#fillrule)
+- [FloatFieldElement](#floatfieldelement)
+- [FoldoutElement](#foldoutelement)
 - [ImageElement](#imageelement)
+- [IntegerFieldElement](#integerfieldelement)
+- [KeyTipElement](#keytipelement)
+- [LabelElement](#labelelement)
 - [LineCap](#linecap)
 - [LineJoin](#linejoin)
+- [LocalizedLabelElement](#localizedlabelelement)
+- [MinMaxSliderElement](#minmaxsliderelement)
 - [PainterElement](#painterelement)
 - [PlayerRankDisplay](#playerrankdisplay)
-- [ScrollView](#scrollview)
+- [ProgressBarElement](#progressbarelement)
+- [RadioButtonElement](#radiobuttonelement)
+- [ScrollerElement](#scrollerelement)
+- [ScrollViewElement](#scrollviewelement)
+- [SliderDirection](#sliderdirection)
+- [SliderElement](#sliderelement)
+- [SliderIntElement](#sliderintelement)
 - [TextAnchor](#textanchor)
 - [TextElement](#textelement)
 - [TextFieldElement](#textfieldelement)
+- [ToggleElement](#toggleelement)
 - [Tweener](#tweener)
 - [UI](#ui)
 - [VisualElement](#visualelement)
@@ -58,6 +75,26 @@ API для создания продвинутого пользовательс�
 | `Cover` | `1` | [ClientOnly] |
 | `Auto` | `2` | [ClientOnly] |
 
+## ButtonElement
+
+[ClientOnly] Интерактивная кнопка с текстовой подписью.
+
+**Base:** [TextElement](./UI.md#textelement)
+
+## ColorFieldElement
+
+[ClientOnly] Элемент для выбора цвета.
+
+**Base:** [VisualElement](./UI.md#visualelement)
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `defaultValue` | Color | `get/set` |  | [ClientOnly] Цвет, который устанавливается при нажатии кнопки сброса. |
+| `showResetButton` | bool | `get/set` |  | [ClientOnly] Определяет, отображается ли кнопка сброса. |
+| `value` | Color | `get/set` |  | [ClientOnly] Текущий выбранный цвет. |
+
 ## DisplayStyle
 
 [ClientOnly]
@@ -69,7 +106,7 @@ API для создания продвинутого пользовательс�
 
 ## DotViewElement
 
-[ClientOnly]
+[ClientOnly] Индикатор из последовательности точек с текущим выбранным значением.
 
 **Base:** [VisualElement](./UI.md#visualelement)
 
@@ -91,6 +128,38 @@ DotViewElement:Reset()
 ```
 
 Reset
+
+## DropdownFieldElement
+
+[ClientOnly] Выпадающий список для выбора одного значения.
+
+**Base:** [VisualElement](./UI.md#visualelement)
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `choices` | Array<string> | `get` |  | [ClientOnly] Доступные варианты в порядке отображения. |
+| `index` | int | `get/set` |  | [ClientOnly] Индекс выбранного варианта, начиная с нуля. |
+| `label` | string | `get/set` |  | [ClientOnly] Подпись выпадающего списка. |
+| `value` | string | `get/set` |  | [ClientOnly] Текст выбранного варианта. |
+
+
+### Methods
+
+#### SetChoices
+
+```lua
+DropdownFieldElement:SetChoices(choices: LuaTable): bool
+```
+
+[ClientOnly] Заменяет варианты последовательным списком строк из table. Допускается не более 256 вариантов. Сохраняет выбранное значение, если оно осталось в списке, иначе выбирает первый вариант. Возвращает true при успешной замене.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `choices` | LuaTable |  |  |
+
+**Returns:** bool
 
 ## ElementStyle
 
@@ -140,9 +209,37 @@ Reset
 | `NonZero` | `0` | [ClientOnly] Ненулевое правило заполнения. |
 | `OddEven` | `1` | [ClientOnly] Правило четности пересечений. |
 
+## FloatFieldElement
+
+[ClientOnly] Поле ввода дробного числа.
+
+**Base:** [VisualElement](./UI.md#visualelement)
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `isDelayed` | bool | `get/set` |  | [ClientOnly] Определяет, применяется ли значение только после подтверждения ввода. |
+| `isReadOnly` | bool | `get/set` |  | [ClientOnly] Определяет, запрещено ли редактирование поля. |
+| `label` | string | `get/set` |  | [ClientOnly] Подпись поля. |
+| `value` | number | `get/set` |  | [ClientOnly] Текущее дробное значение. |
+
+## FoldoutElement
+
+[ClientOnly] Сворачиваемая группа элементов.
+
+**Base:** [VisualElement](./UI.md#visualelement)
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `text` | string | `get/set` |  | [ClientOnly] Текст заголовка сворачиваемой группы. |
+| `value` | bool | `get/set` |  | [ClientOnly] Определяет, раскрыта ли группа. |
+
 ## ImageElement
 
-[ClientOnly]
+[ClientOnly] Элемент для отображения изображения из текстуры или спрайта.
 
 **Base:** [VisualElement](./UI.md#visualelement)
 
@@ -151,6 +248,53 @@ Reset
 | Name | Type | Access | Static | Comment |
 |---|---|---|:---:|---|
 | `texture` | [Texture](./Texture.md#texture) | `get/set` |  |  |
+
+## IntegerFieldElement
+
+[ClientOnly] Поле ввода целого числа.
+
+**Base:** [VisualElement](./UI.md#visualelement)
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `isDelayed` | bool | `get/set` |  | [ClientOnly] Определяет, применяется ли значение только после подтверждения ввода. |
+| `isReadOnly` | bool | `get/set` |  | [ClientOnly] Определяет, запрещено ли редактирование поля. |
+| `label` | string | `get/set` |  | [ClientOnly] Подпись поля. |
+| `value` | int | `get/set` |  | [ClientOnly] Текущее целое значение. |
+
+## KeyTipElement
+
+[ClientOnly] Подсказка назначенной клавиши или действия ввода.
+
+**Base:** [VisualElement](./UI.md#visualelement)
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `actionPath` | string | `get/set` |  | [ClientOnly] Путь действия ввода или привязки клавиши. |
+| `forceTextMode` | bool | `get/set` |  | [ClientOnly] Определяет, нужно ли всегда отображать клавишу текстом вместо иконки. |
+| `prefix` | string | `get/set` |  | [ClientOnly] Текст перед названием клавиши. |
+| `suffix` | string | `get/set` |  | [ClientOnly] Текст после названия клавиши. |
+
+
+### Methods
+
+#### Refresh
+
+```lua
+KeyTipElement:Refresh()
+```
+
+[ClientOnly] Обновляет отображаемую клавишу или действие ввода.
+
+## LabelElement
+
+[ClientOnly] Текстовая метка.
+
+**Base:** [TextElement](./UI.md#textelement)
 
 ## LineCap
 
@@ -170,6 +314,28 @@ Reset
 | `Miter` | `0` | [ClientOnly] Острое соединение линий. |
 | `Round` | `1` | [ClientOnly] Скругленное соединение линий. |
 | `Bevel` | `2` | [ClientOnly] Скошенное соединение линий. |
+
+## LocalizedLabelElement
+
+[ClientOnly] Текстовая метка с локализованным содержимым.
+
+**Base:** [TextElement](./UI.md#textelement)
+
+## MinMaxSliderElement
+
+[ClientOnly] Ползунок для выбора диапазона дробных значений.
+
+**Base:** [VisualElement](./UI.md#visualelement)
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `highLimit` | number | `get/set` |  | [ClientOnly] Верхняя допустимая граница диапазона. |
+| `label` | string | `get/set` |  | [ClientOnly] Подпись ползунка. |
+| `lowLimit` | number | `get/set` |  | [ClientOnly] Нижняя допустимая граница диапазона. |
+| `maxValue` | number | `get/set` |  | [ClientOnly] Текущее максимальное выбранное значение. |
+| `minValue` | number | `get/set` |  | [ClientOnly] Текущее минимальное выбранное значение. |
 
 ## PainterElement
 
@@ -395,9 +561,52 @@ PlayerRankDisplay:Clear(cntAvatarRank: VisualElement, imgRank: VisualElement)
 | `cntAvatarRank` | [VisualElement](./UI.md#visualelement) |  |  |
 | `imgRank` | [VisualElement](./UI.md#visualelement) |  |  |
 
-## ScrollView
+## ProgressBarElement
 
-[ClientOnly]
+[ClientOnly] Индикатор прогресса в заданном диапазоне.
+
+**Base:** [VisualElement](./UI.md#visualelement)
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `highValue` | number | `get/set` |  | [ClientOnly] Верхняя граница диапазона. |
+| `lowValue` | number | `get/set` |  | [ClientOnly] Нижняя граница диапазона. |
+| `title` | string | `get/set` |  | [ClientOnly] Заголовок индикатора. |
+| `value` | number | `get/set` |  | [ClientOnly] Текущее значение индикатора. |
+
+## RadioButtonElement
+
+[ClientOnly] Переключатель для выбора одного варианта.
+
+**Base:** [VisualElement](./UI.md#visualelement)
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `label` | string | `get/set` |  | [ClientOnly] Подпись варианта. |
+| `value` | bool | `get/set` |  | [ClientOnly] Определяет, выбран ли вариант. |
+
+## ScrollerElement
+
+[ClientOnly] Полоса прокрутки с настраиваемым диапазоном.
+
+**Base:** [VisualElement](./UI.md#visualelement)
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `direction` | [SliderDirection](./UI.md#sliderdirection) | `get/set` |  | [ClientOnly] Направление полосы прокрутки. |
+| `highValue` | number | `get/set` |  | [ClientOnly] Верхняя граница диапазона. |
+| `lowValue` | number | `get/set` |  | [ClientOnly] Нижняя граница диапазона. |
+| `value` | number | `get/set` |  | [ClientOnly] Текущее значение полосы прокрутки. |
+
+## ScrollViewElement
+
+[ClientOnly] Прокручиваемая область для содержимого, выходящего за ее границы.
 
 **Base:** [VisualElement](./UI.md#visualelement)
 
@@ -406,7 +615,7 @@ PlayerRankDisplay:Clear(cntAvatarRank: VisualElement, imgRank: VisualElement)
 #### CanScrollByDelta
 
 ```lua
-ScrollView:CanScrollByDelta(deltaY: number): bool
+ScrollViewElement:CanScrollByDelta(deltaY: number): bool
 ```
 
 Проверяет, можно ли прокрутить ScrollView на указанную дельту колесика мыши.
@@ -420,19 +629,19 @@ ScrollView:CanScrollByDelta(deltaY: number): bool
 #### DisableAutoScroll
 
 ```lua
-ScrollView:DisableAutoScroll()
+ScrollViewElement:DisableAutoScroll()
 ```
 
 #### EnableAutoScroll
 
 ```lua
-ScrollView:EnableAutoScroll()
+ScrollViewElement:EnableAutoScroll()
 ```
 
 #### RefreshVerticalScrollerVisibility
 
 ```lua
-ScrollView:RefreshVerticalScrollerVisibility()
+ScrollViewElement:RefreshVerticalScrollerVisibility()
 ```
 
 Обновляет видимость вертикального скроллбара по фактическому переполнению контента.
@@ -440,7 +649,7 @@ ScrollView:RefreshVerticalScrollerVisibility()
 #### ScrollByDelta
 
 ```lua
-ScrollView:ScrollByDelta(deltaY: number): bool
+ScrollViewElement:ScrollByDelta(deltaY: number): bool
 ```
 
 Прокручивает ScrollView на указанную дельту колесика мыши. Возвращает true, если прокрутка была выполнена.
@@ -454,14 +663,61 @@ ScrollView:ScrollByDelta(deltaY: number): bool
 #### ScrollToBottom
 
 ```lua
-ScrollView:ScrollToBottom()
+ScrollViewElement:ScrollToBottom()
 ```
 
 #### ScrollToTop
 
 ```lua
-ScrollView:ScrollToTop()
+ScrollViewElement:ScrollToTop()
 ```
+
+## SliderDirection
+
+[ClientOnly] Направление движения ползунка.
+
+| Name | Value | Comment |
+|---|---:|---|
+| `Horizontal` | `0` | [ClientOnly] Горизонтальное направление. |
+| `Vertical` | `1` | [ClientOnly] Вертикальное направление. |
+
+## SliderElement
+
+[ClientOnly] Ползунок для выбора дробного значения.
+
+**Base:** [VisualElement](./UI.md#visualelement)
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `direction` | [SliderDirection](./UI.md#sliderdirection) | `get/set` |  | [ClientOnly] Направление движения ползунка. |
+| `highValue` | number | `get/set` |  | [ClientOnly] Верхняя граница диапазона. |
+| `inverted` | bool | `get/set` |  | [ClientOnly] Определяет, инвертировано ли направление значений. |
+| `label` | string | `get/set` |  | [ClientOnly] Подпись ползунка. |
+| `lowValue` | number | `get/set` |  | [ClientOnly] Нижняя граница диапазона. |
+| `pageSize` | number | `get/set` |  | [ClientOnly] Размер шага при нажатии на полосу ползунка. |
+| `showInputField` | bool | `get/set` |  | [ClientOnly] Определяет, отображается ли поле ручного ввода. |
+| `value` | number | `get/set` |  | [ClientOnly] Текущее значение ползунка. |
+
+## SliderIntElement
+
+[ClientOnly] Ползунок для выбора целого значения.
+
+**Base:** [VisualElement](./UI.md#visualelement)
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `direction` | [SliderDirection](./UI.md#sliderdirection) | `get/set` |  | [ClientOnly] Направление движения ползунка. |
+| `highValue` | int | `get/set` |  | [ClientOnly] Верхняя граница диапазона. |
+| `inverted` | bool | `get/set` |  | [ClientOnly] Определяет, инвертировано ли направление значений. |
+| `label` | string | `get/set` |  | [ClientOnly] Подпись ползунка. |
+| `lowValue` | int | `get/set` |  | [ClientOnly] Нижняя граница диапазона. |
+| `pageSize` | number | `get/set` |  | [ClientOnly] Размер шага при нажатии на полосу ползунка. |
+| `showInputField` | bool | `get/set` |  | [ClientOnly] Определяет, отображается ли поле ручного ввода. |
+| `value` | int | `get/set` |  | [ClientOnly] Текущее значение ползунка. |
 
 ## TextAnchor
 
@@ -481,7 +737,7 @@ ScrollView:ScrollToTop()
 
 ## TextElement
 
-[ClientOnly]
+[ClientOnly] Базовый элемент для отображения текста.
 
 **Base:** [VisualElement](./UI.md#visualelement)
 
@@ -493,7 +749,7 @@ ScrollView:ScrollToTop()
 
 ## TextFieldElement
 
-[ClientOnly]
+[ClientOnly] Поле для ввода и редактирования текста.
 
 **Base:** [VisualElement](./UI.md#visualelement)
 
@@ -525,6 +781,19 @@ TextFieldElement:OnInputAction(inputAction: InputAction, callback: LuaFunction)
 |---|---|:---:|---|
 | `inputAction` | [InputAction](./InputAction.md#inputaction) |  |  |
 | `callback` | LuaFunction |  |  |
+
+## ToggleElement
+
+[ClientOnly] Переключатель логического значения.
+
+**Base:** [VisualElement](./UI.md#visualelement)
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `label` | string | `get/set` |  | [ClientOnly] Подпись переключателя. |
+| `value` | bool | `get/set` |  | [ClientOnly] Текущее состояние переключателя. |
 
 ## Tweener
 
@@ -971,7 +1240,7 @@ UI:ViewportToUiPoint(viewportPoint: Vector3): Vector2
 
 ## VisualElement
 
-[ClientOnly]
+[ClientOnly] Базовый визуальный элемент пользовательского интерфейса.
 
 ### Properties
 

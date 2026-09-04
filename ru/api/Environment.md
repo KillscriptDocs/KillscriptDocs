@@ -66,12 +66,15 @@ MapInfo:GetZones(position: Vector3): Array<string>
 |---|---|---|:---:|---|
 | `InKBps` | number | `get` |  | [ClientOnly] Скорость входящего трафика в килобайтах в секунду. |
 | `InPacketLossPercent` | number | `get` |  | [ClientOnly] Процент потерь входящих пакетов. |
-| `InterpolationDelayMs` | number | `get` |  | [ClientOnly] Текущая задержка интерполяции в миллисекундах. |
+| `InterpolationDelayMaxMs` | number | `get` |  | [ClientOnly] Максимальная задержка интерполяции в миллисекундах за последнюю секунду. |
+| `InterpolationDelayMs` | number | `get` |  | [ClientOnly] Средняя задержка интерполяции в миллисекундах за последнюю секунду. |
 | `OutKBps` | number | `get` |  | [ClientOnly] Скорость исходящего трафика в килобайтах в секунду. |
 | `OutPacketLossPercent` | number | `get` |  | [ClientOnly] Процент потерь исходящих пакетов. |
-| `Ping` | int | `get` |  | [ClientOnly] Средний пинг в миллисекундах по последним измерениям RTT. |
+| `Ping` | int | `get` |  | [ClientOnly] Средний пинг в миллисекундах за последнюю секунду. |
+| `PingMax` | int | `get` |  | [ClientOnly] Максимальный пинг в миллисекундах за последнюю секунду. |
 | `RttSeconds` | number | `get` |  | [ClientOnly] Текущее RTT в секундах. |
-| `ServerTickTimeMs` | number | `get` |  | [ClientOnly] Время обработки одного серверного сетевого тика в миллисекундах. |
+| `ServerTickTimeMaxMs` | number | `get` |  | [ClientOnly] Максимальное время обработки серверного сетевого тика в миллисекундах за последнюю секунду. |
+| `ServerTickTimeMs` | number | `get` |  | [ClientOnly] Среднее время обработки серверного сетевого тика в миллисекундах за последнюю секунду. |
 | `TickTimeMs` | number | `get` |  | [ClientOnly] Время обработки одного сетевого тика в миллисекундах. |
 
 ## Performance

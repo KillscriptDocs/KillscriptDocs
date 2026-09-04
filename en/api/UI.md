@@ -7,19 +7,36 @@ API for creating advanced user interfaces. Provides access to Unity UI Toolkit.
 - [ArcDirection](#arcdirection)
 - [BackgroundPositionKeyword](#backgroundpositionkeyword)
 - [BackgroundSizeType](#backgroundsizetype)
+- [ButtonElement](#buttonelement)
+- [ColorFieldElement](#colorfieldelement)
 - [DisplayStyle](#displaystyle)
 - [DotViewElement](#dotviewelement)
+- [DropdownFieldElement](#dropdownfieldelement)
 - [ElementStyle](#elementstyle)
 - [FillRule](#fillrule)
+- [FloatFieldElement](#floatfieldelement)
+- [FoldoutElement](#foldoutelement)
 - [ImageElement](#imageelement)
+- [IntegerFieldElement](#integerfieldelement)
+- [KeyTipElement](#keytipelement)
+- [LabelElement](#labelelement)
 - [LineCap](#linecap)
 - [LineJoin](#linejoin)
+- [LocalizedLabelElement](#localizedlabelelement)
+- [MinMaxSliderElement](#minmaxsliderelement)
 - [PainterElement](#painterelement)
 - [PlayerRankDisplay](#playerrankdisplay)
-- [ScrollView](#scrollview)
+- [ProgressBarElement](#progressbarelement)
+- [RadioButtonElement](#radiobuttonelement)
+- [ScrollerElement](#scrollerelement)
+- [ScrollViewElement](#scrollviewelement)
+- [SliderDirection](#sliderdirection)
+- [SliderElement](#sliderelement)
+- [SliderIntElement](#sliderintelement)
 - [TextAnchor](#textanchor)
 - [TextElement](#textelement)
 - [TextFieldElement](#textfieldelement)
+- [ToggleElement](#toggleelement)
 - [Tweener](#tweener)
 - [UI](#ui)
 - [VisualElement](#visualelement)
@@ -58,6 +75,26 @@ API for creating advanced user interfaces. Provides access to Unity UI Toolkit.
 | `Cover` | `1` | [ClientOnly] |
 | `Auto` | `2` | [ClientOnly] |
 
+## ButtonElement
+
+[ClientOnly] Interactive button with a text label.
+
+**Base:** [TextElement](./UI.md#textelement)
+
+## ColorFieldElement
+
+[ClientOnly] An element for selecting a color.
+
+**Base:** [VisualElement](./UI.md#visualelement)
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `defaultValue` | Color | `get/set` |  | [ClientOnly] The color set when the reset button is pressed. |
+| `showResetButton` | bool | `get/set` |  | [ClientOnly] Whether the reset button is displayed. |
+| `value` | Color | `get/set` |  | [ClientOnly] Currently selected color. |
+
 ## DisplayStyle
 
 [ClientOnly]
@@ -69,7 +106,7 @@ API for creating advanced user interfaces. Provides access to Unity UI Toolkit.
 
 ## DotViewElement
 
-[ClientOnly]
+[ClientOnly] An indicator consisting of a sequence of dots with a currently selected value.
 
 **Base:** [VisualElement](./UI.md#visualelement)
 
@@ -91,6 +128,38 @@ DotViewElement:Reset()
 ```
 
 Reset
+
+## DropdownFieldElement
+
+[ClientOnly] A dropdown list for selecting one value.
+
+**Base:** [VisualElement](./UI.md#visualelement)
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `choices` | Array<string> | `get` |  | [ClientOnly] Available options in display order. |
+| `index` | int | `get/set` |  | [ClientOnly] Zero-based index of the selected option. |
+| `label` | string | `get/set` |  | [ClientOnly] Dropdown list label. |
+| `value` | string | `get/set` |  | [ClientOnly] Text of the selected option. |
+
+
+### Methods
+
+#### SetChoices
+
+```lua
+DropdownFieldElement:SetChoices(choices: LuaTable): bool
+```
+
+[ClientOnly] Replaces the options with a sequential list of strings from table. Up to 256 options are allowed. Preserves the selected value if it remains in the list, otherwise selects the first option. Returns true if the replacement succeeds.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `choices` | LuaTable |  |  |
+
+**Returns:** bool
 
 ## ElementStyle
 
@@ -140,9 +209,37 @@ Reset
 | `NonZero` | `0` | [ClientOnly] Non-zero fill rule. |
 | `OddEven` | `1` | [ClientOnly] Odd-even fill rule. |
 
+## FloatFieldElement
+
+[ClientOnly] A floating-point number input field.
+
+**Base:** [VisualElement](./UI.md#visualelement)
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `isDelayed` | bool | `get/set` |  | [ClientOnly] Whether the value is applied only after input is confirmed. |
+| `isReadOnly` | bool | `get/set` |  | [ClientOnly] Whether the field is read-only. |
+| `label` | string | `get/set` |  | [ClientOnly] Field label. |
+| `value` | number | `get/set` |  | [ClientOnly] Current floating-point value. |
+
+## FoldoutElement
+
+[ClientOnly] A collapsible group of elements.
+
+**Base:** [VisualElement](./UI.md#visualelement)
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `text` | string | `get/set` |  | [ClientOnly] Title text of the collapsible group. |
+| `value` | bool | `get/set` |  | [ClientOnly] Whether the group is expanded. |
+
 ## ImageElement
 
-[ClientOnly]
+[ClientOnly] An element for displaying an image from a texture or sprite.
 
 **Base:** [VisualElement](./UI.md#visualelement)
 
@@ -151,6 +248,53 @@ Reset
 | Name | Type | Access | Static | Comment |
 |---|---|---|:---:|---|
 | `texture` | [Texture](./Texture.md#texture) | `get/set` |  |  |
+
+## IntegerFieldElement
+
+[ClientOnly] An integer input field.
+
+**Base:** [VisualElement](./UI.md#visualelement)
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `isDelayed` | bool | `get/set` |  | [ClientOnly] Whether the value is applied only after input is confirmed. |
+| `isReadOnly` | bool | `get/set` |  | [ClientOnly] Whether the field is read-only. |
+| `label` | string | `get/set` |  | [ClientOnly] Field label. |
+| `value` | int | `get/set` |  | [ClientOnly] Current integer value. |
+
+## KeyTipElement
+
+[ClientOnly] A hint for an assigned key or input action.
+
+**Base:** [VisualElement](./UI.md#visualelement)
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `actionPath` | string | `get/set` |  | [ClientOnly] Path to an input action or key binding. |
+| `forceTextMode` | bool | `get/set` |  | [ClientOnly] Whether the key is always displayed as text instead of an icon. |
+| `prefix` | string | `get/set` |  | [ClientOnly] Text before the key name. |
+| `suffix` | string | `get/set` |  | [ClientOnly] Text after the key name. |
+
+
+### Methods
+
+#### Refresh
+
+```lua
+KeyTipElement:Refresh()
+```
+
+[ClientOnly] Refreshes the displayed key or input action.
+
+## LabelElement
+
+[ClientOnly] A text label.
+
+**Base:** [TextElement](./UI.md#textelement)
 
 ## LineCap
 
@@ -170,6 +314,28 @@ Reset
 | `Miter` | `0` | [ClientOnly] Mitered line join. |
 | `Round` | `1` | [ClientOnly] Rounded line join. |
 | `Bevel` | `2` | [ClientOnly] Beveled line join. |
+
+## LocalizedLabelElement
+
+[ClientOnly] A text label with localized content.
+
+**Base:** [TextElement](./UI.md#textelement)
+
+## MinMaxSliderElement
+
+[ClientOnly] A slider for selecting a range of floating-point values.
+
+**Base:** [VisualElement](./UI.md#visualelement)
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `highLimit` | number | `get/set` |  | [ClientOnly] Upper allowed range boundary. |
+| `label` | string | `get/set` |  | [ClientOnly] Slider label. |
+| `lowLimit` | number | `get/set` |  | [ClientOnly] Lower allowed range boundary. |
+| `maxValue` | number | `get/set` |  | [ClientOnly] Currently selected maximum value. |
+| `minValue` | number | `get/set` |  | [ClientOnly] Currently selected minimum value. |
 
 ## PainterElement
 
@@ -395,9 +561,52 @@ PlayerRankDisplay:Clear(cntAvatarRank: VisualElement, imgRank: VisualElement)
 | `cntAvatarRank` | [VisualElement](./UI.md#visualelement) |  |  |
 | `imgRank` | [VisualElement](./UI.md#visualelement) |  |  |
 
-## ScrollView
+## ProgressBarElement
 
-[ClientOnly]
+[ClientOnly] A progress indicator within a specified range.
+
+**Base:** [VisualElement](./UI.md#visualelement)
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `highValue` | number | `get/set` |  | [ClientOnly] Upper range boundary. |
+| `lowValue` | number | `get/set` |  | [ClientOnly] Lower range boundary. |
+| `title` | string | `get/set` |  | [ClientOnly] Indicator title. |
+| `value` | number | `get/set` |  | [ClientOnly] Current indicator value. |
+
+## RadioButtonElement
+
+[ClientOnly] A radio button for selecting one option.
+
+**Base:** [VisualElement](./UI.md#visualelement)
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `label` | string | `get/set` |  | [ClientOnly] Option label. |
+| `value` | bool | `get/set` |  | [ClientOnly] Whether the option is selected. |
+
+## ScrollerElement
+
+[ClientOnly] A scrollbar with a configurable range.
+
+**Base:** [VisualElement](./UI.md#visualelement)
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `direction` | [SliderDirection](./UI.md#sliderdirection) | `get/set` |  | [ClientOnly] Scrollbar direction. |
+| `highValue` | number | `get/set` |  | [ClientOnly] Upper range boundary. |
+| `lowValue` | number | `get/set` |  | [ClientOnly] Lower range boundary. |
+| `value` | number | `get/set` |  | [ClientOnly] Current scrollbar value. |
+
+## ScrollViewElement
+
+[ClientOnly] A scrollable area for content that extends beyond its bounds.
 
 **Base:** [VisualElement](./UI.md#visualelement)
 
@@ -406,7 +615,7 @@ PlayerRankDisplay:Clear(cntAvatarRank: VisualElement, imgRank: VisualElement)
 #### CanScrollByDelta
 
 ```lua
-ScrollView:CanScrollByDelta(deltaY: number): bool
+ScrollViewElement:CanScrollByDelta(deltaY: number): bool
 ```
 
 Checks whether the ScrollView can be scrolled by the specified mouse wheel delta.
@@ -420,19 +629,19 @@ Checks whether the ScrollView can be scrolled by the specified mouse wheel delta
 #### DisableAutoScroll
 
 ```lua
-ScrollView:DisableAutoScroll()
+ScrollViewElement:DisableAutoScroll()
 ```
 
 #### EnableAutoScroll
 
 ```lua
-ScrollView:EnableAutoScroll()
+ScrollViewElement:EnableAutoScroll()
 ```
 
 #### RefreshVerticalScrollerVisibility
 
 ```lua
-ScrollView:RefreshVerticalScrollerVisibility()
+ScrollViewElement:RefreshVerticalScrollerVisibility()
 ```
 
 Refreshes the visibility of the vertical scrollbar based on the actual content overflow.
@@ -440,7 +649,7 @@ Refreshes the visibility of the vertical scrollbar based on the actual content o
 #### ScrollByDelta
 
 ```lua
-ScrollView:ScrollByDelta(deltaY: number): bool
+ScrollViewElement:ScrollByDelta(deltaY: number): bool
 ```
 
 Scrolls the ScrollView by the specified mouse wheel delta. Returns true if scrolling was performed.
@@ -454,14 +663,61 @@ Scrolls the ScrollView by the specified mouse wheel delta. Returns true if scrol
 #### ScrollToBottom
 
 ```lua
-ScrollView:ScrollToBottom()
+ScrollViewElement:ScrollToBottom()
 ```
 
 #### ScrollToTop
 
 ```lua
-ScrollView:ScrollToTop()
+ScrollViewElement:ScrollToTop()
 ```
+
+## SliderDirection
+
+[ClientOnly] Direction in which the slider moves.
+
+| Name | Value | Comment |
+|---|---:|---|
+| `Horizontal` | `0` | [ClientOnly] Horizontal direction. |
+| `Vertical` | `1` | [ClientOnly] Vertical direction. |
+
+## SliderElement
+
+[ClientOnly] A slider for selecting a floating-point value.
+
+**Base:** [VisualElement](./UI.md#visualelement)
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `direction` | [SliderDirection](./UI.md#sliderdirection) | `get/set` |  | [ClientOnly] Direction in which the slider moves. |
+| `highValue` | number | `get/set` |  | [ClientOnly] Upper range boundary. |
+| `inverted` | bool | `get/set` |  | [ClientOnly] Whether the value direction is inverted. |
+| `label` | string | `get/set` |  | [ClientOnly] Slider label. |
+| `lowValue` | number | `get/set` |  | [ClientOnly] Lower range boundary. |
+| `pageSize` | number | `get/set` |  | [ClientOnly] Step size used when clicking the slider track. |
+| `showInputField` | bool | `get/set` |  | [ClientOnly] Whether the manual input field is displayed. |
+| `value` | number | `get/set` |  | [ClientOnly] Current slider value. |
+
+## SliderIntElement
+
+[ClientOnly] A slider for selecting an integer value.
+
+**Base:** [VisualElement](./UI.md#visualelement)
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `direction` | [SliderDirection](./UI.md#sliderdirection) | `get/set` |  | [ClientOnly] Direction in which the slider moves. |
+| `highValue` | int | `get/set` |  | [ClientOnly] Upper range boundary. |
+| `inverted` | bool | `get/set` |  | [ClientOnly] Whether the value direction is inverted. |
+| `label` | string | `get/set` |  | [ClientOnly] Slider label. |
+| `lowValue` | int | `get/set` |  | [ClientOnly] Lower range boundary. |
+| `pageSize` | number | `get/set` |  | [ClientOnly] Step size used when clicking the slider track. |
+| `showInputField` | bool | `get/set` |  | [ClientOnly] Whether the manual input field is displayed. |
+| `value` | int | `get/set` |  | [ClientOnly] Current slider value. |
 
 ## TextAnchor
 
@@ -481,7 +737,7 @@ ScrollView:ScrollToTop()
 
 ## TextElement
 
-[ClientOnly]
+[ClientOnly] Base element for displaying text.
 
 **Base:** [VisualElement](./UI.md#visualelement)
 
@@ -493,7 +749,7 @@ ScrollView:ScrollToTop()
 
 ## TextFieldElement
 
-[ClientOnly]
+[ClientOnly] A field for entering and editing text.
 
 **Base:** [VisualElement](./UI.md#visualelement)
 
@@ -525,6 +781,19 @@ TextFieldElement:OnInputAction(inputAction: InputAction, callback: LuaFunction)
 |---|---|:---:|---|
 | `inputAction` | [InputAction](./InputAction.md#inputaction) |  |  |
 | `callback` | LuaFunction |  |  |
+
+## ToggleElement
+
+[ClientOnly] A toggle for a boolean value.
+
+**Base:** [VisualElement](./UI.md#visualelement)
+
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `label` | string | `get/set` |  | [ClientOnly] Toggle label. |
+| `value` | bool | `get/set` |  | [ClientOnly] Current toggle state. |
 
 ## Tweener
 
@@ -971,7 +1240,7 @@ UI:ViewportToUiPoint(viewportPoint: Vector3): Vector2
 
 ## VisualElement
 
-[ClientOnly]
+[ClientOnly] Base visual user interface element.
 
 ### Properties
 

@@ -31,6 +31,30 @@ ImGui:AddImGuiWindow(id: string, title: string, rect: Rect): ImGuiWindow
 
 **Returns:** [ImGuiWindow](./ImGui.md#imguiwindow)
 
+#### ClearAlphaMask
+
+```lua
+ImGui:ClearAlphaMask()
+```
+
+[ClientOnly] Отключает альфа-маску для последующих команд отрисовки текущего кадра.
+
+#### DrawCircle
+
+```lua
+ImGui:DrawCircle(center: Vector2, radius: number, color: Color, thickness: number = ..., segments: int = ...)
+```
+
+[ClientOnly] Рисует контур окружности на экране. Толщина располагается по обе стороны от указанного радиуса.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `center` | Vector2 |  | Центр окружности в экранных координатах |
+| `radius` | number |  | Радиус окружности |
+| `color` | Color |  | Цвет окружности |
+| `thickness` | number | ✅ | Толщина линии |
+| `segments` | int | ✅ | Количество сегментов. Значение 0 подбирает количество автоматически, остальные значения ограничиваются диапазоном от 3 до 256 |
+
 #### DrawDebugText
 
 ```lua
@@ -42,6 +66,19 @@ ImGui:DrawDebugText(text: string)
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
 | `text` | string |  | Текст |
+
+#### DrawRect
+
+```lua
+ImGui:DrawRect(rect: Rect, color: Color)
+```
+
+[ClientOnly] Рисует заполненный прямоугольник на экране.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `rect` | Rect |  | Экранная область прямоугольника |
+| `color` | Color |  | Цвет прямоугольника |
 
 #### DrawText
 
@@ -118,11 +155,135 @@ ImGui:DrawTextureColor(texture: Texture, color: Color, rect: Rect? = ...)
 | `color` | Color |  | Цветовая маска, применяемая к текстуре |
 | `rect` | Rect? | ✅ | Экранная область, в которой будет отрисована текстура (Если nil, то используется вся доступная область) |
 
+#### DrawTextureRegion
+
+```lua
+ImGui:DrawTextureRegion(texture: Texture, color: Color, rect: Rect, uvRect: Rect)
+```
+
+[ClientOnly] Рисует область текстуры на экране. UV-область задаётся нормализованными координатами от левого верхнего угла текстуры.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `texture` | [Texture](./Texture.md#texture) |  | Текстура для отрисовки |
+| `color` | Color |  | Цветовая маска, применяемая к текстуре |
+| `rect` | Rect |  | Экранная область отрисовки |
+| `uvRect` | Rect |  | Нормализованная UV-область текстуры с началом координат в левом верхнем углу |
+
+#### PopMatrix
+
+```lua
+ImGui:PopMatrix()
+```
+
+[ClientOnly] Восстанавливает последнюю сохранённую матрицу преобразования. Если стек пуст, матрица не изменяется.
+
+#### PushMatrix
+
+```lua
+ImGui:PushMatrix()
+```
+
+[ClientOnly] Сохраняет текущую матрицу преобразования в стек. Глубина стека ограничена 32 уровнями.
+
+#### Rotate
+
+```lua
+ImGui:Rotate(angle: number)
+```
+
+[ClientOnly] Поворачивает систему координат по часовой стрелке для последующих команд отрисовки текущего кадра.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `angle` | number |  | Угол поворота в градусах |
+
+#### Scale
+
+```lua
+ImGui:Scale(scale: Vector2)
+```
+
+[ClientOnly] Масштабирует систему координат относительно её текущего начала для последующих команд отрисовки текущего кадра.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `scale` | Vector2 |  | Масштаб по осям X и Y |
+
+#### SetAlphaMask
+
+```lua
+ImGui:SetAlphaMask(texture: Texture, rect: Rect)
+```
+
+[ClientOnly] Устанавливает альфа-маску для последующих команд отрисовки текущего кадра. Вся текстура маски отображается в указанную экранную область, а за её пределами ничего не рисуется. Повторный вызов заменяет текущую маску.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `texture` | [Texture](./Texture.md#texture) |  | Текстура, альфа-канал которой используется как маска |
+| `rect` | Rect |  | Экранная область маски |
+
+#### Translate
+
+```lua
+ImGui:Translate(translation: Vector2)
+```
+
+[ClientOnly] Смещает систему координат для последующих команд отрисовки текущего кадра.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `translation` | Vector2 |  | Смещение в экранных координатах |
+
 ## ImGuiWindow
 
 [ClientOnly]
 
+### Properties
+
+| Name | Type | Access | Static | Comment |
+|---|---|---|:---:|---|
+| `ShouldClipContent` | bool | `get/set` |  | [ClientOnly] Указывает требуется ли обрезать всю отрисовку по границам окна. По умолчанию true. |
+
+
 ### Methods
+
+#### ClearAlphaMask
+
+```lua
+ImGuiWindow:ClearAlphaMask()
+```
+
+[ClientOnly] Отключает альфа-маску для последующих команд отрисовки текущего кадра.
+
+#### DrawCircle
+
+```lua
+ImGuiWindow:DrawCircle(center: Vector2, radius: number, color: Color, thickness: number = ..., segments: int = ...)
+```
+
+[ClientOnly] Рисует контур окружности внутри окна. Толщина располагается по обе стороны от указанного радиуса.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `center` | Vector2 |  | Центр окружности в координатах окна |
+| `radius` | number |  | Радиус окружности |
+| `color` | Color |  | Цвет окружности |
+| `thickness` | number | ✅ | Толщина линии |
+| `segments` | int | ✅ | Количество сегментов. Значение 0 подбирает количество автоматически, остальные значения ограничиваются диапазоном от 3 до 256 |
+
+#### DrawRect
+
+```lua
+ImGuiWindow:DrawRect(rect: Rect, color: Color)
+```
+
+[ClientOnly] Рисует заполненный прямоугольник внутри окна.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `rect` | Rect |  | Оконная область прямоугольника |
+| `color` | Color |  | Цвет прямоугольника |
 
 #### DrawText
 
@@ -167,6 +328,21 @@ ImGuiWindow:DrawTextureColor(texture: Texture, color: Color, rect: Rect? = ...)
 | `color` | Color |  | Цветовая маска, применяемая к текстуре |
 | `rect` | Rect? | ✅ | Оконная область, в которой будет отрисована текстура (Если nil, то используется вся доступная область) |
 
+#### DrawTextureRegion
+
+```lua
+ImGuiWindow:DrawTextureRegion(texture: Texture, color: Color, rect: Rect, uvRect: Rect)
+```
+
+[ClientOnly] Рисует область текстуры внутри окна. UV-область задаётся нормализованными координатами от левого верхнего угла текстуры.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `texture` | [Texture](./Texture.md#texture) |  | Текстура для отрисовки |
+| `color` | Color |  | Цветовая маска, применяемая к текстуре |
+| `rect` | Rect |  | Область отрисовки внутри окна |
+| `uvRect` | Rect |  | Нормализованная UV-область текстуры с началом координат в левом верхнем углу |
+
 #### GetContentRenderSize
 
 ```lua
@@ -176,6 +352,59 @@ ImGuiWindow:GetContentRenderSize(): Vector2
 [ClientOnly] Возвращает фактический размер области окна на экране в пикселях с учетом масштаба UI и масштаба плавающего окна.
 
 **Returns:** Vector2
+
+#### PopMatrix
+
+```lua
+ImGuiWindow:PopMatrix()
+```
+
+[ClientOnly] Восстанавливает последнюю сохранённую матрицу преобразования окна. Если стек пуст, матрица не изменяется.
+
+#### PushMatrix
+
+```lua
+ImGuiWindow:PushMatrix()
+```
+
+[ClientOnly] Сохраняет текущую матрицу преобразования окна в стек. Глубина стека ограничена 32 уровнями.
+
+#### Rotate
+
+```lua
+ImGuiWindow:Rotate(angle: number)
+```
+
+[ClientOnly] Поворачивает систему координат окна по часовой стрелке для последующих команд отрисовки текущего кадра.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `angle` | number |  | Угол поворота в градусах |
+
+#### Scale
+
+```lua
+ImGuiWindow:Scale(scale: Vector2)
+```
+
+[ClientOnly] Масштабирует систему координат окна относительно её текущего начала для последующих команд отрисовки текущего кадра.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `scale` | Vector2 |  | Масштаб по осям X и Y |
+
+#### SetAlphaMask
+
+```lua
+ImGuiWindow:SetAlphaMask(texture: Texture, rect: Rect)
+```
+
+[ClientOnly] Устанавливает альфа-маску для последующих команд отрисовки текущего кадра. Вся текстура маски отображается в указанную область окна, а за её пределами ничего не рисуется. Повторный вызов заменяет текущую маску.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `texture` | [Texture](./Texture.md#texture) |  | Текстура, альфа-канал которой используется как маска |
+| `rect` | Rect |  | Область маски в координатах окна |
 
 #### SetVisibilityTypes
 
@@ -190,4 +419,16 @@ ImGuiWindow:SetVisibilityTypes(visibilityTypes: LuaTable): bool
 | `visibilityTypes` | LuaTable |  |  |
 
 **Returns:** bool
+
+#### Translate
+
+```lua
+ImGuiWindow:Translate(translation: Vector2)
+```
+
+[ClientOnly] Смещает систему координат окна для последующих команд отрисовки текущего кадра.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `translation` | Vector2 |  | Смещение в координатах окна |
 

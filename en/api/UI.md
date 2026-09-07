@@ -163,7 +163,7 @@ DropdownFieldElement:SetChoices(choices: LuaTable): bool
 
 ## ElementStyle
 
-[ClientOnly]
+[ClientOnly] Visual element styles.
 
 ### Properties
 

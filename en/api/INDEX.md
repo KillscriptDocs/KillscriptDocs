@@ -177,6 +177,9 @@
 
 ### Network
 
+- [Connection](./Network.md#connection)
+- [ConnectionMessageEvent](./Network.md#connectionmessageevent)
+- [ConnectionScope](./Network.md#connectionscope)
 - [Network](./Network.md#network)
 
 ### Notification

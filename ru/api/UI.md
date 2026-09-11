@@ -757,17 +757,12 @@ ScrollViewElement:ScrollToTop()
 
 | Name | Type | Access | Static | Comment |
 |---|---|---|:---:|---|
-| `IsFocused` | bool | `get` |  |  |
-| `value` | string | `get/set` |  |  |
+| `isReadOnly` | bool | `get/set` |  | Определяет, запрещено ли редактирование поля. |
+| `maxLength` | int | `get/set` |  | Максимальное количество символов в поле. Значение -1 снимает ограничение. |
+| `value` | string | `get/set` |  | Текущее значение поля. |
 
 
 ### Methods
-
-#### Focus
-
-```lua
-TextFieldElement:Focus()
-```
 
 #### OnInputAction
 
@@ -1246,6 +1241,7 @@ UI:ViewportToUiPoint(viewportPoint: Vector3): Vector2
 
 | Name | Type | Access | Static | Comment |
 |---|---|---|:---:|---|
+| `IsFocused` | bool | `get` |  | true, если элемент находится в фокусе. |
 | `childCount` | int | `get` |  |  |
 | `hasChildren` | bool | `get` |  |  |
 | `height` | number | `get` |  |  |
@@ -1312,6 +1308,14 @@ VisualElement:EnableMouseEvents()
 ```
 
 Включает обработку событий мыши и указателя для элемента, устанавливая pickingMode в Position.
+
+#### Focus
+
+```lua
+VisualElement:Focus()
+```
+
+Переводит фокус на элемент.
 
 #### GetChild
 

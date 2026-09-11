@@ -757,17 +757,12 @@ ScrollViewElement:ScrollToTop()
 
 | Name | Type | Access | Static | Comment |
 |---|---|---|:---:|---|
-| `IsFocused` | bool | `get` |  |  |
-| `value` | string | `get/set` |  |  |
+| `isReadOnly` | bool | `get/set` |  | Whether the field is read-only. |
+| `maxLength` | int | `get/set` |  | The maximum number of characters in the field. A value of -1 removes the limit. |
+| `value` | string | `get/set` |  | The current field value. |
 
 
 ### Methods
-
-#### Focus
-
-```lua
-TextFieldElement:Focus()
-```
 
 #### OnInputAction
 
@@ -1246,6 +1241,7 @@ UI:ViewportToUiPoint(viewportPoint: Vector3): Vector2
 
 | Name | Type | Access | Static | Comment |
 |---|---|---|:---:|---|
+| `IsFocused` | bool | `get` |  | true if the element is focused. |
 | `childCount` | int | `get` |  |  |
 | `hasChildren` | bool | `get` |  |  |
 | `height` | number | `get` |  |  |
@@ -1312,6 +1308,14 @@ VisualElement:EnableMouseEvents()
 ```
 
 Make this element receive mouse/pointer events (sets pickingMode to Position).
+
+#### Focus
+
+```lua
+VisualElement:Focus()
+```
+
+Focuses the element.
 
 #### GetChild
 

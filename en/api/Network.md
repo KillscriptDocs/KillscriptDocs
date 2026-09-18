@@ -40,7 +40,7 @@ Closes the connection and unsubscribes it. Subsequent calls do nothing.
 Connection:Send(data: LuaTable): bool
 ```
 
-Sends a table according to the connection scope. The table can be up to 16384 bytes, and the total per-player limit is 8 messages and 16384 bytes per tick. Returns false if the connection is closed, a limit has been reached, or sending is unavailable.
+Sends a table according to the connection scope. The table can be up to 16384 bytes, and the total per-player limit is 8 messages and 16384 bytes per tick. Returns false if the connection is closed, the queue limit has been reached, or sending is unavailable.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|

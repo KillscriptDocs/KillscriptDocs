@@ -415,15 +415,3 @@ WeaponPreview.GetWeaponPreview(weaponName: string): Texture
 
 **Returns:** [Texture](./Texture.md#texture)
 
-#### RemoveFromCache
-
-```lua
-WeaponPreview.RemoveFromCache(weaponName: string)
-```
-
-[ClientOnly] Removes the preview for a specific weapon from the cache.
-
-| Param | Type | Optional | Comment |
-|---|---|:---:|---|
-| `weaponName` | string |  |  |
-

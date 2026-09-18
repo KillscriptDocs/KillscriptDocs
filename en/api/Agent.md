@@ -619,6 +619,7 @@ Hit type.
 | `PowerShell` | `15` |  |
 | `DropItem` | `16` |  |
 | `Interact` | `17` |  |
+| `AimDownSights` | `18` |  |
 
 ## Health
 

@@ -51,10 +51,14 @@ Entity of an item lying on the ground.
 #### PickUp
 
 ```lua
-Drop:PickUp()
+Drop:PickUp(switchToNewItem: bool = ...)
 ```
 
-[ClientOnly] Picks up the dropped item.
+[ClientOnly] Picks up the dropped item. Only items dropped by teammates can be picked up. In Defusal mode, the buy menu must be available.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `switchToNewItem` | bool | ✅ | true to switch to the item after picking it up, false to only add it to the inventory. Default: true. |
 
 ## Drops
 
@@ -120,11 +124,11 @@ Firearm as an inventory item.
 | Name | Type | Access | Static | Comment |
 |---|---|---|:---:|---|
 | `ClipAmmo` | int | `get` |  | Amount of ammo in the magazine. |
-| `Config` | [ConfigItemFirearm](./GameConfig.md#configitemfirearm) | `get` |  | Firearm configuration. Returns nil if the configuration is unavailable. |
-| `Dispersion` | number | `get` |  | Full weapon spread taking the current state and configuration into account. |
+| `Config` | [ConfigItemFirearm](./GameConfig.md#configitemfirearm) | `get/set` |  | Firearm configuration. Returns nil if the configuration is unavailable. |
+| `Dispersion` | number | `get` |  | Full weapon spread taking the current state and configuration into account. Returns 0 if the weapon is not currently held. |
 | `HasAmmo` | bool | `get` |  | Returns true if there is ammo in the magazine or reserve. |
-| `IsReloading` | bool | `get` |  | Returns true if the weapon is reloading. |
-| `ReloadProgress` | number | `get` |  | Reload progress from 0 to 1. |
+| `IsReloading` | bool | `get` |  | Returns true if the weapon is currently held and reloading. |
+| `ReloadProgress` | number | `get` |  | Reload progress from 0 to 1 for a weapon that is currently held. Returns 0 if the weapon is not currently held. |
 | `RemainingAmmo` | int | `get` |  | Amount of reserve ammo. |
 
 
@@ -146,7 +150,7 @@ FirearmItem:GetPredictedHits(): Array<Array<HitscanHit>>
 FirearmItem:HitscanFirearm(firePosition: Vector3, projectileDirection: Vector3): Array<HitscanHit>
 ```
 
-Simulates a shot from the specified position in the specified direction and returns a list of hits, taking penetrations into account.
+Simulates a shot from the specified position in the specified direction and returns a list of hits, taking penetrations into account. On the client, the array is reused by the module until the next HitscanFirearm call for any weapon in that module. To retain the hits, copy them into a Lua table.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
@@ -181,17 +185,17 @@ Base object for all items.
 | `AsFirearmItem` | [FirearmItem](./Item.md#firearmitem) | `get` |  | Returns the item as FirearmItem, or nil if it is a different item type. |
 | `AsMeleeItem` | [MeleeItem](./Item.md#meleeitem) | `get` |  | Returns the item as MeleeItem, or nil if it is a different item type. |
 | `AsThrowableItem` | [ThrowableItem](./Item.md#throwableitem) | `get` |  | Returns the item as ThrowableItem, or nil if it is a different item type. |
-| `ConfigItem` | [ConfigItem](./GameConfig.md#configitem) | `get` |  | Item configuration. Returns nil if the configuration is unavailable. |
-| `Icon` | [Texture](./Texture.md#texture) | `get` |  | Full-resolution item icon. Returns nil if the item has no icon or the item object is no longer available. |
-| `IconSmall` | [Texture](./Texture.md#texture) | `get` |  | Small item icon with reduced detail. Returns nil if the item has no such icon or the item object is no longer available. |
+| `ConfigItem` | [ConfigItem](./GameConfig.md#configitem) | `get/set` |  | Item configuration. Returns nil if the configuration is unavailable. |
+| `Icon` | [Texture](./Texture.md#texture) | `get/set` |  | Full-resolution item icon. Returns nil if the item has no icon. |
+| `IconSmall` | [Texture](./Texture.md#texture) | `get/set` |  | Small item icon with reduced detail. Returns nil if the item has no such icon. |
 | `IsBridgeCharge` | bool | `get` |  | true if the item is a BridgeCharge. |
 | `IsDropped` | bool | `get` |  | true if the item has no owner. |
 | `IsFirearm` | bool | `get` |  | true if the item is a firearm. |
 | `IsMelee` | bool | `get` |  | true if the item is a melee weapon. |
 | `IsThrowable` | bool | `get` |  | true if the item is throwable. |
-| `IsVisible` | bool | `get` |  | true if the item is visible to the local team. When it is not visible, all members except Name, ItemSlot, ConfigItem return undefined values. |
-| `ItemSlot` | [EItemSlot](./Item.md#eitemslot) | `get` |  | Inventory slot defined by the item's configuration. |
-| `Name` | string | `get` |  | Item name from the configuration. |
+| `IsVisible` | bool | `get` |  | true if the item is visible to the local team. When the item is not visible, dynamic members return undefined values, while static type and configuration data remain available. |
+| `ItemSlot` | [EItemSlot](./Item.md#eitemslot) | `get/set` |  | Inventory slot defined by the item's configuration. |
+| `Name` | string | `get/set` |  | Item name from the configuration. |
 | `Position` | Vector3 | `get` |  | Position of the agent holding the item, or the position of the dropped item. |
 
 ## Items
@@ -230,7 +234,7 @@ Melee weapon as an inventory item.
 
 | Name | Type | Access | Static | Comment |
 |---|---|---|:---:|---|
-| `Config` | [ConfigItemMelee](./GameConfig.md#configitemmelee) | `get` |  | Melee weapon configuration. Returns nil if the configuration is unavailable. |
+| `Config` | [ConfigItemMelee](./GameConfig.md#configitemmelee) | `get/set` |  | Melee weapon configuration. Returns nil if the configuration is unavailable. |
 
 
 ### Methods
@@ -261,7 +265,7 @@ Throwable item (grenade) as an inventory item.
 
 | Name | Type | Access | Static | Comment |
 |---|---|---|:---:|---|
-| `Config` | [ConfigItemThrowable](./GameConfig.md#configitemthrowable) | `get` |  | Throwable item configuration. Returns nil if the configuration is unavailable. |
+| `Config` | [ConfigItemThrowable](./GameConfig.md#configitemthrowable) | `get/set` |  | Throwable item configuration. Returns nil if the configuration is unavailable. |
 | `ThrowState` | [EThrowState](./Item.md#ethrowstate) | `get` |  | Current throw state. |
 
 
@@ -273,7 +277,7 @@ Throwable item (grenade) as an inventory item.
 ThrowableItem:SimulateThrowTrajectory(throwState: EThrowState): Array<Vector3>
 ```
 
-[ClientOnly] Returns the simulated throw trajectory for the owner's current rotation and position.
+[ClientOnly] Returns the simulated throw trajectory for the owner's current rotation and position. The array is reused by the entire module: its contents are valid only until the next SimulateTrajectory or SimulateThrowTrajectory call on any object in the same module, even if that call returns an empty array. To retain the points, copy them into a Lua table before the next call. Calls from other modules, scene state capture, and object retirement do not modify the returned array.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|

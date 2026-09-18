@@ -226,7 +226,7 @@ PlantedBridgeCharges:GetPlanted(): Array<PlantedBridgeCharge>
 ThrownProjectile:SimulateTrajectory(): Array<Vector3>
 ```
 
-[ClientOnly] Возвращает рассчитанную траекторию полета.
+[ClientOnly] Возвращает рассчитанную траекторию полета. Массив переиспользуется всем модулем: его содержимое действительно только до следующего вызова SimulateTrajectory или SimulateThrowTrajectory для любого объекта в этом же модуле, даже если вызов вернет пустой массив. Для сохранения скопируйте точки в Lua-таблицу до следующего вызова. Вызовы других модулей, обновление состояния сцены и удаление объекта не изменяют возвращенный массив.
 
 **Returns:** Array<Vector3>
 

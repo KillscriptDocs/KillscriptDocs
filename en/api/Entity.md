@@ -226,7 +226,7 @@ Thrown item in flight, such as a grenade.
 ThrownProjectile:SimulateTrajectory(): Array<Vector3>
 ```
 
-[ClientOnly] Returns the calculated flight trajectory.
+[ClientOnly] Returns the calculated flight trajectory. The array is reused by the entire module: its contents are valid only until the next SimulateTrajectory or SimulateThrowTrajectory call on any object in the same module, even if that call returns an empty array. To retain the points, copy them into a Lua table before the next call. Calls from other modules, scene state capture, and object retirement do not modify the returned array.
 
 **Returns:** Array<Vector3>
 

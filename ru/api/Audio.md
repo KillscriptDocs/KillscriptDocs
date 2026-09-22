@@ -162,7 +162,7 @@ VoiceChat:IsSpeaking(agent: Agent): bool
 VoiceChat:SetMuted(agent: Agent, muted: bool): bool
 ```
 
-[ClientOnly] Локально заглушает или разглушает агента в текущей голосовой комнате. Возвращает true, если запрос отправлен.
+[ClientOnly] Локально заглушает или разглушает агента в текущей голосовой комнате. Возвращает true, если запрос принят.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
@@ -177,7 +177,7 @@ VoiceChat:SetMuted(agent: Agent, muted: bool): bool
 VoiceChat:ToggleMuted(agent: Agent): bool
 ```
 
-[ClientOnly] Переключает локальное заглушение агента в текущей голосовой комнате. Возвращает true, если запрос отправлен.
+[ClientOnly] Переключает локальное заглушение агента в текущей голосовой комнате. Возвращает true, если запрос принят.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|

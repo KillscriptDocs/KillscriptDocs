@@ -22,6 +22,7 @@ Camera API. Allows creating additional custom cameras.
 | `Aspect` | number | `get/set` |  | [ClientOnly] Aspect ratio. |
 | `FarClipPlane` | number | `get/set` |  | [ClientOnly] Far clipping plane. |
 | `Fov` | number | `get/set` |  | [ClientOnly] Field of view (FOV). |
+| `IsActive` | bool | `get` |  | [ClientOnly] true if the camera object is active. |
 | `IsMainCamera` | bool | `get` |  | [ClientOnly] true if this is the scene's main camera. |
 | `IsOrthographic` | bool | `get/set` |  | [ClientOnly] Orthographic projection mode. |
 | `NearClipPlane` | number | `get/set` |  | [ClientOnly] Near clipping plane. |

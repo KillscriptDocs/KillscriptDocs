@@ -51,10 +51,14 @@ BridgeCharge как предмет инвентаря.
 #### PickUp
 
 ```lua
-Drop:PickUp()
+Drop:PickUp(switchToNewItem: bool = ...)
 ```
 
-[ClientOnly] Подбирает выброшенный предмет.
+[ClientOnly] Подбирает выброшенный предмет. Разрешен подбор только предметов, выброшенных союзниками. В режиме Defusal требуется доступность меню покупки.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `switchToNewItem` | bool | ✅ | true, чтобы после подбора взять предмет в руки; false, чтобы только добавить его в инвентарь. Значение по умолчанию: true. |
 
 ## Drops
 
@@ -120,11 +124,11 @@ Drops:GetNearby(): Array<Drop>
 | Name | Type | Access | Static | Comment |
 |---|---|---|:---:|---|
 | `ClipAmmo` | int | `get` |  | Количество патронов в магазине. |
-| `Config` | [ConfigItemFirearm](./GameConfig.md#configitemfirearm) | `get` |  | Конфигурация огнестрельного оружия. Возвращает nil, если конфигурация недоступна. |
-| `Dispersion` | number | `get` |  | Полный разброс оружия с учетом текущего состояния и конфигурации. |
+| `Config` | [ConfigItemFirearm](./GameConfig.md#configitemfirearm) | `get/set` |  | Конфигурация огнестрельного оружия. Возвращает nil, если конфигурация недоступна. |
+| `Dispersion` | number | `get` |  | Полный разброс оружия с учетом текущего состояния и конфигурации. Для оружия не в руках возвращает 0. |
 | `HasAmmo` | bool | `get` |  | Возвращает true, если в магазине или в запасе есть патроны. |
-| `IsReloading` | bool | `get` |  | Возвращает true, если оружие перезаряжается. |
-| `ReloadProgress` | number | `get` |  | Прогресс перезарядки от 0 до 1. |
+| `IsReloading` | bool | `get` |  | Возвращает true, если оружие в руках и перезаряжается. |
+| `ReloadProgress` | number | `get` |  | Прогресс перезарядки оружия в руках от 0 до 1. Для оружия не в руках возвращает 0. |
 | `RemainingAmmo` | int | `get` |  | Количество патронов в запасе. |
 
 
@@ -146,7 +150,7 @@ FirearmItem:GetPredictedHits(): Array<Array<HitscanHit>>
 FirearmItem:HitscanFirearm(firePosition: Vector3, projectileDirection: Vector3): Array<HitscanHit>
 ```
 
-Проводит симуляцию выстрела из указанной позиции в указанном направлении и возвращает список попаданий с учетом прострелов.
+Проводит симуляцию выстрела из указанной позиции в указанном направлении и возвращает список попаданий с учетом прострелов. На клиенте массив переиспользуется модулем до следующего вызова HitscanFirearm для любого оружия в этом модуле. Для сохранения скопируйте попадания в Lua-таблицу.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
@@ -181,17 +185,17 @@ FirearmItem:HitscanFirearm(firePosition: Vector3, projectileDirection: Vector3):
 | `AsFirearmItem` | [FirearmItem](./Item.md#firearmitem) | `get` |  | Возвращает предмет как FirearmItem или nil, если это предмет другого типа. |
 | `AsMeleeItem` | [MeleeItem](./Item.md#meleeitem) | `get` |  | Возвращает предмет как MeleeItem или nil, если это предмет другого типа. |
 | `AsThrowableItem` | [ThrowableItem](./Item.md#throwableitem) | `get` |  | Возвращает предмет как ThrowableItem или nil, если это предмет другого типа. |
-| `ConfigItem` | [ConfigItem](./GameConfig.md#configitem) | `get` |  | Конфигурация предмета. Возвращает nil, если конфигурация недоступна. |
-| `Icon` | [Texture](./Texture.md#texture) | `get` |  | Иконка предмета в полном разрешении. Возвращает nil, если у предмета нет иконки или объект предмета уже недоступен. |
-| `IconSmall` | [Texture](./Texture.md#texture) | `get` |  | Маленькая иконка предмета с уменьшенной детализацией. Возвращает nil, если у предмета нет такой иконки или объект предмета уже недоступен. |
+| `ConfigItem` | [ConfigItem](./GameConfig.md#configitem) | `get/set` |  | Конфигурация предмета. Возвращает nil, если конфигурация недоступна. |
+| `Icon` | [Texture](./Texture.md#texture) | `get/set` |  | Иконка предмета в полном разрешении. Возвращает nil, если у предмета нет иконки. |
+| `IconSmall` | [Texture](./Texture.md#texture) | `get/set` |  | Маленькая иконка предмета с уменьшенной детализацией. Возвращает nil, если у предмета нет такой иконки. |
 | `IsBridgeCharge` | bool | `get` |  | true, если предмет — BridgeCharge. |
 | `IsDropped` | bool | `get` |  | true, если у предмета нет владельца. |
 | `IsFirearm` | bool | `get` |  | true, если предмет — огнестрельное оружие. |
 | `IsMelee` | bool | `get` |  | true, если предмет — оружие ближнего боя. |
 | `IsThrowable` | bool | `get` |  | true, если предмет — метательный. |
-| `IsVisible` | bool | `get` |  | true, если предмет видим для локальной команды. Когда предмет не виден, все его члены, кроме Name, ItemSlot, ConfigItem, возвращают неопределённые значения. |
-| `ItemSlot` | [EItemSlot](./Item.md#eitemslot) | `get` |  | Слот инвентаря, в который кладется предмет из конфигурации. |
-| `Name` | string | `get` |  | Название предмета из конфигурации. |
+| `IsVisible` | bool | `get` |  | true, если предмет видим для локальной команды. Когда предмет не виден, динамические члены возвращают неопределённые значения, а статичные данные типа и конфигурации остаются доступными. |
+| `ItemSlot` | [EItemSlot](./Item.md#eitemslot) | `get/set` |  | Слот инвентаря, в который кладется предмет из конфигурации. |
+| `Name` | string | `get/set` |  | Название предмета из конфигурации. |
 | `Position` | Vector3 | `get` |  | Позиция агента, у которого находится предмет, либо позиция выброшенного предмета. |
 
 ## Items
@@ -230,7 +234,7 @@ Items:GetAllBridgeCharges(): Array<BridgeChargeItem>
 
 | Name | Type | Access | Static | Comment |
 |---|---|---|:---:|---|
-| `Config` | [ConfigItemMelee](./GameConfig.md#configitemmelee) | `get` |  | Конфигурация холодного оружия. Возвращает nil, если конфигурация недоступна. |
+| `Config` | [ConfigItemMelee](./GameConfig.md#configitemmelee) | `get/set` |  | Конфигурация холодного оружия. Возвращает nil, если конфигурация недоступна. |
 
 
 ### Methods
@@ -261,7 +265,7 @@ MeleeItem:HitscanMelee(firePosition: Vector3, direction: Vector3, distance: numb
 
 | Name | Type | Access | Static | Comment |
 |---|---|---|:---:|---|
-| `Config` | [ConfigItemThrowable](./GameConfig.md#configitemthrowable) | `get` |  | Конфигурация метательного предмета. Возвращает nil, если конфигурация недоступна. |
+| `Config` | [ConfigItemThrowable](./GameConfig.md#configitemthrowable) | `get/set` |  | Конфигурация метательного предмета. Возвращает nil, если конфигурация недоступна. |
 | `ThrowState` | [EThrowState](./Item.md#ethrowstate) | `get` |  | Текущее состояние броска. |
 
 
@@ -273,7 +277,7 @@ MeleeItem:HitscanMelee(firePosition: Vector3, direction: Vector3, distance: numb
 ThrowableItem:SimulateThrowTrajectory(throwState: EThrowState): Array<Vector3>
 ```
 
-[ClientOnly] Возвращает симулированную траекторию броска для текущего поворота и позиции владельца.
+[ClientOnly] Возвращает симулированную траекторию броска для текущего поворота и позиции владельца. Массив переиспользуется всем модулем: его содержимое действительно только до следующего вызова SimulateTrajectory или SimulateThrowTrajectory для любого объекта в этом же модуле, даже если вызов вернет пустой массив. Для сохранения скопируйте точки в Lua-таблицу до следующего вызова. Вызовы других модулей, обновление состояния сцены и удаление объекта не изменяют возвращенный массив.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|

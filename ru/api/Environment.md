@@ -98,6 +98,6 @@ MapInfo:GetZones(position: Vector3): Array<string>
 
 | Name | Type | Access | Static | Comment |
 |---|---|---|:---:|---|
-| `Height` | number | `get` |  | [ClientOnly] Высота экрана в пикселях. |
-| `Width` | number | `get` |  | [ClientOnly] Ширина экрана в пикселях. |
+| `Height` | number | `get` |  | [ClientOnly] Высота экрана в пикселях используемая для отрисовки. |
+| `Width` | number | `get` |  | [ClientOnly] Ширина экрана в пикселях используемая для отрисовки. |
 

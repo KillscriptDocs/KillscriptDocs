@@ -22,6 +22,7 @@ API камеры. Позволяет создавать дополнительн
 | `Aspect` | number | `get/set` |  | [ClientOnly] Соотношение сторон (aspect). |
 | `FarClipPlane` | number | `get/set` |  | [ClientOnly] Дальняя плоскость отсечения. |
 | `Fov` | number | `get/set` |  | [ClientOnly] Угол обзора (FOV). |
+| `IsActive` | bool | `get` |  | [ClientOnly] true, если объект камеры активен. |
 | `IsMainCamera` | bool | `get` |  | [ClientOnly] true, если это главная камера сцены. |
 | `IsOrthographic` | bool | `get/set` |  | [ClientOnly] Режим ортографической проекции. |
 | `NearClipPlane` | number | `get/set` |  | [ClientOnly] Ближняя плоскость отсечения. |

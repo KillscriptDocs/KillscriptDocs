@@ -98,6 +98,6 @@ Returns the list of zones at the specified position.
 
 | Name | Type | Access | Static | Comment |
 |---|---|---|:---:|---|
-| `Height` | number | `get` |  | [ClientOnly] Screen height in pixels. |
-| `Width` | number | `get` |  | [ClientOnly] Screen width in pixels. |
+| `Height` | number | `get` |  | [ClientOnly] Screen height in pixels used for rendering. |
+| `Width` | number | `get` |  | [ClientOnly] Screen width in pixels used for rendering. |
 

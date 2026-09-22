@@ -619,6 +619,7 @@ Aim:SetAimTarget(targetPosition: Vector3, agent: Agent)
 | `PowerShell` | `15` |  |
 | `DropItem` | `16` |  |
 | `Interact` | `17` |  |
+| `AimDownSights` | `18` |  |
 
 ## Health
 
@@ -645,7 +646,7 @@ Aim:SetAimTarget(targetPosition: Vector3, agent: Agent)
 | `BodyPart` | [EHitboxBodyPart](./Agent.md#ehitboxbodypart) | `get` |  | Часть тела, к которой относится хитбокс. |
 | `IsBox` | bool | `get` |  | true, если хитбокс имеет кубоидную форму. |
 | `IsSphere` | bool | `get` |  | true, если хитбокс имеет сферическую форму. |
-| `IsVisible` | bool | `get` |  | true, если агент с этим хитбоксом видим для локальной команды. Когда агент не виден, все его члены возвращают неопределённые значения. |
+| `IsVisible` | bool | `get` |  | true, если агент с этим хитбоксом видим для локальной команды. Когда агент не виден, все члены хитбокса возвращают неопределённые значения. |
 | `Position` | Vector3 | `get` |  | Позиция центра хитбокса. |
 | `Radius` | number | `get` |  | Радиус сферического хитбокса. |
 | `Rotation` | Quaternion | `get` |  | Поворот хитбокса в мире. |

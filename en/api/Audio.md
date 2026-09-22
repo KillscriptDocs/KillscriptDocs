@@ -162,7 +162,7 @@ VoiceChat:IsSpeaking(agent: Agent): bool
 VoiceChat:SetMuted(agent: Agent, muted: bool): bool
 ```
 
-[ClientOnly] Locally mutes or unmutes the agent in the current voice room. Returns true if the request was sent.
+[ClientOnly] Locally mutes or unmutes the agent in the current voice room. Returns true if the request was accepted.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
@@ -177,7 +177,7 @@ VoiceChat:SetMuted(agent: Agent, muted: bool): bool
 VoiceChat:ToggleMuted(agent: Agent): bool
 ```
 
-[ClientOnly] Toggles local muting for the agent in the current voice room. Returns true if the request was sent.
+[ClientOnly] Toggles local muting for the agent in the current voice room. Returns true if the request was accepted.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|

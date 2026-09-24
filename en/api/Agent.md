@@ -51,7 +51,7 @@ Represents an agent in the game. This class provides access to various propertie
 | `Health` | [Health](./Agent.md#health) | `get` |  | Access to the agent health API. |
 | `Interactor` | [Interactor](./Agent.md#interactor) | `get` |  | Access to the agent interaction API. |
 | `Inventory` | [Inventory](./Agent.md#inventory) | `get` |  | Access to the agent inventory API. |
-| `IsBot` | bool | `get` |  | true if the agent slot belongs to a bot, even if it is temporarily controlled by a player. |
+| `IsBot` | bool | `get` |  | true if the agent slot belongs to an explicit bot, even if it is temporarily controlled by a player. |
 | `IsSpectated` | bool | `get` |  | [ClientOnly] true if this agent is being spectated (when the local agent is dead or in spectator mode). |
 | `Movement` | [Movement](./Agent.md#movement) | `get` |  | Access to the agent movement API. |
 | `Nickname` | string | `get` |  | The agent's display name. |
@@ -527,7 +527,7 @@ Aim:ResetAimTarget()
 Aim:SetAimTarget(targetPosition: Vector3, agent: Agent)
 ```
 
-[ServerOnly] [LocalAgent] Sets the aim target and position. If the target is not visible to the local agent's team, the current target is reset.
+[ServerOnly] [LocalAgent] Sets the aim target and position.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|

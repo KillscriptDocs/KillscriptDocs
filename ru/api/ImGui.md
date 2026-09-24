@@ -5,6 +5,7 @@ API простого Immediate-mode графического интерфейс�
 ## Contents
 
 - [ImGui](#imgui)
+- [ImGuiFont](#imguifont)
 - [ImGuiWindow](#imguiwindow)
 
 ---
@@ -67,6 +68,36 @@ ImGui:DrawDebugText(text: string)
 |---|---|:---:|---|
 | `text` | string |  | Текст |
 
+#### DrawKeyTip
+
+```lua
+ImGui:DrawKeyTip(inputAction: InputAction, rect: Rect, fontSize: number = ..., color: Color? = ...)
+```
+
+[ClientOnly] Рисует подсказку клавиши для действия ввода на экране.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `inputAction` | [InputAction](./InputAction.md#inputaction) |  | Действие ввода, назначенная клавиша которого будет отображена |
+| `rect` | Rect |  | Экранная область подсказки |
+| `fontSize` | number | ✅ | Размер шрифта |
+| `color` | Color? | ✅ | Цвет фона подсказки |
+
+#### DrawLine
+
+```lua
+ImGui:DrawLine(pos1: Vector2, pos2: Vector2, color: Color, thickness: number = ...)
+```
+
+[ClientOnly] Рисует линию между двумя точками на экране.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `pos1` | Vector2 |  | Начало линии в экранных координатах |
+| `pos2` | Vector2 |  | Конец линии в экранных координатах |
+| `color` | Color |  | Цвет линии |
+| `thickness` | number | ✅ | Толщина линии |
+
 #### DrawRect
 
 ```lua
@@ -83,7 +114,7 @@ ImGui:DrawRect(rect: Rect, color: Color)
 #### DrawText
 
 ```lua
-ImGui:DrawText(text: string, rect: Rect, fontSize: number = ..., color: Color? = ..., alignment: TextAnchor = ...)
+ImGui:DrawText(text: string, rect: Rect, fontSize: number = ..., color: Color? = ..., alignment: TextAnchor = ..., font: ImGuiFont = ...)
 ```
 
 [ClientOnly] Рисует текст на экране.
@@ -95,11 +126,12 @@ ImGui:DrawText(text: string, rect: Rect, fontSize: number = ..., color: Color? =
 | `fontSize` | number | ✅ | Размер шрифта текста |
 | `color` | Color? | ✅ | Цвет текста |
 | `alignment` | [TextAnchor](./UI.md#textanchor) | ✅ | Позиционирование текста |
+| `font` | [ImGuiFont](./ImGui.md#imguifont) | ✅ | Шрифт интерфейса |
 
 #### DrawTextPos
 
 ```lua
-ImGui:DrawTextPos(text: string, screenPosition: Vector2, fontSize: number = ..., color: Color? = ..., alignment: TextAnchor = ...)
+ImGui:DrawTextPos(text: string, screenPosition: Vector2, fontSize: number = ..., color: Color? = ..., alignment: TextAnchor = ..., font: ImGuiFont = ...)
 ```
 
 [ClientOnly] Рисует текст на экране по указанной позиции и автоматически подбирает размер области под содержимое. Верхний левый угол экрана — (0,0).
@@ -111,11 +143,12 @@ ImGui:DrawTextPos(text: string, screenPosition: Vector2, fontSize: number = ...,
 | `fontSize` | number | ✅ | Размер шрифта текста |
 | `color` | Color? | ✅ | Цвет текста |
 | `alignment` | [TextAnchor](./UI.md#textanchor) | ✅ | Позиционирование текста |
+| `font` | [ImGuiFont](./ImGui.md#imguifont) | ✅ | Шрифт интерфейса |
 
 #### DrawTextUV
 
 ```lua
-ImGui:DrawTextUV(text: string, viewportPosition: Vector2, fontSize: number = ..., color: Color? = ..., alignment: TextAnchor = ...)
+ImGui:DrawTextUV(text: string, viewportPosition: Vector2, fontSize: number = ..., color: Color? = ..., alignment: TextAnchor = ..., font: ImGuiFont = ...)
 ```
 
 [ClientOnly] Рисует текст по координатам viewport и автоматически подбирает размер области под содержимое. Используются X и Y, Z игнорируется. Нижний левый угол viewport — (0,0); верхний правый угол — (1,1).
@@ -127,6 +160,7 @@ ImGui:DrawTextUV(text: string, viewportPosition: Vector2, fontSize: number = ...
 | `fontSize` | number | ✅ | Размер шрифта текста |
 | `color` | Color? | ✅ | Цвет текста |
 | `alignment` | [TextAnchor](./UI.md#textanchor) | ✅ | Позиционирование текста |
+| `font` | [ImGuiFont](./ImGui.md#imguifont) | ✅ | Шрифт интерфейса |
 
 #### DrawTexture
 
@@ -169,6 +203,22 @@ ImGui:DrawTextureRegion(texture: Texture, color: Color, rect: Rect, uvRect: Rect
 | `color` | Color |  | Цветовая маска, применяемая к текстуре |
 | `rect` | Rect |  | Экранная область отрисовки |
 | `uvRect` | Rect |  | Нормализованная UV-область текстуры с началом координат в левом верхнем углу |
+
+#### MeasureText
+
+```lua
+ImGui:MeasureText(text: string, fontSize: number = ..., font: ImGuiFont = ...): Vector2
+```
+
+[ClientOnly] Возвращает ширину и высоту текста в логических координатах ImGui. Для отсутствующего символа используется та же замена, что при отрисовке. Пустой текст или некорректный размер шрифта возвращает (0, 0).
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `text` | string |  | Измеряемый текст |
+| `fontSize` | number | ✅ | Размер шрифта |
+| `font` | [ImGuiFont](./ImGui.md#imguifont) | ✅ | Шрифт интерфейса |
+
+**Returns:** Vector2
 
 #### PopMatrix
 
@@ -235,6 +285,20 @@ ImGui:Translate(translation: Vector2)
 |---|---|:---:|---|
 | `translation` | Vector2 |  | Смещение в экранных координатах |
 
+## ImGuiFont
+
+[ClientOnly] Шрифты интерфейса, доступные для отрисовки текста через ImGui.
+
+| Name | Value | Comment |
+|---|---:|---|
+| `NotoSansRegular` | `0` | [ClientOnly] Обычный Noto Sans. |
+| `NotoSansMedium` | `1` | [ClientOnly] Средний Noto Sans. |
+| `NotoSansBold` | `2` | [ClientOnly] Полужирный Noto Sans. |
+| `NotoSansBlack` | `3` | [ClientOnly] Жирный Noto Sans. |
+| `NotoSansItalic` | `4` | [ClientOnly] Курсивный Noto Sans. |
+| `NotoSansMediumItalic` | `5` | [ClientOnly] Средний курсивный Noto Sans. |
+| `NotoSansBoldItalic` | `6` | [ClientOnly] Полужирный курсивный Noto Sans. |
+
 ## ImGuiWindow
 
 [ClientOnly]
@@ -272,6 +336,36 @@ ImGuiWindow:DrawCircle(center: Vector2, radius: number, color: Color, thickness:
 | `thickness` | number | ✅ | Толщина линии |
 | `segments` | int | ✅ | Количество сегментов. Значение 0 подбирает количество автоматически, остальные значения ограничиваются диапазоном от 3 до 256 |
 
+#### DrawKeyTip
+
+```lua
+ImGuiWindow:DrawKeyTip(inputAction: InputAction, rect: Rect, fontSize: number = ..., color: Color? = ...)
+```
+
+[ClientOnly] Рисует подсказку клавиши для действия ввода внутри окна.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `inputAction` | [InputAction](./InputAction.md#inputaction) |  | Действие ввода, назначенная клавиша которого будет отображена |
+| `rect` | Rect |  | Область подсказки внутри окна |
+| `fontSize` | number | ✅ | Размер шрифта |
+| `color` | Color? | ✅ | Цвет фона подсказки |
+
+#### DrawLine
+
+```lua
+ImGuiWindow:DrawLine(pos1: Vector2, pos2: Vector2, color: Color, thickness: number = ...)
+```
+
+[ClientOnly] Рисует линию между двумя точками внутри окна.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `pos1` | Vector2 |  | Начало линии в координатах окна |
+| `pos2` | Vector2 |  | Конец линии в координатах окна |
+| `color` | Color |  | Цвет линии |
+| `thickness` | number | ✅ | Толщина линии |
+
 #### DrawRect
 
 ```lua
@@ -288,7 +382,7 @@ ImGuiWindow:DrawRect(rect: Rect, color: Color)
 #### DrawText
 
 ```lua
-ImGuiWindow:DrawText(text: string, rect: Rect, fontSize: number, color: Color, alignment: TextAnchor = ...)
+ImGuiWindow:DrawText(text: string, rect: Rect, fontSize: number = ..., color: Color? = ..., alignment: TextAnchor = ..., font: ImGuiFont = ...)
 ```
 
 Рисует текст внуртри окна.
@@ -297,9 +391,10 @@ ImGuiWindow:DrawText(text: string, rect: Rect, fontSize: number, color: Color, a
 |---|---|:---:|---|
 | `text` | string |  | Текст |
 | `rect` | Rect |  | Область текста внуртри окна |
-| `fontSize` | number |  | Размер шрифта текста |
-| `color` | Color |  | Цвет текста |
+| `fontSize` | number | ✅ | Размер шрифта текста |
+| `color` | Color? | ✅ | Цвет текста |
 | `alignment` | [TextAnchor](./UI.md#textanchor) | ✅ | Позиционирование текста |
+| `font` | [ImGuiFont](./ImGui.md#imguifont) | ✅ | Шрифт интерфейса |
 
 #### DrawTexture
 

@@ -5,6 +5,7 @@ Simple immediate-mode GUI API.
 ## Contents
 
 - [ImGui](#imgui)
+- [ImGuiFont](#imguifont)
 - [ImGuiWindow](#imguiwindow)
 
 ---
@@ -67,6 +68,36 @@ ImGui:DrawDebugText(text: string)
 |---|---|:---:|---|
 | `text` | string |  | Text. |
 
+#### DrawKeyTip
+
+```lua
+ImGui:DrawKeyTip(inputAction: InputAction, rect: Rect, fontSize: number = ..., color: Color? = ...)
+```
+
+[ClientOnly] Draws a key tip for an input action on the screen.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `inputAction` | [InputAction](./InputAction.md#inputaction) |  | Input action whose assigned key will be displayed. |
+| `rect` | Rect |  | Key tip area in screen coordinates. |
+| `fontSize` | number | ✅ | Font size. |
+| `color` | Color? | ✅ | Key tip background color. |
+
+#### DrawLine
+
+```lua
+ImGui:DrawLine(pos1: Vector2, pos2: Vector2, color: Color, thickness: number = ...)
+```
+
+[ClientOnly] Draws a line between two points on the screen.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `pos1` | Vector2 |  | Line start in screen coordinates. |
+| `pos2` | Vector2 |  | Line end in screen coordinates. |
+| `color` | Color |  | Line color. |
+| `thickness` | number | ✅ | Line thickness. |
+
 #### DrawRect
 
 ```lua
@@ -83,7 +114,7 @@ ImGui:DrawRect(rect: Rect, color: Color)
 #### DrawText
 
 ```lua
-ImGui:DrawText(text: string, rect: Rect, fontSize: number = ..., color: Color? = ..., alignment: TextAnchor = ...)
+ImGui:DrawText(text: string, rect: Rect, fontSize: number = ..., color: Color? = ..., alignment: TextAnchor = ..., font: ImGuiFont = ...)
 ```
 
 [ClientOnly] Draws text on the screen.
@@ -95,11 +126,12 @@ ImGui:DrawText(text: string, rect: Rect, fontSize: number = ..., color: Color? =
 | `fontSize` | number | ✅ | Font size of the text. |
 | `color` | Color? | ✅ | Text color. |
 | `alignment` | [TextAnchor](./UI.md#textanchor) | ✅ | Text alignment. |
+| `font` | [ImGuiFont](./ImGui.md#imguifont) | ✅ | UI font. |
 
 #### DrawTextPos
 
 ```lua
-ImGui:DrawTextPos(text: string, screenPosition: Vector2, fontSize: number = ..., color: Color? = ..., alignment: TextAnchor = ...)
+ImGui:DrawTextPos(text: string, screenPosition: Vector2, fontSize: number = ..., color: Color? = ..., alignment: TextAnchor = ..., font: ImGuiFont = ...)
 ```
 
 [ClientOnly] Draws text on the screen at the specified position and automatically sizes the text area to fit the content. The upper-left screen corner is (0,0).
@@ -111,11 +143,12 @@ ImGui:DrawTextPos(text: string, screenPosition: Vector2, fontSize: number = ...,
 | `fontSize` | number | ✅ | Font size of the text. |
 | `color` | Color? | ✅ | Text color. |
 | `alignment` | [TextAnchor](./UI.md#textanchor) | ✅ | Text alignment. |
+| `font` | [ImGuiFont](./ImGui.md#imguifont) | ✅ | UI font. |
 
 #### DrawTextUV
 
 ```lua
-ImGui:DrawTextUV(text: string, viewportPosition: Vector2, fontSize: number = ..., color: Color? = ..., alignment: TextAnchor = ...)
+ImGui:DrawTextUV(text: string, viewportPosition: Vector2, fontSize: number = ..., color: Color? = ..., alignment: TextAnchor = ..., font: ImGuiFont = ...)
 ```
 
 [ClientOnly] Draws text using viewport coordinates and automatically sizes the text area to fit the content. The lower-left viewport corner is (0,0), the upper-right corner is (1,1).
@@ -127,6 +160,7 @@ ImGui:DrawTextUV(text: string, viewportPosition: Vector2, fontSize: number = ...
 | `fontSize` | number | ✅ | Font size of the text. |
 | `color` | Color? | ✅ | Text color. |
 | `alignment` | [TextAnchor](./UI.md#textanchor) | ✅ | Text alignment. |
+| `font` | [ImGuiFont](./ImGui.md#imguifont) | ✅ | UI font. |
 
 #### DrawTexture
 
@@ -169,6 +203,22 @@ ImGui:DrawTextureRegion(texture: Texture, color: Color, rect: Rect, uvRect: Rect
 | `color` | Color |  | Color mask applied to the texture. |
 | `rect` | Rect |  | Drawing area in screen coordinates. |
 | `uvRect` | Rect |  | Normalized UV region of the texture with its origin at the upper-left corner. |
+
+#### MeasureText
+
+```lua
+ImGui:MeasureText(text: string, fontSize: number = ..., font: ImGuiFont = ...): Vector2
+```
+
+[ClientOnly] Returns the width and height of the text in logical ImGui coordinates. Missing characters use the same substitution as during rendering. Empty text or an invalid font size returns (0, 0).
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `text` | string |  | Text to measure. |
+| `fontSize` | number | ✅ | Font size. |
+| `font` | [ImGuiFont](./ImGui.md#imguifont) | ✅ | UI font. |
+
+**Returns:** Vector2
 
 #### PopMatrix
 
@@ -235,6 +285,20 @@ ImGui:Translate(translation: Vector2)
 |---|---|:---:|---|
 | `translation` | Vector2 |  | Translation in screen coordinates. |
 
+## ImGuiFont
+
+[ClientOnly] UI fonts available for drawing text through ImGui.
+
+| Name | Value | Comment |
+|---|---:|---|
+| `NotoSansRegular` | `0` | [ClientOnly] Regular Noto Sans. |
+| `NotoSansMedium` | `1` | [ClientOnly] Medium Noto Sans. |
+| `NotoSansBold` | `2` | [ClientOnly] Bold Noto Sans. |
+| `NotoSansBlack` | `3` | [ClientOnly] Black Noto Sans. |
+| `NotoSansItalic` | `4` | [ClientOnly] Italic Noto Sans. |
+| `NotoSansMediumItalic` | `5` | [ClientOnly] Medium Italic Noto Sans. |
+| `NotoSansBoldItalic` | `6` | [ClientOnly] Bold Italic Noto Sans. |
+
 ## ImGuiWindow
 
 [ClientOnly]
@@ -272,6 +336,36 @@ ImGuiWindow:DrawCircle(center: Vector2, radius: number, color: Color, thickness:
 | `thickness` | number | ✅ | Stroke thickness. |
 | `segments` | int | ✅ | Number of segments. A value of 0 selects the count automatically, other values are clamped to the range from 3 to 256. |
 
+#### DrawKeyTip
+
+```lua
+ImGuiWindow:DrawKeyTip(inputAction: InputAction, rect: Rect, fontSize: number = ..., color: Color? = ...)
+```
+
+[ClientOnly] Draws a key tip for an input action inside the window.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `inputAction` | [InputAction](./InputAction.md#inputaction) |  | Input action whose assigned key will be displayed. |
+| `rect` | Rect |  | Key tip area inside the window. |
+| `fontSize` | number | ✅ | Font size. |
+| `color` | Color? | ✅ | Key tip background color. |
+
+#### DrawLine
+
+```lua
+ImGuiWindow:DrawLine(pos1: Vector2, pos2: Vector2, color: Color, thickness: number = ...)
+```
+
+[ClientOnly] Draws a line between two points inside the window.
+
+| Param | Type | Optional | Comment |
+|---|---|:---:|---|
+| `pos1` | Vector2 |  | Line start in window coordinates. |
+| `pos2` | Vector2 |  | Line end in window coordinates. |
+| `color` | Color |  | Line color. |
+| `thickness` | number | ✅ | Line thickness. |
+
 #### DrawRect
 
 ```lua
@@ -288,7 +382,7 @@ ImGuiWindow:DrawRect(rect: Rect, color: Color)
 #### DrawText
 
 ```lua
-ImGuiWindow:DrawText(text: string, rect: Rect, fontSize: number, color: Color, alignment: TextAnchor = ...)
+ImGuiWindow:DrawText(text: string, rect: Rect, fontSize: number = ..., color: Color? = ..., alignment: TextAnchor = ..., font: ImGuiFont = ...)
 ```
 
 Draws text inside the window.
@@ -297,9 +391,10 @@ Draws text inside the window.
 |---|---|:---:|---|
 | `text` | string |  | Text. |
 | `rect` | Rect |  | Text area inside the window. |
-| `fontSize` | number |  | Font size of the text. |
-| `color` | Color |  | Text color. |
+| `fontSize` | number | ✅ | Font size of the text. |
+| `color` | Color? | ✅ | Text color. |
 | `alignment` | [TextAnchor](./UI.md#textanchor) | ✅ | Text alignment. |
+| `font` | [ImGuiFont](./ImGui.md#imguifont) | ✅ | UI font. |
 
 #### DrawTexture
 

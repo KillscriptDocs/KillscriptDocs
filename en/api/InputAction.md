@@ -53,6 +53,16 @@ InputAction:OnPerformed(func: LuaFunction)
 |---|---|:---:|---|
 | `func` | LuaFunction |  |  |
 
+#### ReadVector2
+
+```lua
+InputAction:ReadVector2(): Vector2
+```
+
+[ClientOnly] Returns the Vector2 value from the current input. Returns a zero vector if the action is disabled, has a different value type, or any input field is focused.
+
+**Returns:** Vector2
+
 ## InputActions
 
 [ClientOnly] Global API for finding and working with InputAction. Custom module actions are declared in inputs.json at the module root: specify Name, Type (Button, Value, or PassThrough), and Binding.Path in the Actions array. Binding can also define Interactions, Processors, and Groups.

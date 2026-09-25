@@ -53,6 +53,16 @@ InputAction:OnPerformed(func: LuaFunction)
 |---|---|:---:|---|
 | `func` | LuaFunction |  |  |
 
+#### ReadVector2
+
+```lua
+InputAction:ReadVector2(): Vector2
+```
+
+[ClientOnly] Возвращает значение Vector2 из текущего ввода. Возвращает нулевой вектор, если действие выключено, имеет другой тип значения или любое поле ввода находится в фокусе.
+
+**Returns:** Vector2
+
 ## InputActions
 
 [ClientOnly] Глобальный API для поиска и работы с InputAction. Собственные действия модуля объявляются в файле inputs.json в корне модуля: в массиве Actions укажите Name, Type (Button, Value или PassThrough) и Binding.Path. В Binding также можно задать Interactions, Processors и Groups.

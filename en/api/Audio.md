@@ -27,11 +27,11 @@ Sound resource used to play 2D/3D audio.
 Sounds:GetSound(soundName: string): Sound
 ```
 
-[ClientOnly] Returns a sound from the module files, or nil if no sound with that name is loaded. The loader looks for .wav, .mp3, and .ogg audio files inside the module's sounds folder. The name is searched without a path but with the extension, for example `Hit.wav`.
+[ClientOnly] Returns a sound by its path within sounds, including the file extension, for example Hit.wav or Effects/Hit.wav. Supports .wav, .mp3, and .ogg. A sound can be accessed by its file name alone if that name is unique. Returns nil if the sound is not found.
 
 | Param | Type | Optional | Comment |
 |---|---|:---:|---|
-| `soundName` | string |  | Sound file name with extension, without the folder path. .wav, .mp3, and .ogg are supported. |
+| `soundName` | string |  | Path to the sound within sounds, including the file extension. |
 
 **Returns:** [Sound](./Audio.md#sound)
 

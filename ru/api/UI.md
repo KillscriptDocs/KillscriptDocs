@@ -986,7 +986,7 @@ UI:Delete(element: VisualElement): bool
 UI:GetMousePosition(): Vector2
 ```
 
-[ClientOnly]
+[ClientOnly] Возвращает позицию мыши в координатах панели UI с началом в верхнем левом углу.
 
 **Returns:** Vector2
 

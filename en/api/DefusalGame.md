@@ -29,6 +29,7 @@ Global Defusal mode API: round state, teams, and BridgeCharge.
 | `IsOvertime` | bool | `get` |  | true if the current round is beyond the expected number of rounds. |
 | `IsRoundBeforeSwap` | bool | `get` |  | true if the teams will switch sides after the current round ends. |
 | `IsRoundTimeOver` | bool | `get` |  | true if the current round ended because time ran out (the BridgeCharge was never planted). |
+| `IsScoreboardRequested` | bool | `get` |  | [ClientOnly] true, если экран итогов матча открыл таблицу счёта. |
 | `IsTeamSwapping` | bool | `get` |  | true if the teams are switching sides. |
 | `IsTechnicalPauseActive` | bool | `get` |  | true if a technical pause is active. |
 | `IsVictory` | bool | `get` |  | [ClientOnly] true if the match ended in victory for our team. |

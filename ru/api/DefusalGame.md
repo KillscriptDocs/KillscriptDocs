@@ -29,7 +29,6 @@ API режима Defusal: состояние матча и раунда.
 | `IsOvertime` | bool | `get` |  | true, если текущий раунд за рамкой ожидаемого количества раундов. |
 | `IsRoundBeforeSwap` | bool | `get` |  | true, если по окончанию текущего раунда будет смена сторон команд. |
 | `IsRoundTimeOver` | bool | `get` |  | true, если текущий раунд завершился по истечении времени (BridgeCharge не был установлен). |
-| `IsScoreboardRequested` | bool | `get` |  | [ClientOnly] true, если экран итогов матча открыл таблицу счёта. |
 | `IsTeamSwapping` | bool | `get` |  | true, если идет смена сторон команд. |
 | `IsTechnicalPauseActive` | bool | `get` |  | true, если активна техническая пауза. |
 | `IsVictory` | bool | `get` |  | [ClientOnly] true, если матч завершён победой нашей команды. |

@@ -68,7 +68,7 @@ Sounds:PlaySound2D(sound: Sound, volume: number = ..., pitch: number = ...)
 
 ## VoiceChat
 
-[ClientOnly] Глобальный API для чтения состояния голосового чата EOS и локального заглушения игроков.
+[ClientOnly] Глобальный API для чтения состояния голосового чата и локального заглушения игроков.
 
 ### Methods
 

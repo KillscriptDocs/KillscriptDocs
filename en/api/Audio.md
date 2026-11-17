@@ -68,7 +68,7 @@ Sounds:PlaySound2D(sound: Sound, volume: number = ..., pitch: number = ...)
 
 ## VoiceChat
 
-[ClientOnly] Global API for reading EOS voice chat state and locally muting players.
+[ClientOnly] Global API for reading voice chat state and locally muting players.
 
 ### Methods
 
